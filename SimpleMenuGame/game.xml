@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<banner>Test File, v1.0</banner>
+<!--The test file is heavily based on "Thy Dungeonman" by Videlectrix. -->
+<location name="Main">
+	<description>Ye find yeself in yon dungeon. Ye see a FLASK. Obvious exits are NORTH, SOUTH and DENNIS." </description>
+	<options>
+		<!--
+		Commands must be in UPPERCASE.
+		The engine takes advantage of
+		this in some cases.
+		It also reduces user confusion.
+		-->
+		<option room="Parapets">NORTH</option>
+		<option room="Escarpment">SOUTH</option>
+		<option room="DENNIS">DENNIS</option>
+		<option room="Thirst">DRINK</option>
+		<!--
+		The engine always reponds to
+		GET YE FLASK from the sbemail and
+		GET FLASK from the minigame.
+		-->
+	</options>
+</location>
+<location name="NYI">
+	<description>This room has not been implemented. Sorry.</description>
+	<return />
+</location>
+<location name="DENNIS">
+	<description>He wears a sporty frock coat and a long jimberjam. He paces about nervously.</description>
+	<return />
+</location>
+<location name="Thirst">
+	<description>Thou aren'est thirsty, last time thou checked.</description>
+	<return />
+</location>
+<location name="GameHelp">
+	<!-- The parser will read tabs and line breaks within a tag. -->
+	<description>You have entered a custom HELP room.
+Type BACK to go to yon dungeon.
+Type QUIT to quit.
+Type RESTART to restart.</description>
+	<options>
+		<option room="Main">BACK</option>
+	</options>
+</location>

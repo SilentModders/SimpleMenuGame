@@ -82,6 +82,7 @@ void SetRoom(std::string room)
     if (room == "RESTART")
     {
         std::cout << std::endl << std::endl;
+        gameVars.clear();
         firstBoot = true;
         room = "Main";
         Choice = "";

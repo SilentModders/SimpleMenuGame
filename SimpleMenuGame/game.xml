@@ -1,45 +1,54 @@
-<?xml version="1.0" encoding="us-ascii"?>
-<banner>Test File, v1.0</banner>
-<!--The test file is heavily based on "Thy Dungeonman" by Videlectrix. -->
+<?xml version="1.0" encoding="UTF-8"?>
+<banner>Poké File, v0.1</banner>
+<!--This file reimagines "Pokemon" (Gen 1) by Nintendo. -->
+<variables>
+	<variable name="PLAYER">BLUE</variable>
+	<variable name="RIVAL">RED</variable>
+	<variable name="ShopMan1met" />
+</variables>
 <location name="Main">
-	<description>Ye find yeself in yon dungeon. Ye see a FLASK. Obvious exits are NORTH, SOUTH and DENNIS." </description>
+	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH. OAK has a lab here. </description>
 	<options>
-		<!--
-		Commands must be in UPPERCASE.
-		The engine takes advantage of
-		this in some cases.
-		It also reduces user confusion.
-		-->
-		<option room="Parapets">NORTH</option>
-		<option room="Escarpment">SOUTH</option>
-		<option room="DENNIS">DENNIS</option>
-		<option room="Thirst">DRINK</option>
-		<!--
-		The engine always reponds to
-		GET YE FLASK from the sbemail and
-		GET FLASK from the minigame.
-		-->
+		<option room="Route 1">NORTH</option>
+		<option room="Sea">SOUTH</option>
+		<option room="OAK">OAK</option>
 	</options>
 </location>
-<location name="NYI">
-	<description>This room has not been implemented. Sorry.</description>
+<location name="Sea">
+	<description>You can't swim in the ocean. You're 10 years old!</description>
 	<return />
 </location>
-<location name="DENNIS">
-	<description>He wears a sporty frock coat and a long jimberjam. He paces about nervously.</description>
+<location name="OAK">
+	<description>$RIVAL$: "OAK isn't here right now, $PLAYER$."</description>
 	<return />
 </location>
-<location name="Thirst">
-	<description>Thou aren'est thirsty, last time thou checked.</description>
-	<return />
-</location>
-<location name="GameHelp">
-	<!-- The parser will read tabs and line breaks within a tag. -->
-	<description>You have entered a custom HELP room.
-Type BACK to go to yon dungeon.
-Type QUIT to quit.
-Type RESTART to restart.</description>
+<location name="Route 1">
+	<description>You are on a grassy road; this is Route 1. You can SEARCH for pokémon, TALK to others on this route, travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 	<options>
-		<option room="Main">BACK</option>
+		<option room="Main">SOUTH</option>
+		<option room="Veri City">NORTH</option>
+		<option room="Rt1Man" prohibit="ShopMan1met">TALK</option>
+		<option room="Rt1No1" require="ShopMan1met">TALK</option>
+		<option room="SP_R1">SEARCH</option>
 	</options>
+</location>
+<location name="Veri City">
+	<description>Your path is blocked by a lazy developer.</description>
+	<return />
+	<options>
+		<option room="Main">Back</option>
+	</options>
+</location>
+<location name="Rt1Man">
+	<description>The Poke Mart Promoter would give you a sample if this game had an inventory.</description>
+	<variable name="ShopMan1met">1</variable>
+	<return />
+</location>
+<location name="Rt1No1">
+	<description>There is no one here.</description>
+	<return />
+</location>
+<location name="SP_R1">
+	<description>You can't find Pokemon right now.</description>
+	<return />
 </location>

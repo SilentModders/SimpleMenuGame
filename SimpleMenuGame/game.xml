@@ -35,13 +35,18 @@
 <location name="Veri City">
 	<description>Your path is blocked by a lazy developer.</description>
 	<return />
+	<!--
+		Rooms that "return" automatically call the "Back" option.
+		Overriding that here makes the player return to Pallet Town instead of Route 1
+	-->
 	<options>
 		<option room="Main">Back</option>
 	</options>
 </location>
 <location name="Rt1Man">
-	<description>The Poke Mart Promoter would give you a sample if this game had an inventory.</description>
+	<description>The Poke Mart promoter gave you a free POTION and then proceeded NORTH to the store in Veridian City.</description>
 	<variable name="ShopMan1met">1</variable>
+	<Inventory name="POTION" />
 	<return />
 </location>
 <location name="Rt1No1">

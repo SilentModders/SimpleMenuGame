@@ -28,6 +28,9 @@ std::map<std::string, std::string> gameVars;
 /* Rooms which change variables */
 std::map<std::string, std::pair<std::string, std::string>> roomVars;
 
+/* Game Inventory */
+std::map<std::string, int> gameInventory;
+
 int toupper(std::string& input)
 {
     int ret = EXIT_SUCCESS;
@@ -83,6 +86,7 @@ void SetRoom(std::string room)
     {
         std::cout << std::endl << std::endl;
         gameVars.clear();
+        gameInventory.clear();
         firstBoot = true;
         room = "Main";
         Choice = "";
@@ -166,6 +170,17 @@ bool ReadFile()
                             ));
                 }
 
+                /* Find out if this room gives items. */
+                if (room.child("inventory"))
+                {
+                    std::string item = room.child("inventory").attribute("name").value();
+                    int count = atoi(LoadString(room.child_value("inventory"), "1").c_str());
+                    if (item != "")
+                        if (gameInventory.find(item) != gameInventory.end())
+                            gameInventory.find(item)->second += count;
+                        else
+                            gameInventory.insert(std::pair<std::string, int>(item,count));
+                }
 
                 if (room.child("options"))
                     /* Read all of its options. */

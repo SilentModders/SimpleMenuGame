@@ -18,9 +18,8 @@
 
 int Quit(int code = EXIT_FAILURE)
 {
-#if _DEBUG
-    //system(PAUSECMD);
-#endif
+    if (code)
+        system(PAUSECMD);
     return code;
 }
 
@@ -32,20 +31,15 @@ bool GameLoop()
     
     /* Don't print an empty line
     if the last input was blank. */
-    if (GetChoice()!="")
-    {
+    if (GetChoice() != "")
         std::cout << std::endl;
-    }
     /* Print the room's text. */
     std::cout << RoomText(GetRoom()) << std::endl;
 
     /* Some rooms put you back you came from
     without the opportunity for input. */
     if (AutoRoom(GetRoom()))
-    {
-        SetChoice("Back");
         return true;
-    }
     
     std::getline(std::cin, choice);
     toupper(choice);
@@ -55,11 +49,16 @@ bool GameLoop()
 
 int main()
 {
+    /* Allow unicode chars. */
+    std::locale::global(std::locale("en_US.utf8"));
+
     std::cout << BANNER << std::endl;
-    Setup();
-    while (GameLoop())
+    if (Setup())
     {
-        sleep(0);
+        while (GameLoop())
+            sleep(0);
+        return Quit(EXIT_SUCCESS);
     }
-    return Quit(EXIT_SUCCESS);
+    std::cout << "A file load error occured." << std::endl;
+    return Quit();
 }

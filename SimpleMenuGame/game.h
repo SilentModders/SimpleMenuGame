@@ -12,7 +12,7 @@ std::string GetRoom();
 void SetRoom(std::string room);
 
 // Create the list of available rooms.
-void Setup();
+bool Setup();
 
 // Find the room that matches what was chosen.
 void ChooseRoom(std::string key);

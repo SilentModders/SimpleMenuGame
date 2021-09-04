@@ -23,7 +23,8 @@
 	<return />
 </location>
 <location name="Route 1">
-	<description>You are on a grassy road; this is Route 1. You can SEARCH for pokémon, TALK to others on this route, travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
+	<description>You are on a grassy road; this is Route 1. You can SEARCH for pokémon, TALK to others on this route,
+travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 	<options>
 		<option room="Main">SOUTH</option>
 		<option room="Veri City">NORTH</option>

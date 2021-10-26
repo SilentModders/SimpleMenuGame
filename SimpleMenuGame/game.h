@@ -1,41 +1,105 @@
 #pragma once
-
+#include <algorithm>
 #include <map>
 #include "text.h"
+#include "enemies.h"
 
-std::string GetChoice();
-void SetChoice(std::string choice);
-std::string GetRoom();
-std::string GetLastRoom();
-void SetRoom(std::string room);
+constexpr auto PARTYSIZE = 6;
 
-void AddChoice(std::string option, std::string room);
-void AddRoom(std::string key, std::string text, bool move = false);
-void AddGameVar(std::string var, std::string val);
+class CombatSys;
 
-/* Create the list of available rooms. */
-bool Setup();
+class Game
+{
+public:
+	Game();
 
-/* Set a room to set a variable. */
-void AddRoomVar(std::string room, std::string var, std::string val);
+	/* Create the list of available rooms. */
+	bool Setup();
 
-/* Check the existance of a game var. */
-bool FindGameVar(std::string key);
+	std::string GetChoice();
+	void SetChoice(std::string choice);
 
-/* Read a game var. */
-std::string LoadGameVar(std::string key, bool second = false);
+	std::string GetRoom();
 
-/* Check the Inventory. */
-bool FindInventoryItem(std::string key);
+	/* Is this an auto-exit room? */
+	bool AutoRoom(std::string key);
 
-/* Add an item to the inventory. */
-void AddInventoryItem(std::string item, int count);
+	/* Find the room that matches what was chosen. */
+	void ChooseRoom(std::string key);
 
-/* Find the room that matches what was chosen. */
-void ChooseRoom(std::string key);
+	/* Get the room's text. */
+	std::string RoomText(std::string key);
 
-/* Get the room's text. */
-std::string RoomText(std::string key);
+	/* Previous Location */
+	std::string GetLastRoom();
 
-/* Is this an auto-exit room? */
-bool AutoRoom(std::string key);
+	/* Set the player's location and clear old data. */
+	void SetRoom(std::string room);
+
+	/* Get Party Members. Empty slots are nullptr. */
+	Enemy* PartyMember(int index);
+
+private:
+	/* The Current Room */
+	std::string Room;
+	/* The initial vaule determines the entry point for the script. */
+
+	/* The last room is used for rooms that automatically exit. */
+	std::string OldRoom;
+
+	/* The Current Command */
+	std::string Choice;
+
+	/* Available Commands */
+	std::map<std::string, std::string> choiceMap;
+
+	/* Available Rooms */
+	std::map<std::string, std::pair<std::string, bool>> roomMap;
+
+	/* Game has just started or restarted. */
+	bool firstBoot;
+
+	/* Game Script Variables */
+	std::map<std::string, std::string> Vars;
+
+	/* Rooms which change variables */
+	std::map<std::string, std::pair<std::string, std::string>> roomVars;
+
+	/* Game Inventory */
+	std::map<std::string, int> Inventory;
+
+	CombatSys* combatSys;
+
+	/* Player's Party */
+	Enemy* party[PARTYSIZE];
+
+	/* Add Option for Player */
+	void AddChoice(std::string option, std::string room);
+
+	/* Add a Room to the List */
+	void AddRoom(std::string key, std::string text, bool move = false);
+
+	/* Add a variable from the game's script. */
+	void AddGameVar(std::string var, std::string val);
+
+	/* Set a room to set a variable. */
+	void AddRoomVar(std::string room, std::string var, std::string val);
+
+	/* Check the existance of a game var. */
+	bool FindGameVar(std::string key);
+
+	/* Read a game var. */
+	std::string LoadGameVar(std::string key, bool second = false);
+
+	/* Check the Inventory. */
+	bool FindInventoryItem(std::string key);
+
+	/* Add an item to the inventory. */
+	void AddInventoryItem(std::string item, int count);
+
+	/* Perform Room actions. */
+	bool RoomFunc(std::string key);
+
+	/* The XML file is re-read every time a new command is issued. */
+	bool ReadFile(bool firstBoot = false);
+};

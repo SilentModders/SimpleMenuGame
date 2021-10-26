@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Poké File, v0.1</banner>
-<!--This file reimagines "Pokemon" (Gen 1) by Nintendo. -->
+<banner>Poké Game, v0.1</banner>
+<!--This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
 <variables>
 	<variable name="PLAYER">BLUE</variable>
 	<variable name="RIVAL">RED</variable>
@@ -30,7 +30,7 @@ travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 		<option room="Veri City">NORTH</option>
 		<option room="Rt1Man" prohibit="ShopMan1met">TALK</option>
 		<option room="Rt1No1" require="ShopMan1met">TALK</option>
-		<option room="SP_R1">SEARCH</option>
+		<option room="Battle">SEARCH</option>
 	</options>
 </location>
 <location name="Veri City">
@@ -52,9 +52,5 @@ travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 </location>
 <location name="Rt1No1">
 	<description>There is no one here.</description>
-	<return />
-</location>
-<location name="SP_R1">
-	<description>You can't find Pokemon right now.</description>
 	<return />
 </location>

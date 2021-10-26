@@ -14,7 +14,7 @@
     #define PAUSECMD "read -n1 -rs -p 'Press any key to quit.'"
 #endif
 
-#define BANNER "Simple Menu Game, Version 0.1"
+#define BANNER "Simple Menu Game, Version 0.2"
 
 int Quit(int code = EXIT_FAILURE)
 {
@@ -23,27 +23,27 @@ int Quit(int code = EXIT_FAILURE)
     return code;
 }
 
-bool GameLoop()
+bool GameLoop(Game* gameObj)
 {
     /* Load up the previous choice. */
-    std::string choice = GetChoice();
-    ChooseRoom(choice);
+    std::string choice = gameObj->GetChoice();
+    gameObj->ChooseRoom(choice);
     
     /* Don't print an empty line
     if the last input was blank. */
-    if (GetChoice() != "")
+    if (gameObj->GetChoice() != "")
         std::cout << std::endl;
     /* Print the room's text. */
-    std::cout << RoomText(GetRoom()) << std::endl;
+    std::cout << gameObj->RoomText(gameObj->GetRoom()) << std::endl;
 
     /* Some rooms put you back you came from
     without the opportunity for input. */
-    if (AutoRoom(GetRoom()))
+    if (gameObj->AutoRoom(gameObj->GetRoom()))
         return true;
     
     std::getline(std::cin, choice);
     toupper(choice);
-    SetChoice(choice);
+    gameObj->SetChoice(choice);
     return (choice != "QUIT");
 }
 
@@ -51,11 +51,21 @@ int main()
 {
     /* Allow unicode chars. */
     std::locale::global(std::locale("en_US.utf8"));
+#if defined _WIN32
+    SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+#endif
+
+    Game* theGame = new Game;
+    if (!theGame) /* You just lost! */
+    {
+        std::cout << "The game could not be started." << std::endl;
+        return Quit();
+    }
 
     std::cout << BANNER << std::endl;
-    if (Setup())
+    if (theGame->Setup())
     {
-        while (GameLoop())
+        while (GameLoop(theGame))
             sleep(0);
         return Quit(EXIT_SUCCESS);
     }

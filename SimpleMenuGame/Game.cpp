@@ -1,73 +1,58 @@
 #include "game.h"
-#include "files.h"
+#include "text.h"
+#include "battle.h"
 
-/* The Current Room */
-std::string Room = "Main";
-/* The initial vaule determines the entry point for the script. */
-
-/* The last room is used for rooms that automatically exit. */
-std::string OldRoom = Room;
-
-/* The Current Command */
-std::string Choice = "";
-
-/* Available Commands */
-std::map<std::string, std::string> choiceMap;
-
-/* Available Rooms */
-std::map<std::string, std::pair<std::string, bool>> roomMap;
-
-/* Game has just started or restarted. */
-bool firstBoot = true;
-
-/* Game Script Variables */
-std::map<std::string, std::string> gameVars;
-
-/* Rooms which change variables */
-std::map<std::string, std::pair<std::string, std::string>> roomVars;
-
-/* Game Inventory */
-std::map<std::string, int> gameInventory;
+Game::Game()
+{
+    firstBoot = true;
+    Room = "Main";
+    OldRoom = Room;
+    Choice = "";
+    combatSys = new CombatSys(this);
+    for (auto i = 0; i < PARTYSIZE; i++)
+        party[i] = nullptr;
+}
 
 /* The Current Choice */
-std::string GetChoice()
+std::string Game::GetChoice()
 {
     return Choice;
 }
 
 /* Set the Choice */
-void SetChoice(std::string choice)
+void Game::SetChoice(std::string choice)
 {
     Choice = choice;
 }
 
 /* The Current Room */
-std::string GetRoom()
+std::string Game::GetRoom()
 {
     return Room;
 }
 
 /* Previous Location */
-std::string GetLastRoom()
+std::string Game::GetLastRoom()
 {
     return OldRoom;
 }
 
 /* Set the player's location and clear old data. */
-void SetRoom(std::string room)
+void Game::SetRoom(std::string room)
 {
     firstBoot = false;
     if (room == "RESTART")
     {
         std::cout << std::endl << std::endl;
-        gameVars.clear();
-        gameInventory.clear();
+        Vars.clear();
+        Inventory.clear();
         firstBoot = true;
         room = "Main";
         Choice = "";
     }
 
-    OldRoom = Room;
+    if (Room != "Battle")
+        OldRoom = Room;
     Room = room;
 
     /* Reload all commands. */
@@ -77,28 +62,33 @@ void SetRoom(std::string room)
 }
 
 /* Add a Room to the List */
-void AddRoom(std::string key, std::string text, bool move)
+void Game::AddRoom(std::string key, std::string text, bool move)
 {
     roomMap.insert(std::pair<std::string, std::pair
         <std::string, bool>>(key, std::make_pair(text, move)));
 }
 
 /* Add Option for Player */
-void AddChoice(std::string option, std::string room)
+void Game::AddChoice(std::string option, std::string room)
 {
     if (option != "")
         choiceMap.insert(std::pair<std::string, std::string>(option, LoadString(room, "invalid")));
 }
 
 /* Add a variable from the game's script. */
-void AddGameVar(std::string var, std::string val)
+void Game::AddGameVar(std::string var, std::string val)
 {
     if (var != "")
-        gameVars.insert(std::pair<std::string, std::string>(var, LoadString(val, "0")));
+        Vars.insert(std::pair<std::string, std::string>(var, LoadString(val, "0")));
+}
+
+Enemy* Game::PartyMember(int index)
+{
+    return party[std::clamp(index, 0, PARTYSIZE)];
 }
 
 /* Create the list of available rooms. */
-bool Setup()
+bool Game::Setup()
 {
     bool ret = false;
 
@@ -106,8 +96,8 @@ bool Setup()
     AddRoom("invalid", "Invalid command; try again.");
     AddRoom("RESTART", "");
 
-    /* Read the file to find our room. */
-    ret = ReadFile( firstBoot );
+    /* Read the file to find the room. */
+    ret = ReadFile(firstBoot);
     if (!ret)
         AddRoom(Room, "You in a void. No file was loaded. Please QUIT.", true);
 
@@ -115,16 +105,18 @@ bool Setup()
     AddRoom("YE FLASK", "You can't get YE FLASK!");
     AddRoom("FLASK", "Ye cannot get the FLASK.");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
-    
-    if (roomMap.find(Room) == roomMap.end())
-        AddRoom(Room, "You tried to enter \"" + Room + "\" which doesn't exist.");
+    AddRoom("Battle", "You are in a battle. You can ATTACK or RUN.", true);
     /* Rooms below here will not be read. */
+
+    /* Default Party */
+    for (auto i = 0; i < PARTYSIZE; i++)
+        party[i] = combatSys->EnemyFromIndex(7);
 
     return ret;
 }
 
 /* Set a room to set a variable. */
-void AddRoomVar(std::string room, std::string var, std::string val)
+void Game::AddRoomVar(std::string room, std::string var, std::string val)
 {
     if (room != "")
         if (var != "")
@@ -136,7 +128,7 @@ void AddRoomVar(std::string room, std::string var, std::string val)
 }
 
 /* Find the room that matches what was chosen. */
-void ChooseRoom(std::string key)
+void Game::ChooseRoom(std::string key)
 {
     if (key != "")
         if (choiceMap.find(key) != choiceMap.end())
@@ -146,67 +138,64 @@ void ChooseRoom(std::string key)
 }
 
 /* Check the existance of a game var. */
-bool FindGameVar(std::string key)
+bool Game::FindGameVar(std::string key)
 {
-    return gameVars.find(key) != gameVars.end();
+    return Vars.find(key) != Vars.end();
 }
 
 /* Read a game var. */
-std::string LoadGameVar(std::string key, bool second)
+std::string Game::LoadGameVar(std::string key, bool second)
 {
-    if (gameVars.find(key) != gameVars.end())
+    if (Vars.find(key) != Vars.end())
         if (second)
-            return gameVars.find(key)->second;
+            return Vars.find(key)->second;
         else
-            return gameVars.find(key)->first;
+            return Vars.find(key)->first;
     return "Unknown";
 }
 
 /* Check the Inventory. */
-bool FindInventoryItem(std::string key)
+bool Game::FindInventoryItem(std::string key)
 {
-    return gameInventory.find(key) != gameInventory.end();
+    return Inventory.find(key) != Inventory.end();
 }
 
 /* Add an item to the inventory. */
-void AddInventoryItem(std::string item, int count)
+void Game::AddInventoryItem(std::string item, int count)
 {
     if (item != "")
-        if (gameInventory.find(item) != gameInventory.end())
-            gameInventory.find(item)->second += count;
+        if (Inventory.find(item) != Inventory.end())
+            Inventory.find(item)->second += count;
         else
-            gameInventory.insert(std::pair<std::string, int>(item, count));
+            Inventory.insert(std::pair<std::string, int>(item, count));
 }
 
 /* Sets a game variable when specified by the room. */
-bool RoomFunc(std::string key)
+bool Game::RoomFunc(std::string key)
 {
+    if (key == "Battle")
+        return !combatSys->BattleTurn();
+
     if (roomVars.find(key) != roomVars.end())
-    {
-        if (gameVars.find(roomVars.find(key)->second.first) != gameVars.end())
-        {
-            gameVars.find(roomVars.find(key)->second.first)->second =
-                roomVars.find(key)->second.second;
-            return true;
-        }
-    }
-    return false;
+        if (Vars.find(roomVars.find(key)->second.first) != Vars.end())
+            Vars.find(roomVars.find(key)->second.first)->second =
+            roomVars.find(key)->second.second;
+    return true;
 }
 
 /* Get the room's text. */
-std::string RoomText(std::string key)
+std::string Game::RoomText(std::string key)
 {
     if (roomMap.find(key) != roomMap.end())
     {
-        /* Perform any Room action. */
         RoomFunc(key);
-        return roomMap.find(key)->second.first;
+        return roomMap.find(GetRoom())->second.first;
     }
     return roomMap.find("invalid")->second.first;
 }
 
 /* Is this an auto-exit room? */
-bool AutoRoom(std::string key)
+bool Game::AutoRoom(std::string key)
 {
     if (!roomMap.find(key)->second.second)
     {

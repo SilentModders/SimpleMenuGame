@@ -20,8 +20,8 @@ std::string LoadString(std::string input, std::string def)
 /* Search "source" for any occurance of "find" and substitute "replace". */
 std::string ReplaceSubstring(std::string source, std::string find, std::string replace)
 {
-    int position = 0;
-    int origLength = find.length();
+    size_t position = 0;
+    size_t origLength = find.length();
     position = source.find(find, position);
 
     while (position >= 0)
@@ -31,4 +31,9 @@ std::string ReplaceSubstring(std::string source, std::string find, std::string r
         position = source.find(find, position);
     }
     return source;
+}
+
+std::string ColoredString(std::string input, Color color)
+{
+    return "\033[" + std::to_string(int(color)) + "m" + input + "\033[0m";
 }

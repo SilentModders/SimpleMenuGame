@@ -1,10 +1,13 @@
-#include "files.h"
-#include "game.h"
 #include "PugiXML/pugixml.hpp"
+#include "game.h"
+#include "battle.h"
 
 #define GAME_XML "game.xml"
+#define MONSTERS "enemies.xml"
 
-bool ReadFile(bool firstBoot)
+const bool XTRA_BANNERS = true;
+
+bool Game::ReadFile(bool firstBoot)
 {
     const pugi::char_t* source = GAME_XML;
     pugi::xml_document doc;
@@ -17,13 +20,18 @@ bool ReadFile(bool firstBoot)
         {
             if (doc.child("banner"))
                 std::cout << doc.child_value("banner") << std::endl;
-            std::cout << std::endl;
-
             /* Read all the "varible" tags in the beginning */
             if (pugi::xml_node varblock = doc.child("variables"))
                 for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
                     if (gamevar.attribute("name").value())
                         AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
+
+            /* Read Enemy XML file. */
+            if (!combatSys->ReadFile())
+            {
+                std::cout << "Supplemental file error!" << std::endl;
+                return false;
+            }
         }
 
         /* Read all the "location" tags in the file. */
@@ -35,10 +43,10 @@ bool ReadFile(bool firstBoot)
                 std::string desc = LoadString(room.child_value("description"), "You are in an empty room.");
 
                 /* Search the description for replaceable words. */
-                int position = desc.find("$");
-                while (position >= 0)
+                size_t position = desc.find("$");
+                while (position != std::string::npos)
                 {
-                    int nlen = desc.find("$", position + 1);
+                    size_t nlen = desc.find("$", position + 1);
                     std::string word = desc.substr(position, nlen - position + 1);
                     if (word.substr(1, word.length() - 2) != "")
                     {
@@ -93,6 +101,48 @@ bool ReadFile(bool firstBoot)
         AddChoice("RESTART", "RESTART");
         AddChoice("GET YE FLASK", "YE FLASK");
         AddChoice("GET FLASK", "FLASK");
+
+        /* Battle Mode Options */
+        if (GetRoom() == "Battle")
+        {
+            AddChoice("ATTACK", "Battle");
+            AddChoice("RUN", GetLastRoom());
+        }
+    }
+    /* Print XML Errors to the screen. */
+    else
+    {
+        std::cout << "XML [" << source << "] parsed with errors.\n";
+        std::cout << "Error description: " << result.description() << "\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+    }
+    return result;
+}
+
+/* Read Enemy File */
+bool CombatSys::ReadFile()
+{
+    const pugi::char_t* source = MONSTERS;
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(source);
+
+    if (result)
+    {
+        /* Read the script's startup banner, if available. */
+        if (doc.child("banner") && XTRA_BANNERS)
+            std::cout << doc.child_value("banner");
+        std::cout << std::endl;
+
+        /* Read all the "enemy" tags in the file. */
+        for (pugi::xml_node enemy = doc.child("enemy"); enemy; enemy = enemy.next_sibling("enemy"))
+        {
+            if (enemy.child("name"))
+            {
+                enemies[eCount]->Setup(enemy.child_value("name"), atoi(enemy.child_value("health")), atoi(enemy.child_value("attack")));
+                eCount++;
+            }
+        }
+        std::cout << std::endl;
     }
     /* Print XML Errors to the screen. */
     else

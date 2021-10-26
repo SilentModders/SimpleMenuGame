@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner>Pokey Mans, v0.002</banner>
+<!--This file describes the "Gen 1" Pokémon. (Nintendo owns Pokémon.) -->
+<enemy>
+	<name>MissingNo</name>
+</enemy>
+<enemy>
+	<name>Bulbasaur</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Ivysaur</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Venusaur</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Charmander</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Charmeleon</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Charizard</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Squirtle</name>
+	<health>45</health>
+	<attack>40</attack>
+</enemy>
+<enemy>
+	<name>Wartortle</name>
+	<health>45</health>
+	<attack>40</attack>
+	<evolve level="36">9</evolve>
+</enemy>
+<enemy>
+	<name>Blastoise</name>
+	<health>79</health>
+	<attack>83</attack>
+	<defense>100</defense>
+	<spatk>85</spatk>
+	<spdef>105</spdef>
+	<speed>78</speed>
+</enemy>

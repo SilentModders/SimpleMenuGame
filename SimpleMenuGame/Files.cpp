@@ -2,10 +2,10 @@
 #include "game.h"
 #include "battle.h"
 
-#define GAME_XML "game.xml"
-#define MONSTERS "enemies.xml"
+constexpr auto GAME_XML = "game.xml";
+constexpr auto MONSTERS = "enemies.xml";
 
-const bool XTRA_BANNERS = true;
+constexpr bool XTRA_BANNERS = true;
 
 bool Game::ReadFile(bool firstBoot)
 {
@@ -20,14 +20,21 @@ bool Game::ReadFile(bool firstBoot)
         {
             if (doc.child("banner"))
                 std::cout << doc.child_value("banner") << std::endl;
-            /* Read all the "varible" tags in the beginning */
+
+            /* Determine if a custom enemy file was specified. */
+            std::string eFile = MONSTERS;
+            for (pugi::xml_node data = doc.child("file"); data; data = data.next_sibling("file"))
+                if (std::string(data.attribute("data").value()) == "enemies")
+                    eFile = doc.child_value("file");
+
+            /* Read all the "variable" tags in the beginning */
             if (pugi::xml_node varblock = doc.child("variables"))
                 for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
                     if (gamevar.attribute("name").value())
                         AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
 
             /* Read Enemy XML file. */
-            if (!combatSys->ReadFile())
+            if (!combatSys->ReadFile(eFile))
             {
                 std::cout << "Supplemental file error!" << std::endl;
                 return false;
@@ -120,9 +127,9 @@ bool Game::ReadFile(bool firstBoot)
 }
 
 /* Read Enemy File */
-bool CombatSys::ReadFile()
+bool CombatSys::ReadFile(std::string file)
 {
-    const pugi::char_t* source = MONSTERS;
+    const pugi::char_t* source = file.c_str();
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(source);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banner>Poké Game, v0.1</banner>
 <!--This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
+<file data="enemies">enemies.xml</file>
 <variables>
 	<variable name="PLAYER">BLUE</variable>
 	<variable name="RIVAL">RED</variable>

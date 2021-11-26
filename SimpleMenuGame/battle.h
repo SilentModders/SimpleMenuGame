@@ -6,9 +6,10 @@ class CombatSys
 public:
 	CombatSys(Game* gameObj);
 	bool BattleTurn(); // Runs Every Turn
-	bool ReadFile();
+	bool ReadFile(std::string file);
 	Enemy* EnemyFromIndex(int index = 0);
 private:
+	int member; // Player Party Member
 	int pHealth; // Player Health
 	int eHealth; // Enemy Health
 	bool bStarted; // Is the battle active?
@@ -17,7 +18,13 @@ private:
 	Enemy* enemies[MAX_ENEMIES];
 	int eCount;
 
+	/*
+		Find the first available party member.
+		Returns false if there is none.
+	*/
+	bool FindPartyMember();
+
+	void PrintHealth();
 	void StartBattle();
 	void EndBattle();
-	void AddEnemy(std::string key, int hp = 1, int dam = 1);
 };

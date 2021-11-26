@@ -13,7 +13,7 @@ class Game
 public:
 	Game();
 
-	/* Create the list of available rooms. */
+	/* Refresh Game State */
 	bool Setup();
 
 	std::string GetChoice();
@@ -38,6 +38,12 @@ public:
 
 	/* Get Party Members. Empty slots are nullptr. */
 	Enemy* PartyMember(int index);
+
+	/* Save a party member's health. Returns false on an empty slot. */
+	bool SaveHealth(int index, int health);
+
+	/* Get a party member's health. Returns 0 on an empty slot. */
+	int GetHealth(int index);
 
 private:
 	/* The Current Room */
@@ -72,6 +78,10 @@ private:
 
 	/* Player's Party */
 	Enemy* party[PARTYSIZE];
+	int partyHP[PARTYSIZE];
+
+	/* Setup the intial player state. */
+	void InitPlayer();
 
 	/* Add Option for Player */
 	void AddChoice(std::string option, std::string room);

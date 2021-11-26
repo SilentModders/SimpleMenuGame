@@ -84,21 +84,23 @@ void Game::AddGameVar(std::string var, std::string val)
 
 Enemy* Game::PartyMember(int index)
 {
-    return party[std::clamp(index, 0, PARTYSIZE)];
+    return party[std::clamp(index, 0, PARTYSIZE - 1)];
 }
 
-/* Create the list of available rooms. */
+/* Refresh Game State */
 bool Game::Setup()
 {
-    bool ret = false;
+    bool readFile = false;
+
+    /* Create the list of available rooms. */
 
     /* Rooms in this list cannot be overridden. */
     AddRoom("invalid", "Invalid command; try again.");
     AddRoom("RESTART", "");
 
     /* Read the file to find the room. */
-    ret = ReadFile(firstBoot);
-    if (!ret)
+    readFile = ReadFile(firstBoot);
+    if (!readFile)
         AddRoom(Room, "You in a void. No file was loaded. Please QUIT.", true);
 
     /* Rooms below here can be overridden. */
@@ -108,11 +110,27 @@ bool Game::Setup()
     AddRoom("Battle", "You are in a battle. You can ATTACK or RUN.", true);
     /* Rooms below here will not be read. */
 
-    /* Default Party */
-    for (auto i = 0; i < PARTYSIZE; i++)
-        party[i] = combatSys->EnemyFromIndex(7);
+    /* Setup the intial player state. */
+    if (readFile && firstBoot)
+        InitPlayer();
 
-    return ret;
+    return readFile;
+}
+
+/* Setup the intial player state. */
+void Game::InitPlayer()
+{
+    /* Default Party for testing */
+    party[0] = combatSys->EnemyFromIndex(7);
+    party[1] = combatSys->EnemyFromIndex(7);/*
+    party[2] = combatSys->EnemyFromIndex(7);
+    party[3] = combatSys->EnemyFromIndex(7);
+    party[4] = combatSys->EnemyFromIndex(7);
+    party[5] = combatSys->EnemyFromIndex(7);
+    //*/
+    for (auto i = 0; i < PARTYSIZE; i++)
+        if (party[i])
+            partyHP[i] = combatSys->EnemyFromIndex(7)->GetHealth();
 }
 
 /* Set a room to set a variable. */
@@ -134,7 +152,8 @@ void Game::ChooseRoom(std::string key)
         if (choiceMap.find(key) != choiceMap.end())
             SetRoom(choiceMap.find(key)->second);
         else
-            SetRoom("invalid");
+            if (GetRoom() != "Battle")
+                SetRoom("invalid");
 }
 
 /* Check the existance of a game var. */
@@ -203,4 +222,23 @@ bool Game::AutoRoom(std::string key)
         return true;
     }
     return false;
+}
+
+bool Game::SaveHealth(int index, int health)
+{
+    if (PartyMember(index))
+    {
+        partyHP[std::clamp(index, 0, PARTYSIZE - 1)] = health;
+        return true;
+    }
+    return false;
+}
+
+int Game::GetHealth(int index)
+{
+    if (PartyMember(index))
+    {
+        return partyHP[std::clamp(index, 0, PARTYSIZE - 1)];
+    }
+    return 0;
 }

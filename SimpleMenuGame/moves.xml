@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner>Pokey Moves, v0.001</banner>
+<!--This file describes the "Gen 1" Pokémon moves. (Nintendo owns Pokémon.) -->
+<move>
+	<name>Tackle</name>
+	<power>40</power>
+	<pp>35</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Tail Whip</name>
+	<pp>30</pp>
+	<accuracy>100</accuracy>
+</move>

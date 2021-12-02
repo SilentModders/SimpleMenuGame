@@ -24,7 +24,7 @@ std::string ReplaceSubstring(std::string source, std::string find, std::string r
     size_t origLength = find.length();
     position = source.find(find, position);
 
-    while (position >= 0)
+    while (position <= source.length())
     {
         source.erase(position, origLength);
         source.insert(position, replace);

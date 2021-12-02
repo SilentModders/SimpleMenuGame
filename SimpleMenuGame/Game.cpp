@@ -2,6 +2,11 @@
 #include "text.h"
 #include "battle.h"
 
+/*
+    TODO: Seperate the engine from the UI for easier adaptation
+        to any future UI.
+//*/
+
 Game::Game()
 {
     firstBoot = true;
@@ -82,15 +87,12 @@ void Game::AddGameVar(std::string var, std::string val)
         Vars.insert(std::pair<std::string, std::string>(var, LoadString(val, "0")));
 }
 
-Enemy* Game::PartyMember(int index)
-{
-    return party[std::clamp(index, 0, PARTYSIZE - 1)];
-}
-
 /* Refresh Game State */
 bool Game::Setup()
 {
     bool readFile = false;
+
+    srand(time(NULL)); // Seed the RNG
 
     /* Create the list of available rooms. */
 
@@ -121,16 +123,19 @@ bool Game::Setup()
 void Game::InitPlayer()
 {
     /* Default Party for testing */
-    party[0] = combatSys->EnemyFromIndex(7);
-    party[1] = combatSys->EnemyFromIndex(7);/*
-    party[2] = combatSys->EnemyFromIndex(7);
-    party[3] = combatSys->EnemyFromIndex(7);
-    party[4] = combatSys->EnemyFromIndex(7);
-    party[5] = combatSys->EnemyFromIndex(7);
-    //*/
-    for (auto i = 0; i < PARTYSIZE; i++)
-        if (party[i])
-            partyHP[i] = combatSys->EnemyFromIndex(7)->GetHealth();
+    for (auto i = 0; i < 2; i++)
+    {
+        /*
+            The constructor initializes
+            party members as null pointers.
+        //*/
+        party[i] = new PartyMember;
+        party[i]->Create(combatSys->EnemyFromIndex(7), 5);
+    }
+}
+PartyMember* Game::GetPartyMember(int index)
+{
+    return party[std::clamp(index, 0, PARTYSIZE - 1)];
 }
 
 /* Set a room to set a variable. */
@@ -152,7 +157,7 @@ void Game::ChooseRoom(std::string key)
         if (choiceMap.find(key) != choiceMap.end())
             SetRoom(choiceMap.find(key)->second);
         else
-            if (GetRoom() != "Battle")
+            if (!combatSys->InBattle())
                 SetRoom("invalid");
 }
 
@@ -222,23 +227,4 @@ bool Game::AutoRoom(std::string key)
         return true;
     }
     return false;
-}
-
-bool Game::SaveHealth(int index, int health)
-{
-    if (PartyMember(index))
-    {
-        partyHP[std::clamp(index, 0, PARTYSIZE - 1)] = health;
-        return true;
-    }
-    return false;
-}
-
-int Game::GetHealth(int index)
-{
-    if (PartyMember(index))
-    {
-        return partyHP[std::clamp(index, 0, PARTYSIZE - 1)];
-    }
-    return 0;
 }

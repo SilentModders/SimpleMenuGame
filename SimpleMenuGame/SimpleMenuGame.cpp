@@ -11,15 +11,18 @@
     #define PAUSECMD "echo Press any key to quit. && pause > nul"
 #else
     #include <unistd.h>
-    #define PAUSECMD "read -n1 -rs -p 'Press any key to quit.'"
+    #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
-#define BANNER "Simple Menu Game, Version 0.2"
+#define BANNER "Simple Menu Game, Version 0.3"
 
 int Quit(int code = EXIT_FAILURE)
 {
     if (code)
+    {
         system(PAUSECMD);
+        std::cout << std::endl;
+    }
     return code;
 }
 

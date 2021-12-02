@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <map>
 #include "text.h"
-#include "enemies.h"
+#include "party.h"
 
 constexpr auto PARTYSIZE = 6;
 
@@ -37,7 +37,7 @@ public:
 	void SetRoom(std::string room);
 
 	/* Get Party Members. Empty slots are nullptr. */
-	Enemy* PartyMember(int index);
+	PartyMember* GetPartyMember(int index = 0);
 
 	/* Save a party member's health. Returns false on an empty slot. */
 	bool SaveHealth(int index, int health);
@@ -77,7 +77,7 @@ private:
 	CombatSys* combatSys;
 
 	/* Player's Party */
-	Enemy* party[PARTYSIZE];
+	PartyMember* party[PARTYSIZE];
 	int partyHP[PARTYSIZE];
 
 	/* Setup the intial player state. */

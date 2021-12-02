@@ -4,6 +4,7 @@
 
 constexpr auto GAME_XML = "game.xml";
 constexpr auto MONSTERS = "enemies.xml";
+constexpr auto MOVE_XML = "moves.xml";
 
 constexpr bool XTRA_BANNERS = true;
 
@@ -27,6 +28,12 @@ bool Game::ReadFile(bool firstBoot)
                 if (std::string(data.attribute("data").value()) == "enemies")
                     eFile = doc.child_value("file");
 
+            /* Determine if a custom move file was specified. */
+            std::string mFile = MOVE_XML;
+            for (pugi::xml_node data = doc.child("file"); data; data = data.next_sibling("file"))
+                if (std::string(data.attribute("data").value()) == "moves")
+                    mFile = doc.child_value("file");
+
             /* Read all the "variable" tags in the beginning */
             if (pugi::xml_node varblock = doc.child("variables"))
                 for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
@@ -35,6 +42,13 @@ bool Game::ReadFile(bool firstBoot)
 
             /* Read Enemy XML file. */
             if (!combatSys->ReadFile(eFile))
+            {
+                std::cout << "Supplemental file error!" << std::endl;
+                return false;
+            }
+
+            /* Read Enemy XML file. */
+            if (!combatSys->ReadMoveFile(mFile))
             {
                 std::cout << "Supplemental file error!" << std::endl;
                 return false;
@@ -145,8 +159,55 @@ bool CombatSys::ReadFile(std::string file)
         {
             if (enemy.child("name"))
             {
-                enemies[eCount]->Setup(enemy.child_value("name"), atoi(enemy.child_value("health")), atoi(enemy.child_value("attack")));
+                enemies[eCount]->Setup(
+                    enemy.child_value("name"),
+                    atoi(enemy.child_value("health")),
+                    atoi(enemy.child_value("attack")),
+                    atoi(enemy.child_value("defense")),
+                    atoi(enemy.child_value("specatk")),
+                    atoi(enemy.child_value("specdef")),
+                    atoi(enemy.child_value("speed"))
+                );
                 eCount++;
+            }
+        }
+    }
+    /* Print XML Errors to the screen. */
+    else
+    {
+        std::cout << "XML [" << source << "] parsed with errors.\n";
+        std::cout << "Error description: " << result.description() << "\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+    }
+    return result;
+}
+
+/* Read Move File */
+bool CombatSys::ReadMoveFile(std::string file)
+{
+    const pugi::char_t* source = file.c_str();
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(source);
+
+    if (result)
+    {
+        /* Read the script's startup banner, if available. */
+        if (doc.child("banner") && XTRA_BANNERS)
+            std::cout << doc.child_value("banner");
+        std::cout << std::endl;
+
+        /* Read all the "enemy" tags in the file. */
+        for (pugi::xml_node move = doc.child("move"); move; move = move.next_sibling("move"))
+        {
+            if (move.child("name"))
+            {
+                moveList[mCount]->Setup(
+                    move.child_value("name"),
+                    atoi(move.child_value("power")),
+                    atoi(move.child_value("pp")),
+                    atoi(move.child_value("accuracy"))
+                );
+                mCount++;
             }
         }
         std::cout << std::endl;

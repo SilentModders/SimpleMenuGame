@@ -7,7 +7,11 @@
 <enemy>
 	<name>Bulbasaur</name>
 	<health>45</health>
-	<attack>40</attack>
+	<attack>49</attack>
+	<defense>49</defense>
+	<specatk>65</specatk>
+	<specdef>65</specdef>
+	<speed>45</speed>
 </enemy>
 <enemy>
 	<name>Ivysaur</name>
@@ -36,21 +40,26 @@
 </enemy>
 <enemy>
 	<name>Squirtle</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>44</health>
+	<attack>48</attack>
+	<defense>65</defense>
+	<specatk>50</specatk>
+	<specdef>64</specdef>
+	<speed>43</speed>
+	<evolve level="16">8</evolve>
 </enemy>
 <enemy>
 	<name>Wartortle</name>
 	<health>45</health>
 	<attack>40</attack>
-	<evolve level="36">9</evolve>
+	<evolve level="36" />
 </enemy>
 <enemy>
 	<name>Blastoise</name>
 	<health>79</health>
 	<attack>83</attack>
 	<defense>100</defense>
-	<spatk>85</spatk>
+	<specatk>85</specatk>
 	<spdef>105</spdef>
-	<speed>78</speed>
+	<specdef>78</specdef>
 </enemy>

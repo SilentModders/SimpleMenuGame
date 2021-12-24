@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "text.h"
 #include "enemies.h"
 
@@ -13,12 +14,22 @@ Enemy::Enemy()
 	bDefense =
 	bSpAtk =
 	bSpDef =
-	bSpeed = 40;
+	bSpeed =
+	bXpYield = 40;
+	bIndex =
+	xpCurve = 0;
+	catchRate =
+	evolve = 255;
 }
 std::string Enemy::GetName()
 {
 	return ColoredString(name, Color::COLOR_WHITE);
 }
+int Enemy::GetIdNum()
+{
+	return bIndex;
+}
+
 int Enemy::GetBaseHealth()
 {
 	return bHealth;
@@ -44,7 +55,24 @@ int Enemy::GetBaseSpeed()
 	return bSpeed;
 }
 
-void Enemy::Setup(std::string nme, int hlh, int atk, int def, int sat, int sdf, int spd)
+int Enemy::GetXpCurve()
+{
+	return xpCurve;
+}
+int Enemy::GetXpYield()
+{
+	return bXpYield;
+}
+int Enemy::GetEvoLevel()
+{
+	return evolve;
+}
+
+void Enemy::Setup(std::string nme, int idx, int hlh,
+	int atk, int def,
+	int sat, int sdf,
+	int spd, int xpc, int xpy,
+	int crt, int evl)
 {
 	name = nme;
 	bHealth = hlh;
@@ -53,4 +81,13 @@ void Enemy::Setup(std::string nme, int hlh, int atk, int def, int sat, int sdf, 
 	bSpAtk = sat;
 	bSpDef = sdf;
 	bSpeed = spd;
+	xpCurve = xpc;
+	bXpYield = xpy;
+	catchRate = crt;
+	evolve = evl;
+}
+
+int Enemy::SetIdNum(int id)
+{
+	return bIndex = std::clamp(id, 0, MAX_ENEMIES);
 }

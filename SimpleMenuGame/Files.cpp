@@ -3,6 +3,7 @@
 #include "battle.h"
 
 constexpr auto GAME_XML = "game.xml";
+constexpr auto VARS_XML = "vars.xml";
 constexpr auto MONSTERS = "enemies.xml";
 constexpr auto MOVE_XML = "moves.xml";
 
@@ -34,23 +35,30 @@ bool Game::ReadFile(bool firstBoot)
                 if (std::string(data.attribute("data").value()) == "moves")
                     mFile = doc.child_value("file");
 
-            /* Read all the "variable" tags in the beginning */
-            if (pugi::xml_node varblock = doc.child("variables"))
-                for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
-                    if (gamevar.attribute("name").value())
-                        AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
+            /* Determine if a custom var file was specified. */
+            std::string vFile = VARS_XML;
+            for (pugi::xml_node data = doc.child("file"); data; data = data.next_sibling("file"))
+                if (std::string(data.attribute("data").value()) == "variables")
+                    vFile = doc.child_value("file");
 
-            /* Read Enemy XML file. */
-            if (!combatSys->ReadFile(eFile))
+            /* Read Variable XML file. */
+            if (!ReadVarFile(vFile))
             {
-                std::cout << "Supplemental file error!" << std::endl;
+                std::cout << "Variable file error!" << std::endl;
                 return false;
             }
 
             /* Read Enemy XML file. */
+            if (!combatSys->ReadFile(eFile))
+            {
+                std::cout << "Enemy file error!" << std::endl;
+                return false;
+            }
+
+            /* Read Moves XML file. */
             if (!combatSys->ReadMoveFile(mFile))
             {
-                std::cout << "Supplemental file error!" << std::endl;
+                std::cout << "Move file error!" << std::endl;
                 return false;
             }
         }
@@ -160,13 +168,17 @@ bool CombatSys::ReadFile(std::string file)
             if (enemy.child("name"))
             {
                 enemies[eCount]->Setup(
-                    enemy.child_value("name"),
+                    enemy.child_value("name"), eCount,
                     atoi(enemy.child_value("health")),
                     atoi(enemy.child_value("attack")),
                     atoi(enemy.child_value("defense")),
                     atoi(enemy.child_value("specatk")),
                     atoi(enemy.child_value("specdef")),
-                    atoi(enemy.child_value("speed"))
+                    atoi(enemy.child_value("speed")),
+                    atoi(enemy.child_value("xpcurve")),
+                    atoi(enemy.child_value("yieldxp")),
+                    atoi(enemy.child_value("catchrate")),
+                    atoi(enemy.child("evolve").attribute("level").value())
                 );
                 eCount++;
             }
@@ -211,6 +223,36 @@ bool CombatSys::ReadMoveFile(std::string file)
             }
         }
         std::cout << std::endl;
+    }
+    /* Print XML Errors to the screen. */
+    else
+    {
+        std::cout << "XML [" << source << "] parsed with errors.\n";
+        std::cout << "Error description: " << result.description() << "\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+    }
+    return result;
+}
+
+/* Read Move File */
+bool Game::ReadVarFile(std::string file)
+{
+    const pugi::char_t* source = file.c_str();
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(source);
+
+    if (result)
+    {
+        /* Read the script's startup banner, if available. */
+        if (doc.child("banner") && XTRA_BANNERS)
+            std::cout << doc.child_value("banner");
+        std::cout << std::endl;
+
+        /* Read all the "variable" tags in the file. */
+        if (pugi::xml_node varblock = doc.child("variables"))
+            for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
+                if (gamevar.attribute("name").value())
+                    AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
     }
     /* Print XML Errors to the screen. */
     else

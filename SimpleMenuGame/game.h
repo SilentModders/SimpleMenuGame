@@ -6,6 +6,8 @@
 
 constexpr auto PARTYSIZE = 6;
 
+std::string Money(int money);
+
 class CombatSys;
 
 class Game
@@ -39,11 +41,7 @@ public:
 	/* Get Party Members. Empty slots are nullptr. */
 	PartyMember* GetPartyMember(int index = 0);
 
-	/* Save a party member's health. Returns false on an empty slot. */
-	bool SaveHealth(int index, int health);
-
-	/* Get a party member's health. Returns 0 on an empty slot. */
-	int GetHealth(int index);
+	CombatSys* GetCombatSys();
 
 private:
 	/* The Current Room */
@@ -112,4 +110,5 @@ private:
 
 	/* The XML file is re-read every time a new command is issued. */
 	bool ReadFile(bool firstBoot = false);
+	bool ReadVarFile(std::string file);
 };

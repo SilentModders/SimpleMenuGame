@@ -3,10 +3,12 @@
 
 constexpr int MAX_IV = 15;
 
-class PartyMember: public Enemy
+class Game;
+
+class PartyMember : public Enemy
 {
 public:
-	PartyMember();
+	PartyMember(Game* mygame);
 	std::string GetNickname();
 	int GetStat(int st = ATTACK);
 	int GetHealth();
@@ -19,9 +21,13 @@ public:
 	int GetTotalHP();
 	int GetLevel();
 
-	// Calculate Stats
-	bool Create(Enemy* basetype, int level);
-	bool Create(Enemy* basetype, int level,
+	int XpForLevel(int level, int curve);
+
+	void AwardEV(int gain = 1, int st = ATTACK);
+	bool AwardXP(int xp = 0);
+
+	bool Create(int basetype, int level);
+	bool Create(int basetype, int level,
 		int healthIV, int attackIV, int defenseIV, int spAttackIV, int spDefenseIV, int speedIV);
 
 	void SetHP(int hp = 0);
@@ -41,4 +47,11 @@ private:
 	int speed; // Speed
 	int myLevel; // Level
 	int hitP, totalHP; // HP
+	int curXp; // Experience
+
+	Game* myGame; // The Game
+
+	bool SetBaseType(int idx);
+
+	void CalcStats();
 };

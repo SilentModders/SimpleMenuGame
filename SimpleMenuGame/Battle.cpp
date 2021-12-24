@@ -1,11 +1,10 @@
 #include "enemies.h"
 #include "battle.h"
 
+/* TODO: Split the combat system from the battle itself. */
+
 /* The player heals at the end of each battle? */
 constexpr bool AUTOHEAL = false;
-
-constexpr int OPPONENT = 1;
-constexpr int LV = 5;
 
 std::string ColoredHp(int cur, int max)
 {
@@ -22,14 +21,16 @@ std::string ColoredHp(int cur, int max)
 
 CombatSys::CombatSys(Game* gameObj)
 {
+	theGame = gameObj;
+	mCount = eCount = eLevel = 0;
 	totalEhp = totalPhp =
 		eHp = pHp = 10;
-	bStarted = false;
-	theGame = gameObj;
-	mCount = eCount = 0;
-	opponent = nullptr;
-	partyMember = nullptr;
+	eIndex = 19; // Rattata - They are everywhere
+	bStarted = trainerBattle = false;
+	opponent = partyMember = nullptr;
 	/* Fill the arrays with safe data. */
+	for (auto h = 0; h < PARTYSIZE; h++)
+		participated[h] = false;
 	for (auto i = 0; i < MAX_ENEMIES; i++)
 		enemies[i] = new Enemy();
 	for (auto j = 0; j < NUM_STATS; j++)
@@ -54,7 +55,7 @@ void CombatSys::PrintHealth()
 	std::cout << "Enemy " << opponent->GetName() << " has " << ColoredHp(eHp, totalEhp) << " hit points." << std::endl;
 }
 
-void CombatSys::CalcStats(int index)
+void CombatSys::CalcStats(int index, int level)
 {
 	// Base Stats
 	int base[NUM_STATS] = { 0 };
@@ -71,18 +72,17 @@ void CombatSys::CalcStats(int index)
 	for (auto i = 0; i < NUM_STATS; i++)
 	{
 		eIv[i] = rand() % MAX_IV;
-		eStat[i] = ((2 * base[i] + eIv[i] + EV / 4) * LV) / 100 + 5;
+		eStat[i] = ((2 * base[i] + eIv[i] + EV / 4) * level) / 100 + 5;
 	}
 
 	// HP is a stat with a different formula.
-	totalEhp = ((2 * base[HEALTH] + eIv[HEALTH] + EV / 4 + 100) * LV) / 100 + 10;
+	totalEhp = ((2 * base[HEALTH] + eIv[HEALTH] + EV / 4 + 100) * level) / 100 + 10;
 }
 
 int CombatSys::CalcDamage(int level, int power, int attackStat, int defenseStat)
 {
 	float E = 1; // Targets, .75 when move effects multiple targets
 	float W = 1; // Weather
-	float G = 1; // Badge, Gen 2 only
 	float C = 1; // Crit, 2 for a crit
 	float R = 0.85f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (1 - 0.85f))); // Random
 	float S = 1; // Same-Type Attack Bonus, 1.5 when the move is same type as one of the user's types.
@@ -90,7 +90,29 @@ int CombatSys::CalcDamage(int level, int power, int attackStat, int defenseStat)
 	float U = 1; // Burn, .5 when burned user is hit with physical move.
 	float O = 1; // Other, for special cases
 	return (((2 * level / 5 + 2) * power * attackStat / defenseStat) / 50 + 2)
-		* E * W * G * C * R * S * T * U * O;
+		* E * W * C * R * S * T * U * O;
+}
+
+int CombatSys::CalcExp()
+{
+	float trainType = 1;
+	if (trainerBattle)
+		trainType += 0.5;
+
+	float tradeExp = 1;
+	if (false) // Was this pokemon traded to you?
+		tradeExp += 0.5;
+
+	int share = 0; // EXP. All greatly changes this calculation.
+	for (auto i = 0; i < PARTYSIZE; i++)
+		if (theGame->GetPartyMember(i))
+			if ((participated[i]) &&
+				(theGame->GetPartyMember(i)->GetHP() > 0))
+				share++;
+
+	int bXp = opponent->GetXpYield();
+
+	return (trainType * tradeExp * bXp * eLevel) / 7 * share;
 }
 
 bool CombatSys::FindPartyMember()
@@ -102,11 +124,13 @@ bool CombatSys::FindPartyMember()
 			/* Is the party member incapaciated? */
 			if (theGame->GetPartyMember(i)->GetHP() > 0)
 			{
+				participated[i] = true;
 				partyMember = theGame->GetPartyMember(i);
 				pHp = partyMember->GetHP();
 				totalPhp = partyMember->GetTotalHP();
 				for (auto i = 0; i < NUM_STATS; i++)
 					pStat[i] = partyMember->GetStat(i);
+				std::cout << "You sent out " << partyMember->GetNickname() << "." << std::endl;
 				return true;
 			}
 	return false;
@@ -114,7 +138,11 @@ bool CombatSys::FindPartyMember()
 
 void CombatSys::StartBattle()
 {
-	opponent = enemies[OPPONENT];
+	eIndex = 19;
+	if (rand() % 2 == 0)
+		eIndex = 16;
+
+	opponent = enemies[eIndex];
 	if (!opponent)
 	{
 		std::cout << "INVALID BAD GUY!" << std::endl;
@@ -122,8 +150,14 @@ void CombatSys::StartBattle()
 		return;
 	}
 
-	CalcStats(OPPONENT);
-	std::cout << "A wild " << opponent->GetName() << " appeared." << std::endl;
+	int minLv = 2;
+	int maxLv = 5;
+	eLevel = rand() % (maxLv - minLv + 1) + minLv;
+
+	CalcStats(eIndex, eLevel);
+	std::cout << "A wild " << opponent->GetName() << " appeared!" << std::endl;
+	std::cout << opponent->GetName() << " is level " << eLevel << "." << std::endl;
+	eHp = totalEhp;
 
 	if (!FindPartyMember())
 	{
@@ -132,9 +166,6 @@ void CombatSys::StartBattle()
 		return;
 	}
 
-	std::cout << "You sent out " << partyMember->GetNickname() << "." << std::endl;
-
-	eHp = totalEhp;
 	PrintHealth();
 }
 
@@ -146,6 +177,8 @@ void CombatSys::EndBattle()
 	theGame->SetRoom(theGame->GetLastRoom());
 	std::cout << std::endl;
 	bStarted = false;
+	for (auto i = 0; i < PARTYSIZE; i++)
+		participated[i] = false;
 }
 
 /* Process one turn in combat. Returns whether the battle is over. */
@@ -187,7 +220,7 @@ bool CombatSys::BattleTurn()
 		/* Decide to attack */
 		if (rand() % 100 <= 60)
 		{
-			int eDmg = CalcDamage(LV, moveList[0]->GetPower(), eStat[ATTACK], pStat[DEFENSE]);
+			int eDmg = CalcDamage(eLevel, moveList[0]->GetPower(), eStat[ATTACK], pStat[DEFENSE]);
 			std::cout << "Enemy " << opponent->GetName() << " attacked with " << moveList[0]->GetName() << ", dealing " << eDmg << " points of damage." << std::endl;
 			pHp -= eDmg;
 		}
@@ -199,7 +232,7 @@ bool CombatSys::BattleTurn()
 	}
 
 	PrintHealth();
-    std::cout << std::endl;
+	std::cout << std::endl;
 
 	if (pHp <= 0)
 	{
@@ -207,18 +240,41 @@ bool CombatSys::BattleTurn()
 		if (!AUTOHEAL)
 			partyMember->SetHP(0);
 
-		if (FindPartyMember())
-			std::cout << "You sent out " << partyMember->GetName() << "." << std::endl;
-		else
+		if (!FindPartyMember())
 		{
 			std::cout << "You lost!" << std::endl;
 			EndBattle();
 			return true;
 		}
+		PrintHealth();
 	}
 	if (eHp <= 0)
 	{
+		std::cout << "Enemy " << opponent->GetName() << " fainted!" << std::endl;
+		partyMember->AwardEV(opponent->GetBaseHealth(), HEALTH);
+		partyMember->AwardEV(opponent->GetBaseAttack(), ATTACK);
+		partyMember->AwardEV(opponent->GetBaseDefense(),DEFENSE);
+		partyMember->AwardEV(opponent->GetBaseSpAtk(),  SATTACK);
+		partyMember->AwardEV(opponent->GetBaseSpDef(),  SDEFENSE);
+		partyMember->AwardEV(opponent->GetBaseSpeed(),  SPEED);
+
 		std::cout << "You won!" << std::endl;
+		int xp = CalcExp();
+		for (auto i = 0; i < PARTYSIZE; i++)
+			if (theGame->GetPartyMember(i))
+				if ((participated[i]) &&
+					(theGame->GetPartyMember(i)->GetHP() > 0) &&
+					(theGame->GetPartyMember(i)->GetLevel() < MAX_LEVEL))
+				{
+					std::cout << theGame->GetPartyMember(i)->GetNickname() << " gained " << xp << " experience!" << std::endl;
+					theGame->GetPartyMember(i)->AwardXP(xp);
+				}
+
+		if (trainerBattle)
+		{
+			int mReward = eLevel * 10;
+			std::cout << "You should get " << Money(mReward) << " for winning." << std::endl;
+		}
 		EndBattle();
 		return true;
 	}

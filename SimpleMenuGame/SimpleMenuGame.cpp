@@ -1,4 +1,4 @@
-/*
+﻿/*
     Simple Menu Game
     Uses a given script to drive a simple, menu-based game in the style of "Zork".
     Written by Chris Roxby.
@@ -14,7 +14,7 @@
     #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
-#define BANNER "Simple Menu Game, Version 0.3"
+constexpr auto BANNER = "Simple Menu Game, Version 0.4";
 
 int Quit(int code = EXIT_FAILURE)
 {

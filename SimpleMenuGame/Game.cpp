@@ -14,7 +14,6 @@ std::string Money(int money)
     return CURRENCY_PFIX + std::to_string(int(money)) + CURRENCY_SFIX;
 }
 
-
 Game::Game()
 {
     firstBoot = true;

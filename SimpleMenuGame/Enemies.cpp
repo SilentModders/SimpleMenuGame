@@ -63,6 +63,10 @@ int Enemy::GetXpYield()
 {
 	return bXpYield;
 }
+int Enemy::GetCatchRate()
+{
+	return catchRate;
+}
 int Enemy::GetEvoLevel()
 {
 	return evolve;
@@ -75,6 +79,7 @@ void Enemy::Setup(std::string nme, int idx, int hlh,
 	int crt, int evl)
 {
 	name = nme;
+	bIndex = idx;
 	bHealth = hlh;
 	bAttack = atk;
 	bDefense = def;

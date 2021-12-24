@@ -18,6 +18,7 @@ public:
 	int GetBaseSpeed();
 	int GetXpCurve();
 	int GetXpYield();
+	int GetCatchRate();
 	int GetEvoLevel();
 
 

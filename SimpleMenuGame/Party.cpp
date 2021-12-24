@@ -198,14 +198,18 @@ bool PartyMember::SetBaseType(int idx)
 
 	Setup(
 		basetype->GetName(),
+		idx,
 		basetype->GetBaseHealth(),
 		basetype->GetBaseAttack(),
 		basetype->GetBaseDefense(),
 		basetype->GetBaseSpAtk(),
 		basetype->GetBaseSpDef(),
-		basetype->GetBaseSpeed());
-	
-	return true;
+		basetype->GetBaseSpeed(),
+		basetype->GetXpCurve(),
+		basetype->GetXpYield(),
+		basetype->GetCatchRate(),
+		basetype->GetEvoLevel());
+	return basetype;
 }
 
 void PartyMember::CalcStats()

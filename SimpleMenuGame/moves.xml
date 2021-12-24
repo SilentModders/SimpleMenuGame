@@ -12,6 +12,7 @@
 	<pp>30</pp>
 	<accuracy>100</accuracy>
 </move>
+<move>
 	<name>Gust</name>
 	<power>40</power>
 	<pp>35</pp>

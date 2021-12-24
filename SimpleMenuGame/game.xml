@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banner>Poké Game, v0.1</banner>
-<!--This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
+<!-- This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
 <file data="enemies">enemies.xml</file>
-<variables>
-	<variable name="PLAYER">BLUE</variable>
-	<variable name="RIVAL">RED</variable>
-	<variable name="ShopMan1met" />
-</variables>
 <location name="Main">
-	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH. OAK has a lab here. </description>
+	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH. OAK has a lab here.</description>
 	<options>
 		<option room="Route 1">NORTH</option>
 		<option room="Sea">SOUTH</option>

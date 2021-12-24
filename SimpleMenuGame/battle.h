@@ -14,14 +14,19 @@ public:
 	bool ReadMoveFile(std::string file);
 	Enemy* EnemyFromIndex(int index = 0);
 private:
+	int eLevel;
 	int eHp; // Enemy HP
 	int pHp; // Player HP
 	int totalEhp, totalPhp;
+	int eIndex; // Enemy Index
 	Enemy* opponent; // The Battle combatant
 	PartyMember* partyMember; // The Player's guy
+	Game* theGame;
 
 	bool bStarted; // Is the battle active?
-	Game* theGame;
+	bool trainerBattle; // Is the foe a trainer?
+	bool participated[PARTYSIZE]; // Which part memebers fought here?
+
 	/* All Enemy Types */
 	Enemy* enemies[MAX_ENEMIES];
 	int eCount;
@@ -46,7 +51,9 @@ private:
 	// Use Special Attack and Special Defense when applicable.
 	int CalcDamage(int level, int power, int attackStat, int defenseStat);
 
-	void CalcStats(int index = 0);
+	int CalcExp();
+
+	void CalcStats(int index, int level);
 	void PrintHealth();
 	void StartBattle();
 	void EndBattle();

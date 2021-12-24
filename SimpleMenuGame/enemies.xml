@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Pokey Mans, v0.002</banner>
-<!--This file describes the "Gen 1" Pokémon. (Nintendo owns Pokémon.) -->
+<banner>Pokey Mans, v1.000</banner>
+<!-- This file describes the "Gen 1" Pokémon. (Nintendo owns Pokémon.) -->
 <enemy>
 	<name>MissingNo</name>
+	<!-- Pokédex #0 -->
 </enemy>
 <enemy>
 	<name>Bulbasaur</name>
@@ -12,31 +13,140 @@
 	<specatk>65</specatk>
 	<specdef>65</specdef>
 	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>64</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>grass</type1>
+	<type2>poison</type2>
+	<evolve level="16" />
+	<move level="1">TACKLE</move>
+	<move level="1">GROWL</move>
+	<move level="7">LEECH_SEED</move>
+	<move level="13">VINE_WHIP</move>
+	<move level="20">POISONPOWDER</move>
+	<move level="27">RAZOR_LEAF</move>
+	<move level="34">GROWTH</move>
+	<move level="41">SLEEP_POWDER</move>
+	<move level="48">SOLARBEAM</move>
 </enemy>
 <enemy>
 	<name>Ivysaur</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>60</health>
+	<attack>62</attack>
+	<defense>63</defense>
+	<specatk>80</specatk>
+	<specdef>80</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>141</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<evolve level="32" />
+	<move level="1">TACKLE</move>
+	<move level="1">GROWL</move>
+	<move level="1">LEECH_SEED</move>
+	<move level="7">LEECH_SEED</move>
+	<move level="13">VINE_WHIP</move>
+	<move level="22">POISONPOWDER</move>
+	<move level="30">RAZOR_LEAF</move>
+	<move level="38">GROWTH</move>
+	<move level="46">SLEEP_POWDER</move>
+	<move level="54">SOLARBEAM</move>
 </enemy>
 <enemy>
 	<name>Venusaur</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>80</health>
+	<attack>82</attack>
+	<defense>83</defense>
+	<specatk>100</specatk>
+	<specdef>100</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>208</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">GROWL</move>
+	<move level="1">LEECH_SEED</move>
+	<move level="1">VINE_WHIP</move>
+	<move level="7">LEECH_SEED</move>
+	<move level="13">VINE_WHIP</move>
+	<move level="22">POISONPOWDER</move>
+	<move level="30">RAZOR_LEAF</move>
+	<move level="43">GROWTH</move>
+	<move level="55">SLEEP_POWDER</move>
+	<move level="65">SOLARBEAM</move>
 </enemy>
 <enemy>
 	<name>Charmander</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>39</health>
+	<attack>52</attack>
+	<defense>43</defense>
+	<specatk>60</specatk>
+	<specdef>50</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>65</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fire</type1>
+	<evolve level="16" />
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="9">EMBER</move>
+	<move level="15">LEER</move>
+	<move level="22">RAGE</move>
+	<move level="30">SLASH</move>
+	<move level="38">FLAMETHROWER</move>
+	<move level="46">FIRE_SPIN</move>
 </enemy>
 <enemy>
 	<name>Charmeleon</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>58</health>
+	<attack>64</attack>
+	<defense>58</defense>
+	<specatk>80</specatk>
+	<specdef>65</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>142</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fire</type1>
+	<evolve level="36" />
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="1">EMBER</move>
+	<move level="9">EMBER</move>
+	<move level="15">LEER</move>
+	<move level="24">RAGE</move>
+	<move level="33">SLASH</move>
+	<move level="42">FLAMETHROWER</move>
+	<move level="56">FIRE_SPIN</move>
 </enemy>
 <enemy>
 	<name>Charizard</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>78</health>
+	<attack>84</attack>
+	<defense>78</defense>
+	<specatk>109</specatk>
+	<specdef>85</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>209</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fire</type1>
+	<type2>Flying</type2>
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="1">EMBER</move>
+	<move level="1">LEER</move>
+	<move level="9">EMBER</move>
+	<move level="15">LEER</move>
+	<move level="24">RAGE</move>
+	<move level="36">SLASH</move>
+	<move level="46">FLAMETHROWER</move>
+	<move level="55">FIRE_SPIN</move>
 </enemy>
 <enemy>
 	<name>Squirtle</name>
@@ -46,13 +156,42 @@
 	<specatk>50</specatk>
 	<specdef>64</specdef>
 	<speed>43</speed>
-	<evolve level="16">8</evolve>
+	<xpcurve>1</xpcurve>
+	<yieldxp>66</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>water</type1>
+	<evolve level="16" />
+	<move level="1">TACKLE</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="8">BUBBLE</move>
+	<move level="15">WATER_GUN</move>
+	<move level="22">BITE</move>
+	<move level="28">WITHDRAW</move>
+	<move level="35">SKULL_BASH</move>
+	<move level="42">HYDRO_PUMP</move>
 </enemy>
 <enemy>
 	<name>Wartortle</name>
-	<health>45</health>
-	<attack>40</attack>
+	<health>59</health>
+	<attack>63</attack>
+	<defense>80</defense>
+	<specatk>65</specatk>
+	<specdef>80</specdef>
+	<speed>58</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>143</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>water</type1>
 	<evolve level="36" />
+	<move level="1">TACKLE</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">BUBBLE</move>
+	<move level="8">BUBBLE</move>
+	<move level="15">WATER_GUN</move>
+	<move level="24">BITE</move>
+	<move level="31">WITHDRAW</move>
+	<move level="39">SKULL_BASH</move>
+	<move level="47">HYDRO_PUMP</move>
 </enemy>
 <enemy>
 	<name>Blastoise</name>
@@ -62,4 +201,2976 @@
 	<specatk>85</specatk>
 	<spdef>105</spdef>
 	<specdef>78</specdef>
+	<xpcurve>1</xpcurve>
+	<yieldxp>210</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>water</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">BUBBLE</move>
+	<move level="1">WATER_GUN</move>
+	<move level="8">BUBBLE</move>
+	<move level="15">WATER_GUN</move>
+	<move level="24">BITE</move>
+	<move level="31">WITHDRAW</move>
+	<move level="42">SKULL_BASH</move>
+	<move level="52">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Caterpie</name>
+	<health>45</health>
+	<attack>30</attack>
+	<defense>35</defense>
+	<specatk>20</specatk>
+	<specdef>20</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>53</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Bug</type1>
+	<evolve level="7" />
+	<move level="1">TACKLE</move>
+	<move level="1">STRING_SHOT</move>
+</enemy>
+<enemy>
+	<name>Metapod</name>
+	<health>50</health>
+	<attack>20</attack>
+	<defense>55</defense>
+	<specatk>25</specatk>
+	<specdef>25</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>72</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Bug</type1>
+	<evolve level="10" />
+	<move level="1">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Butterfree</name>
+	<health>60</health>
+	<attack>45</attack>
+	<defense>50</defense>
+	<specatk>90</specatk>
+	<specdef>80</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>160</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Bug</type1>
+	<type2>Flying</type2>
+	<move level="1">CONFUSION</move>
+	<move level="12">CONFUSION</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="16">STUN_SPORE</move>
+	<move level="17">SLEEP_POWDER</move>
+	<move level="21">SUPERSONIC</move>
+	<move level="26">WHIRLWIND</move>
+	<move level="32">PSYBEAM</move>
+</enemy>
+<enemy>
+	<name>Weedle</name>
+	<health>40</health>
+	<attack>35</attack>
+	<defense>30</defense>
+	<specatk>20</specatk>
+	<specdef>20</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>52</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Bug</type1>
+	<type2>Poison</type2>
+	<evolve level="7" />
+	<move level="1">POISON_STING</move>
+	<move level="1">STRING_SHOT</move>
+</enemy>
+<enemy>
+	<name>Kakuna</name>
+	<health>45</health>
+	<attack>25</attack>
+	<defense>50</defense>
+	<specatk>25</specatk>
+	<specdef>25</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>71</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Bug</type1>
+	<type2>Poison</type2>
+	<evolve level="10" />
+	<move level="1">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Beedrill</name>
+	<health>65</health>
+	<attack>90</attack>
+	<defense>40</defense>
+	<specatk>45</specatk>
+	<specdef>80</specdef>
+	<speed>75</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>159</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Bug</type1>
+	<type2>Poison</type2>
+	<move level="1">FURY_ATTACK</move>
+	<move level="12">FURY_ATTACK</move>
+	<move level="16">FOCUS_ENERGY</move>
+	<move level="20">TWINEEDLE</move>
+	<move level="25">RAGE</move>
+	<move level="30">PIN_MISSILE</move>
+	<move level="35">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Pidgey</name>
+	<health>40</health>
+	<attack>45</attack>
+	<defense>40</defense>
+	<specatk>35</specatk>
+	<specdef>35</specdef>
+	<speed>56</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>55</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<evolve level="18" />
+	<move level="1">GUST</move>
+	<move level="5">SAND_ATTACK</move>
+	<move level="12">QUICK_ATTACK</move>
+	<move level="19">WHIRLWIND</move>
+	<move level="28">WING_ATTACK</move>
+	<move level="36">AGILITY</move>
+	<move level="44">MIRROR_MOVE</move>
+</enemy>
+<enemy>
+	<name>Pidgeotto</name>
+	<health>63</health>
+	<attack>60</attack>
+	<defense>55</defense>
+	<specatk>50</specatk>
+	<specdef>50</specdef>
+	<speed>71</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>113</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<evolve level="36" />
+	<move level="1">GUST</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="5">SAND_ATTACK</move>
+	<move level="12">QUICK_ATTACK</move>
+	<move level="21">WHIRLWIND</move>
+	<move level="31">WING_ATTACK</move>
+	<move level="40">AGILITY</move>
+	<move level="49">MIRROR_MOVE</move>
+</enemy>
+<enemy>
+	<name>Pidgeot</name>
+	<health>83</health>
+	<attack>80</attack>
+	<defense>75</defense>
+	<specatk>70</specatk>
+	<specdef>70</specdef>
+	<speed>101</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>172</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<move level="1">GUST</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="5">SAND_ATTACK</move>
+	<move level="12">QUICK_ATTACK</move>
+	<move level="21">WHIRLWIND</move>
+	<move level="31">WING_ATTACK</move>
+	<move level="44">AGILITY</move>
+	<move level="54">MIRROR_MOVE</move>
+</enemy>
+<enemy>
+	<name>Rattata</name>
+	<health>30</health>
+	<attack>56</attack>
+	<defense>35</defense>
+	<specatk>25</specatk>
+	<specdef>35</specdef>
+	<speed>72</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>57</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Normal</type1>
+	<evolve level="20" />
+	<move level="1">TACKLE</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="7">QUICK_ATTACK</move>
+	<move level="14">HYPER_FANG</move>
+	<move level="23">FOCUS_ENERGY</move>
+	<move level="34">SUPER_FANG</move>
+</enemy>
+<enemy>
+	<name>Raticate</name>
+	<health>55</health>
+	<attack>81</attack>
+	<defense>60</defense>
+	<specatk>50</specatk>
+	<specdef>70</specdef>
+	<speed>97</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>116</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Normal</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="7">QUICK_ATTACK</move>
+	<move level="14">HYPER_FANG</move>
+	<move level="27">FOCUS_ENERGY</move>
+	<move level="41">SUPER_FANG</move>
+</enemy>
+<enemy>
+	<name>Spearow</name>
+	<health>40</health>
+	<attack>60</attack>
+	<defense>30</defense>
+	<specatk>31</specatk>
+	<specdef>31</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>58</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<evolve level="20" />
+	<move level="1">PECK</move>
+	<move level="1">GROWL</move>
+	<move level="9">LEER</move>
+	<move level="15">FURY_ATTACK</move>
+	<move level="22">MIRROR_MOVE</move>
+	<move level="29">DRILL_PECK</move>
+	<move level="36">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Fearow</name>
+	<health>65</health>
+	<attack>90</attack>
+	<defense>65</defense>
+	<specatk>61</specatk>
+	<specdef>61</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>162</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<move level="1">PECK</move>
+	<move level="1">GROWL</move>
+	<move level="1">LEER</move>
+	<move level="9">LEER</move>
+	<move level="15">FURY_ATTACK</move>
+	<move level="25">MIRROR_MOVE</move>
+	<move level="34">DRILL_PECK</move>
+	<move level="43">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Ekans</name>
+	<health>35</health>
+	<attack>60</attack>
+	<defense>44</defense>
+	<specatk>40</specatk>
+	<specdef>54</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>62</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Poison</type1>
+	<evolve level="22" />
+	<move level="1">WRAP</move>
+	<move level="1">LEER</move>
+	<move level="10">POISON_STING</move>
+	<move level="17">BITE</move>
+	<move level="24">GLARE</move>
+	<move level="31">SCREECH</move>
+	<move level="38">ACID</move>
+</enemy>
+<enemy>
+	<name>Arbok</name>
+	<health>60</health>
+	<attack>95</attack>
+	<defense>69</defense>
+	<specatk>65</specatk>
+	<specdef>79</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>147</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Poison</type1>
+	<move level="1">WRAP</move>
+	<move level="1">LEER</move>
+	<move level="1">POISON_STING</move>
+	<move level="10">POISON_STING</move>
+	<move level="17">BITE</move>
+	<move level="27">GLARE</move>
+	<move level="36">SCREECH</move>
+	<move level="47">ACID</move>
+</enemy>
+<enemy>
+	<name>Pikachu</name>
+	<health>35</health>
+	<attack>55</attack>
+	<defense>40</defense>
+	<specatk>50</specatk>
+	<specdef>50</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>82</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Electric</type1>
+	<move level="1">THUNDERSHOCK</move>
+	<move level="1">GROWL</move>
+	<move level="9">THUNDER_WAVE</move>
+	<move level="16">QUICK_ATTACK</move>
+	<move level="26">SWIFT</move>
+	<move level="33">AGILITY</move>
+	<move level="43">THUNDER</move>
+</enemy>
+<enemy>
+	<name>Raichu</name>
+	<health>60</health>
+	<attack>90</attack>
+	<defense>55</defense>
+	<specatk>90</specatk>
+	<specdef>80</specdef>
+	<speed>110</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>122</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Electric</type1>
+	<move level="1">THUNDERSHOCK</move>
+	<move level="1">GROWL</move>
+	<move level="1">THUNDER_WAVE</move>
+</enemy>
+<enemy>
+	<name>Sandshrew</name>
+	<health>50</health>
+	<attack>75</attack>
+	<defense>85</defense>
+	<specatk>20</specatk>
+	<specdef>30</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>93</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Ground</type1>
+	<evolve level="22" />
+	<move level="1">SCRATCH</move>
+	<move level="10">SAND_ATTACK</move>
+	<move level="17">SLASH</move>
+	<move level="24">POISON_STING</move>
+	<move level="31">SWIFT</move>
+	<move level="38">FURY_SWIPES</move>
+</enemy>
+<enemy>
+	<name>Sandslash</name>
+	<health>75</health>
+	<attack>100</attack>
+	<defense>110</defense>
+	<specatk>45</specatk>
+	<specdef>55</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>163</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Ground</type1>
+	<move level="1">SCRATCH</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="10">SAND_ATTACK</move>
+	<move level="17">SLASH</move>
+	<move level="27">POISON_STING</move>
+	<move level="36">SWIFT</move>
+	<move level="47">FURY_SWIPES</move>
+</enemy>
+<enemy>
+	<name>NidoranF</name>
+	<health>55</health>
+	<attack>47</attack>
+	<defense>52</defense>
+	<specatk>40</specatk>
+	<specdef>40</specdef>
+	<speed>41</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>59</yieldxp>
+	<catchrate>235</catchrate>
+	<type1>Poison</type1>
+	<evolve level="16" />
+	<move level="1">GROWL</move>
+	<move level="1">TACKLE</move>
+	<move level="8">SCRATCH</move>
+	<move level="14">POISON_STING</move>
+	<move level="21">TAIL_WHIP</move>
+	<move level="29">BITE</move>
+	<move level="36">FURY_SWIPES</move>
+	<move level="43">DOUBLE_KICK</move>
+</enemy>
+<enemy>
+	<name>Nidorina</name>
+	<health>70</health>
+	<attack>62</attack>
+	<defense>67</defense>
+	<specatk>55</specatk>
+	<specdef>55</specdef>
+	<speed>56</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>117</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Poison</type1>
+	<move level="1">GROWL</move>
+	<move level="1">TACKLE</move>
+	<move level="1">SCRATCH</move>
+	<move level="8">SCRATCH</move>
+	<move level="14">POISON_STING</move>
+	<move level="23">TAIL_WHIP</move>
+	<move level="32">BITE</move>
+	<move level="41">FURY_SWIPES</move>
+	<move level="50">DOUBLE_KICK</move>
+</enemy>
+<enemy>
+	<name>Nidoqueen</name>
+	<health>90</health>
+	<attack>92</attack>
+	<defense>87</defense>
+	<specatk>75</specatk>
+	<specdef>85</specdef>
+	<speed>76</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>194</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Poison</type1>
+	<type2>Ground</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">SCRATCH</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">BODY_SLAM</move>
+	<move level="8">SCRATCH</move>
+	<move level="14">POISON_STING</move>
+	<move level="23">BODY_SLAM</move>
+</enemy>
+<enemy>
+	<name>NidoranM</name>
+	<health>46</health>
+	<attack>57</attack>
+	<defense>40</defense>
+	<specatk>40</specatk>
+	<specdef>40</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>60</yieldxp>
+	<catchrate>235</catchrate>
+	<type1>Poison</type1>
+	<evolve level="16" />
+	<move level="1">LEER</move>
+	<move level="1">TACKLE</move>
+	<move level="8">HORN_ATTACK</move>
+	<move level="14">POISON_STING</move>
+	<move level="21">FOCUS_ENERGY</move>
+	<move level="29">FURY_ATTACK</move>
+	<move level="36">HORN_DRILL</move>
+	<move level="43">DOUBLE_KICK</move>
+</enemy>
+<enemy>
+	<name>Nidorino</name>
+	<health>61</health>
+	<attack>72</attack>
+	<defense>57</defense>
+	<specatk>55</specatk>
+	<specdef>55</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>118</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Poison</type1>
+	<move level="1">LEER</move>
+	<move level="1">TACKLE</move>
+	<move level="1">HORN_ATTACK</move>
+	<move level="8">HORN_ATTACK</move>
+	<move level="14">POISON_STING</move>
+	<move level="23">FOCUS_ENERGY</move>
+	<move level="32">FURY_ATTACK</move>
+	<move level="41">HORN_DRILL</move>
+	<move level="50">DOUBLE_KICK</move>
+</enemy>
+<enemy>
+	<name>Nidoking</name>
+	<health>81</health>
+	<attack>102</attack>
+	<defense>77</defense>
+	<specatk>85</specatk>
+	<specdef>75</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>195</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Poison</type1>
+	<type2>Ground</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">HORN_ATTACK</move>
+	<move level="1">POISON_STING</move>
+	<move level="1">THRASH</move>
+	<move level="8">HORN_ATTACK</move>
+	<move level="14">POISON_STING</move>
+	<move level="23">THRASH</move>
+</enemy>
+<enemy>
+	<name>Clefairy</name>
+	<health>70</health>
+	<attack>45</attack>
+	<defense>48</defense>
+	<specatk>60</specatk>
+	<specdef>65</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>68</yieldxp>
+	<catchrate>150</catchrate>
+	<type1>Fairy</type1>
+	<move level="1">POUND</move>
+	<move level="1">GROWL</move>
+	<move level="13">SING</move>
+	<move level="18">DOUBLESLAP</move>
+	<move level="24">MINIMIZE</move>
+	<move level="31">METRONOME</move>
+	<move level="39">DEFENSE_CURL</move>
+	<move level="48">LIGHT_SCREEN</move>
+</enemy>
+<enemy>
+	<name>Clefable</name>
+	<health>95</health>
+	<attack>70</attack>
+	<defense>73</defense>
+	<specatk>95</specatk>
+	<specdef>90</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>129</yieldxp>
+	<catchrate>25</catchrate>
+	<type1>Fairy</type1>
+	<move level="1">DOUBLESLAP</move>
+	<move level="1">MINIMIZE</move>
+	<move level="1">METRONOME</move>
+</enemy>
+<enemy>
+	<name>Vulpix</name>
+	<health>38</health>
+	<attack>41</attack>
+	<defense>40</defense>
+	<specatk>50</specatk>
+	<specdef>65</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>63</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Fire</type1>
+	<move level="1">EMBER</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="16">QUICK_ATTACK</move>
+	<move level="21">ROAR</move>
+	<move level="28">CONFUSE_RAY</move>
+	<move level="35">FLAMETHROWER</move>
+	<move level="42">FIRE_SPIN</move>
+</enemy>
+<enemy>
+	<name>Ninetales</name>
+	<health>73</health>
+	<attack>76</attack>
+	<defense>75</defense>
+	<specatk>81</specatk>
+	<specdef>100</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>178</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Fire</type1>
+	<move level="1">EMBER</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="1">ROAR</move>
+</enemy>
+<enemy>
+	<name>Jigglypuff</name>
+	<health>115</health>
+	<attack>45</attack>
+	<defense>20</defense>
+	<specatk>45</specatk>
+	<specdef>25</specdef>
+	<speed>20</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>76</yieldxp>
+	<catchrate>170</catchrate>
+	<type1>Normal</type1>
+	<type2>Fairy</type2>
+	<move level="9">POUND</move>
+	<move level="14">DISABLE</move>
+	<move level="19">DEFENSE_CURL</move>
+	<move level="24">DOUBLESLAP</move>
+	<move level="29">REST</move>
+	<move level="34">BODY_SLAM</move>
+	<move level="39">DOUBLE_EDGE</move>
+</enemy>
+<enemy>
+	<name>Wigglytuff</name>
+	<health>140</health>
+	<attack>70</attack>
+	<defense>45</defense>
+	<specatk>85</specatk>
+	<specdef>50</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>109</yieldxp>
+	<catchrate>50</catchrate>
+	<type1>Normal</type1>
+	<type2>Fairy</type2>
+	<move level="1">DISABLE</move>
+	<move level="1">DEFENSE_CURL</move>
+	<move level="1">DOUBLESLAP</move>
+</enemy>
+<enemy>
+	<name>Zubat</name>
+	<health>40</health>
+	<attack>45</attack>
+	<defense>35</defense>
+	<specatk>30</specatk>
+	<specdef>40</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>54</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Poison</type1>
+	<type2>Flying</type2>
+	<evolve level="22" />
+	<move level="1">LEECH_LIFE</move>
+	<move level="10">SUPERSONIC</move>
+	<move level="15">BITE</move>
+	<move level="21">CONFUSE_RAY</move>
+	<move level="28">WING_ATTACK</move>
+	<move level="36">HAZE</move>
+</enemy>
+<enemy>
+	<name>Golbat</name>
+	<health>75</health>
+	<attack>80</attack>
+	<defense>70</defense>
+	<specatk>65</specatk>
+	<specdef>75</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>171</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Poison</type1>
+	<type2>Flying</type2>
+	<move level="1">LEECH_LIFE</move>
+	<move level="1">SCREECH</move>
+	<move level="1">BITE</move>
+	<move level="10">SUPERSONIC</move>
+	<move level="15">BITE</move>
+	<move level="21">CONFUSE_RAY</move>
+	<move level="32">WING_ATTACK</move>
+	<move level="43">HAZE</move>
+</enemy>
+<enemy>
+	<name>Oddish</name>
+	<health>45</health>
+	<attack>50</attack>
+	<defense>55</defense>
+	<specatk>75</specatk>
+	<specdef>65</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>78</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<evolve level="21" />
+	<move level="1">ABSORB</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="17">STUN_SPORE</move>
+	<move level="19">SLEEP_POWDER</move>
+	<move level="24">ACID</move>
+	<move level="33">PETAL_DANCE</move>
+	<move level="46">SOLARBEAM</move>
+</enemy>
+<enemy>
+	<name>Gloom</name>
+	<health>60</health>
+	<attack>65</attack>
+	<defense>70</defense>
+	<specatk>85</specatk>
+	<specdef>75</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>132</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<move level="1">ABSORB</move>
+	<move level="1">POISONPOWDER</move>
+	<move level="1">STUN_SPORE</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="17">STUN_SPORE</move>
+	<move level="19">SLEEP_POWDER</move>
+	<move level="28">ACID</move>
+	<move level="38">PETAL_DANCE</move>
+	<move level="52">SOLARBEAM</move>
+</enemy>
+<enemy>
+	<name>Vileplume</name>
+	<health>75</health>
+	<attack>80</attack>
+	<defense>85</defense>
+	<specatk>110</specatk>
+	<specdef>90</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>184</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<move level="1">STUN_SPORE</move>
+	<move level="1">SLEEP_POWDER</move>
+	<move level="1">ACID</move>
+	<move level="1">PETAL_DANCE</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="17">STUN_SPORE</move>
+	<move level="19">SLEEP_POWDER</move>
+</enemy>
+<enemy>
+	<name>Paras</name>
+	<health>35</health>
+	<attack>70</attack>
+	<defense>55</defense>
+	<specatk>45</specatk>
+	<specdef>55</specdef>
+	<speed>25</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>70</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Bug</type1>
+	<type2>Grass</type2>
+	<evolve level="24" />
+	<move level="1">SCRATCH</move>
+	<move level="13">STUN_SPORE</move>
+	<move level="20">LEECH_LIFE</move>
+	<move level="27">SPORE</move>
+	<move level="34">SLASH</move>
+	<move level="41">GROWTH</move>
+</enemy>
+<enemy>
+	<name>Parasect</name>
+	<health>60</health>
+	<attack>95</attack>
+	<defense>80</defense>
+	<specatk>60</specatk>
+	<specdef>80</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>128</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Bug</type1>
+	<type2>Grass</type2>
+	<move level="1">SCRATCH</move>
+	<move level="1">STUN_SPORE</move>
+	<move level="1">LEECH_LIFE</move>
+	<move level="13">STUN_SPORE</move>
+	<move level="20">LEECH_LIFE</move>
+	<move level="30">SPORE</move>
+	<move level="39">SLASH</move>
+	<move level="48">GROWTH</move>
+</enemy>
+<enemy>
+	<name>Venonat</name>
+	<health>60</health>
+	<attack>55</attack>
+	<defense>50</defense>
+	<specatk>40</specatk>
+	<specdef>55</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>75</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Bug</type1>
+	<type2>Poison</type2>
+	<evolve level="31" />
+	<move level="1">TACKLE</move>
+	<move level="1">DISABLE</move>
+	<move level="24">POISONPOWDER</move>
+	<move level="27">LEECH_LIFE</move>
+	<move level="30">STUN_SPORE</move>
+	<move level="35">PSYBEAM</move>
+	<move level="38">SLEEP_POWDER</move>
+	<move level="43">PSYCHIC_M</move>
+</enemy>
+<enemy>
+	<name>Venomoth</name>
+	<health>70</health>
+	<attack>65</attack>
+	<defense>60</defense>
+	<specatk>90</specatk>
+	<specdef>75</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>138</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Bug</type1>
+	<type2>Poison</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">DISABLE</move>
+	<move level="1">POISONPOWDER</move>
+	<move level="1">LEECH_LIFE</move>
+	<move level="24">POISONPOWDER</move>
+	<move level="27">LEECH_LIFE</move>
+	<move level="30">STUN_SPORE</move>
+	<move level="38">PSYBEAM</move>
+	<move level="43">SLEEP_POWDER</move>
+	<move level="50">PSYCHIC_M</move>
+</enemy>
+<enemy>
+	<name>Diglett</name>
+	<health>10</health>
+	<attack>55</attack>
+	<defense>25</defense>
+	<specatk>35</specatk>
+	<specdef>45</specdef>
+	<speed>95</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>81</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Ground</type1>
+	<evolve level="26" />
+	<move level="1">SCRATCH</move>
+	<move level="15">GROWL</move>
+	<move level="19">DIG</move>
+	<move level="24">SAND_ATTACK</move>
+	<move level="31">SLASH</move>
+	<move level="40">EARTHQUAKE</move>
+</enemy>
+<enemy>
+	<name>Dugtrio</name>
+	<health>35</health>
+	<attack>100</attack>
+	<defense>50</defense>
+	<specatk>50</specatk>
+	<specdef>70</specdef>
+	<speed>120</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>153</yieldxp>
+	<catchrate>50</catchrate>
+	<type1>Ground</type1>
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="1">DIG</move>
+	<move level="15">GROWL</move>
+	<move level="19">DIG</move>
+	<move level="24">SAND_ATTACK</move>
+	<move level="35">SLASH</move>
+	<move level="47">EARTHQUAKE</move>
+</enemy>
+<enemy>
+	<name>Meowth</name>
+	<health>40</health>
+	<attack>45</attack>
+	<defense>35</defense>
+	<specatk>40</specatk>
+	<specdef>40</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>69</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Normal</type1>
+	<evolve level="28" />
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="12">BITE</move>
+	<move level="17">PAY_DAY</move>
+	<move level="24">SCREECH</move>
+	<move level="33">FURY_SWIPES</move>
+	<move level="44">SLASH</move>
+</enemy>
+<enemy>
+	<name>Persian</name>
+	<health>65</health>
+	<attack>70</attack>
+	<defense>60</defense>
+	<specatk>65</specatk>
+	<specdef>65</specdef>
+	<speed>115</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>148</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Normal</type1>
+	<move level="1">SCRATCH</move>
+	<move level="1">GROWL</move>
+	<move level="1">BITE</move>
+	<move level="1">SCREECH</move>
+	<move level="12">BITE</move>
+	<move level="17">PAY_DAY</move>
+	<move level="24">SCREECH</move>
+	<move level="37">FURY_SWIPES</move>
+	<move level="51">SLASH</move>
+</enemy>
+<enemy>
+	<name>Psyduck</name>
+	<health>50</health>
+	<attack>52</attack>
+	<defense>48</defense>
+	<specatk>65</specatk>
+	<specdef>50</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>80</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Water</type1>
+	<evolve level="33" />
+	<move level="1">SCRATCH</move>
+	<move level="28">TAIL_WHIP</move>
+	<move level="31">DISABLE</move>
+	<move level="36">CONFUSION</move>
+	<move level="43">FURY_SWIPES</move>
+	<move level="52">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Golduck</name>
+	<health>80</health>
+	<attack>82</attack>
+	<defense>78</defense>
+	<specatk>95</specatk>
+	<specdef>80</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>174</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Water</type1>
+	<move level="1">SCRATCH</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">DISABLE</move>
+	<move level="28">TAIL_WHIP</move>
+	<move level="31">DISABLE</move>
+	<move level="39">CONFUSION</move>
+	<move level="48">FURY_SWIPES</move>
+	<move level="59">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Mankey</name>
+	<health>40</health>
+	<attack>80</attack>
+	<defense>35</defense>
+	<specatk>35</specatk>
+	<specdef>45</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>74</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Fighting</type1>
+	<evolve level="28" />
+	<move level="1">SCRATCH</move>
+	<move level="1">LEER</move>
+	<move level="15">KARATE_CHOP</move>
+	<move level="21">FURY_SWIPES</move>
+	<move level="27">FOCUS_ENERGY</move>
+	<move level="33">SEISMIC_TOSS</move>
+	<move level="39">THRASH</move>
+</enemy>
+<enemy>
+	<name>Primeape</name>
+	<health>65</health>
+	<attack>105</attack>
+	<defense>60</defense>
+	<specatk>60</specatk>
+	<specdef>70</specdef>
+	<speed>95</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>149</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Fighting</type1>
+	<move level="1">SCRATCH</move>
+	<move level="1">LEER</move>
+	<move level="1">KARATE_CHOP</move>
+	<move level="1">FURY_SWIPES</move>
+	<move level="15">KARATE_CHOP</move>
+	<move level="21">FURY_SWIPES</move>
+	<move level="27">FOCUS_ENERGY</move>
+	<move level="37">SEISMIC_TOSS</move>
+	<move level="46">THRASH</move>
+</enemy>
+<enemy>
+	<name>Growlithe</name>
+	<health>55</health>
+	<attack>70</attack>
+	<defense>45</defense>
+	<specatk>70</specatk>
+	<specdef>50</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>91</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Fire</type1>
+	<move level="1">BITE</move>
+	<move level="1">ROAR</move>
+	<move level="18">EMBER</move>
+	<move level="23">LEER</move>
+	<move level="30">TAKE_DOWN</move>
+	<move level="39">AGILITY</move>
+	<move level="50">FLAMETHROWER</move>
+</enemy>
+<enemy>
+	<name>Arcanine</name>
+	<health>90</health>
+	<attack>110</attack>
+	<defense>80</defense>
+	<specatk>100</specatk>
+	<specdef>80</specdef>
+	<speed>95</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>213</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Fire</type1>
+	<move level="1">ROAR</move>
+	<move level="1">EMBER</move>
+	<move level="1">LEER</move>
+	<move level="1">TAKE_DOWN</move>
+</enemy>
+<enemy>
+	<name>Poliwag</name>
+	<health>40</health>
+	<attack>50</attack>
+	<defense>40</defense>
+	<specatk>40</specatk>
+	<specdef>40</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>77</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Water</type1>
+	<evolve level="25" />
+	<move level="1">BUBBLE</move>
+	<move level="16">HYPNOSIS</move>
+	<move level="19">WATER_GUN</move>
+	<move level="25">DOUBLESLAP</move>
+	<move level="31">BODY_SLAM</move>
+	<move level="38">AMNESIA</move>
+	<move level="45">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Poliwhirl</name>
+	<health>65</health>
+	<attack>65</attack>
+	<defense>65</defense>
+	<specatk>50</specatk>
+	<specdef>50</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>131</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Water</type1>
+	<move level="1">BUBBLE</move>
+	<move level="1">HYPNOSIS</move>
+	<move level="1">WATER_GUN</move>
+	<move level="16">HYPNOSIS</move>
+	<move level="19">WATER_GUN</move>
+	<move level="26">DOUBLESLAP</move>
+	<move level="33">BODY_SLAM</move>
+	<move level="41">AMNESIA</move>
+	<move level="49">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Poliwrath</name>
+	<health>90</health>
+	<attack>95</attack>
+	<defense>95</defense>
+	<specatk>70</specatk>
+	<specdef>90</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>185</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Water</type1>
+	<type2>Fighting</type2>
+	<move level="1">HYPNOSIS</move>
+	<move level="1">WATER_GUN</move>
+	<move level="1">DOUBLESLAP</move>
+	<move level="1">BODY_SLAM</move>
+	<move level="16">HYPNOSIS</move>
+	<move level="19">WATER_GUN</move>
+</enemy>
+<enemy>
+	<name>Abra</name>
+	<health>25</health>
+	<attack>20</attack>
+	<defense>15</defense>
+	<specatk>105</specatk>
+	<specdef>55</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>73</yieldxp>
+	<catchrate>200</catchrate>
+	<type1>Psychic</type1>
+	<evolve level="16" />
+	<move level="1">TELEPORT</move>
+</enemy>
+<enemy>
+	<name>Kadabra</name>
+	<health>40</health>
+	<attack>35</attack>
+	<defense>30</defense>
+	<specatk>120</specatk>
+	<specdef>70</specdef>
+	<speed>105</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>145</yieldxp>
+	<catchrate>100</catchrate>
+	<type1>Psychic</type1>
+	<move level="1">TELEPORT</move>
+	<move level="1">CONFUSION</move>
+	<move level="1">DISABLE</move>
+	<move level="16">CONFUSION</move>
+	<move level="20">DISABLE</move>
+	<move level="27">PSYBEAM</move>
+	<move level="31">RECOVER</move>
+	<move level="38">PSYCHIC_M</move>
+	<move level="42">REFLECT</move>
+</enemy>
+<enemy>
+	<name>Alakazam</name>
+	<health>55</health>
+	<attack>50</attack>
+	<defense>45</defense>
+	<specatk>135</specatk>
+	<specdef>95</specdef>
+	<speed>120</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>186</yieldxp>
+	<catchrate>50</catchrate>
+	<type1>Psychic</type1>
+	<move level="1">TELEPORT</move>
+	<move level="1">CONFUSION</move>
+	<move level="1">DISABLE</move>
+	<move level="16">CONFUSION</move>
+	<move level="20">DISABLE</move>
+	<move level="27">PSYBEAM</move>
+	<move level="31">RECOVER</move>
+	<move level="38">PSYCHIC_M</move>
+	<move level="42">REFLECT</move>
+</enemy>
+<enemy>
+	<name>Machop</name>
+	<health>70</health>
+	<attack>80</attack>
+	<defense>50</defense>
+	<specatk>35</specatk>
+	<specdef>35</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>88</yieldxp>
+	<catchrate>180</catchrate>
+	<type1>Fighting</type1>
+	<evolve level="28" />
+	<move level="1">KARATE_CHOP</move>
+	<move level="20">LOW_KICK</move>
+	<move level="25">LEER</move>
+	<move level="32">FOCUS_ENERGY</move>
+	<move level="39">SEISMIC_TOSS</move>
+	<move level="46">SUBMISSION</move>
+</enemy>
+<enemy>
+	<name>Machoke</name>
+	<health>80</health>
+	<attack>100</attack>
+	<defense>70</defense>
+	<specatk>50</specatk>
+	<specdef>60</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>146</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Fighting</type1>
+	<move level="1">KARATE_CHOP</move>
+	<move level="1">LOW_KICK</move>
+	<move level="1">LEER</move>
+	<move level="20">LOW_KICK</move>
+	<move level="25">LEER</move>
+	<move level="36">FOCUS_ENERGY</move>
+	<move level="44">SEISMIC_TOSS</move>
+	<move level="52">SUBMISSION</move>
+</enemy>
+<enemy>
+	<name>Machamp</name>
+	<health>90</health>
+	<attack>130</attack>
+	<defense>80</defense>
+	<specatk>65</specatk>
+	<specdef>85</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>193</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fighting</type1>
+	<move level="1">KARATE_CHOP</move>
+	<move level="1">LOW_KICK</move>
+	<move level="1">LEER</move>
+	<move level="20">LOW_KICK</move>
+	<move level="25">LEER</move>
+	<move level="36">FOCUS_ENERGY</move>
+	<move level="44">SEISMIC_TOSS</move>
+	<move level="52">SUBMISSION</move>
+</enemy>
+<enemy>
+	<name>Bellsprout</name>
+	<health>50</health>
+	<attack>75</attack>
+	<defense>35</defense>
+	<specatk>70</specatk>
+	<specdef>30</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>84</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<evolve level="21" />
+	<move level="1">VINE_WHIP</move>
+	<move level="1">GROWTH</move>
+	<move level="13">WRAP</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="18">SLEEP_POWDER</move>
+	<move level="21">STUN_SPORE</move>
+	<move level="26">ACID</move>
+	<move level="33">RAZOR_LEAF</move>
+	<move level="42">SLAM</move>
+</enemy>
+<enemy>
+	<name>Weepinbell</name>
+	<health>65</health>
+	<attack>90</attack>
+	<defense>50</defense>
+	<specatk>85</specatk>
+	<specdef>45</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>151</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<move level="1">VINE_WHIP</move>
+	<move level="1">GROWTH</move>
+	<move level="1">WRAP</move>
+	<move level="13">WRAP</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="18">SLEEP_POWDER</move>
+	<move level="23">STUN_SPORE</move>
+	<move level="29">ACID</move>
+	<move level="38">RAZOR_LEAF</move>
+	<move level="49">SLAM</move>
+</enemy>
+<enemy>
+	<name>Victreebel</name>
+	<health>80</health>
+	<attack>105</attack>
+	<defense>65</defense>
+	<specatk>100</specatk>
+	<specdef>70</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>191</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<type2>Poison</type2>
+	<move level="1">SLEEP_POWDER</move>
+	<move level="1">STUN_SPORE</move>
+	<move level="1">ACID</move>
+	<move level="1">RAZOR_LEAF</move>
+	<move level="13">WRAP</move>
+	<move level="15">POISONPOWDER</move>
+	<move level="18">SLEEP_POWDER</move>
+</enemy>
+<enemy>
+	<name>Tentacool</name>
+	<health>40</health>
+	<attack>40</attack>
+	<defense>35</defense>
+	<specatk>50</specatk>
+	<specdef>100</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>105</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Water</type1>
+	<type2>Poison</type2>
+	<evolve level="30" />
+	<move level="1">ACID</move>
+	<move level="7">SUPERSONIC</move>
+	<move level="13">WRAP</move>
+	<move level="18">POISON_STING</move>
+	<move level="22">WATER_GUN</move>
+	<move level="27">CONSTRICT</move>
+	<move level="33">BARRIER</move>
+	<move level="40">SCREECH</move>
+	<move level="48">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Tentacruel</name>
+	<health>80</health>
+	<attack>70</attack>
+	<defense>65</defense>
+	<specatk>80</specatk>
+	<specdef>120</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>205</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Water</type1>
+	<type2>Poison</type2>
+	<move level="1">ACID</move>
+	<move level="1">SUPERSONIC</move>
+	<move level="1">WRAP</move>
+	<move level="7">SUPERSONIC</move>
+	<move level="13">WRAP</move>
+	<move level="18">POISON_STING</move>
+	<move level="22">WATER_GUN</move>
+	<move level="27">CONSTRICT</move>
+	<move level="35">BARRIER</move>
+	<move level="43">SCREECH</move>
+	<move level="50">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Geodude</name>
+	<health>40</health>
+	<attack>80</attack>
+	<defense>100</defense>
+	<specatk>30</specatk>
+	<specdef>30</specdef>
+	<speed>20</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>86</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Rock</type1>
+	<type2>Ground</type2>
+	<evolve level="25" />
+	<move level="1">TACKLE</move>
+	<move level="11">DEFENSE_CURL</move>
+	<move level="16">ROCK_THROW</move>
+	<move level="21">SELFDESTRUCT</move>
+	<move level="26">HARDEN</move>
+	<move level="31">EARTHQUAKE</move>
+	<move level="36">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Graveler</name>
+	<health>55</health>
+	<attack>95</attack>
+	<defense>115</defense>
+	<specatk>45</specatk>
+	<specdef>45</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>134</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Rock</type1>
+	<type2>Ground</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">DEFENSE_CURL</move>
+	<move level="11">DEFENSE_CURL</move>
+	<move level="16">ROCK_THROW</move>
+	<move level="21">SELFDESTRUCT</move>
+	<move level="29">HARDEN</move>
+	<move level="36">EARTHQUAKE</move>
+	<move level="43">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Golem</name>
+	<health>80</health>
+	<attack>120</attack>
+	<defense>130</defense>
+	<specatk>55</specatk>
+	<specdef>65</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>177</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Ground</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">DEFENSE_CURL</move>
+	<move level="11">DEFENSE_CURL</move>
+	<move level="16">ROCK_THROW</move>
+	<move level="21">SELFDESTRUCT</move>
+	<move level="29">HARDEN</move>
+	<move level="36">EARTHQUAKE</move>
+	<move level="43">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Ponyta</name>
+	<health>50</health>
+	<attack>85</attack>
+	<defense>55</defense>
+	<specatk>65</specatk>
+	<specdef>65</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>152</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Fire</type1>
+	<evolve level="40" />
+	<move level="1">EMBER</move>
+	<move level="30">TAIL_WHIP</move>
+	<move level="32">STOMP</move>
+	<move level="35">GROWL</move>
+	<move level="39">FIRE_SPIN</move>
+	<move level="43">TAKE_DOWN</move>
+	<move level="48">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Rapidash</name>
+	<health>65</health>
+	<attack>100</attack>
+	<defense>70</defense>
+	<specatk>80</specatk>
+	<specdef>80</specdef>
+	<speed>105</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>192</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Fire</type1>
+	<move level="1">EMBER</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">STOMP</move>
+	<move level="1">GROWL</move>
+	<move level="30">TAIL_WHIP</move>
+	<move level="32">STOMP</move>
+	<move level="35">GROWL</move>
+	<move level="39">FIRE_SPIN</move>
+	<move level="47">TAKE_DOWN</move>
+	<move level="55">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Slowpoke</name>
+	<health>90</health>
+	<attack>65</attack>
+	<defense>65</defense>
+	<specatk>40</specatk>
+	<specdef>40</specdef>
+	<speed>15</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>99</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Water</type1>
+	<type2>Psychic</type2>
+	<evolve level="37" />
+	<move level="1">CONFUSION</move>
+	<move level="18">DISABLE</move>
+	<move level="22">HEADBUTT</move>
+	<move level="27">GROWL</move>
+	<move level="33">WATER_GUN</move>
+	<move level="40">AMNESIA</move>
+	<move level="48">PSYCHIC_M</move>
+</enemy>
+<enemy>
+	<name>Slowbro</name>
+	<health>95</health>
+	<attack>75</attack>
+	<defense>110</defense>
+	<specatk>100</specatk>
+	<specdef>80</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>164</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Water</type1>
+	<type2>Psychic</type2>
+	<move level="1">CONFUSION</move>
+	<move level="1">DISABLE</move>
+	<move level="1">HEADBUTT</move>
+	<move level="18">DISABLE</move>
+	<move level="22">HEADBUTT</move>
+	<move level="27">GROWL</move>
+	<move level="33">WATER_GUN</move>
+	<move level="37">WITHDRAW</move>
+	<move level="44">AMNESIA</move>
+	<move level="55">PSYCHIC_M</move>
+</enemy>
+<enemy>
+	<name>Magnemite</name>
+	<health>25</health>
+	<attack>35</attack>
+	<defense>70</defense>
+	<specatk>95</specatk>
+	<specdef>55</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>89</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Electric</type1>
+	<type2>Steel</type2>
+	<evolve level="30" />
+	<move level="1">TACKLE</move>
+	<move level="21">SONICBOOM</move>
+	<move level="25">THUNDERSHOCK</move>
+	<move level="29">SUPERSONIC</move>
+	<move level="35">THUNDER_WAVE</move>
+	<move level="41">SWIFT</move>
+	<move level="47">SCREECH</move>
+</enemy>
+<enemy>
+	<name>Magneton</name>
+	<health>50</health>
+	<attack>60</attack>
+	<defense>95</defense>
+	<specatk>120</specatk>
+	<specdef>70</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>161</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Electric</type1>
+	<type2>Steel</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">SONICBOOM</move>
+	<move level="1">THUNDERSHOCK</move>
+	<move level="21">SONICBOOM</move>
+	<move level="25">THUNDERSHOCK</move>
+	<move level="29">SUPERSONIC</move>
+	<move level="38">THUNDER_WAVE</move>
+	<move level="46">SWIFT</move>
+	<move level="54">SCREECH</move>
+</enemy>
+<enemy>
+	<name>Farfetch'd</name>
+	<health>52</health>
+	<attack>90</attack>
+	<defense>55</defense>
+	<specatk>58</specatk>
+	<specdef>62</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>94</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<move level="1">PECK</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="7">LEER</move>
+	<move level="15">FURY_ATTACK</move>
+	<move level="23">SWORDS_DANCE</move>
+	<move level="31">AGILITY</move>
+	<move level="39">SLASH</move>
+</enemy>
+<enemy>
+	<name>Doduo</name>
+	<health>35</health>
+	<attack>85</attack>
+	<defense>45</defense>
+	<specatk>35</specatk>
+	<specdef>35</specdef>
+	<speed>75</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>96</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<evolve level="31" />
+	<move level="1">PECK</move>
+	<move level="20">GROWL</move>
+	<move level="24">FURY_ATTACK</move>
+	<move level="30">DRILL_PECK</move>
+	<move level="36">RAGE</move>
+	<move level="40">TRI_ATTACK</move>
+	<move level="44">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Dodrio</name>
+	<health>60</health>
+	<attack>110</attack>
+	<defense>70</defense>
+	<specatk>60</specatk>
+	<specdef>60</specdef>
+	<speed>110</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>158</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<type2>Flying</type2>
+	<move level="1">PECK</move>
+	<move level="1">GROWL</move>
+	<move level="1">FURY_ATTACK</move>
+	<move level="20">GROWL</move>
+	<move level="24">FURY_ATTACK</move>
+	<move level="30">DRILL_PECK</move>
+	<move level="39">RAGE</move>
+	<move level="45">TRI_ATTACK</move>
+	<move level="51">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Seel</name>
+	<health>65</health>
+	<attack>45</attack>
+	<defense>55</defense>
+	<specatk>45</specatk>
+	<specdef>70</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>100</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Water</type1>
+	<evolve level="34" />
+	<move level="1">HEADBUTT</move>
+	<move level="30">GROWL</move>
+	<move level="35">AURORA_BEAM</move>
+	<move level="40">REST</move>
+	<move level="45">TAKE_DOWN</move>
+	<move level="50">ICE_BEAM</move>
+</enemy>
+<enemy>
+	<name>Dewgong</name>
+	<health>90</health>
+	<attack>70</attack>
+	<defense>80</defense>
+	<specatk>70</specatk>
+	<specdef>95</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>176</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Water</type1>
+	<type2>Ice</type2>
+	<move level="1">HEADBUTT</move>
+	<move level="1">GROWL</move>
+	<move level="1">AURORA_BEAM</move>
+	<move level="30">GROWL</move>
+	<move level="35">AURORA_BEAM</move>
+	<move level="44">REST</move>
+	<move level="50">TAKE_DOWN</move>
+	<move level="56">ICE_BEAM</move>
+</enemy>
+<enemy>
+	<name>Grimer</name>
+	<health>80</health>
+	<attack>80</attack>
+	<defense>50</defense>
+	<specatk>40</specatk>
+	<specdef>50</specdef>
+	<speed>25</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>90</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Poison</type1>
+	<evolve level="38" />
+	<move level="1">POUND</move>
+	<move level="1">DISABLE</move>
+	<move level="30">POISON_GAS</move>
+	<move level="33">MINIMIZE</move>
+	<move level="37">SLUDGE</move>
+	<move level="42">HARDEN</move>
+	<move level="48">SCREECH</move>
+	<move level="55">ACID_ARMOR</move>
+</enemy>
+<enemy>
+	<name>Muk</name>
+	<health>105</health>
+	<attack>105</attack>
+	<defense>75</defense>
+	<specatk>65</specatk>
+	<specdef>100</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>157</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Poison</type1>
+	<move level="1">POUND</move>
+	<move level="1">DISABLE</move>
+	<move level="1">POISON_GAS</move>
+	<move level="30">POISON_GAS</move>
+	<move level="33">MINIMIZE</move>
+	<move level="37">SLUDGE</move>
+	<move level="45">HARDEN</move>
+	<move level="53">SCREECH</move>
+	<move level="60">ACID_ARMOR</move>
+</enemy>
+<enemy>
+	<name>Shellder</name>
+	<health>30</health>
+	<attack>65</attack>
+	<defense>100</defense>
+	<specatk>45</specatk>
+	<specdef>25</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>97</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Water</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">WITHDRAW</move>
+	<move level="18">SUPERSONIC</move>
+	<move level="23">CLAMP</move>
+	<move level="30">AURORA_BEAM</move>
+	<move level="39">LEER</move>
+	<move level="50">ICE_BEAM</move>
+</enemy>
+<enemy>
+	<name>Cloyster</name>
+	<health>50</health>
+	<attack>95</attack>
+	<defense>180</defense>
+	<specatk>85</specatk>
+	<specdef>45</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>203</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Water</type1>
+	<type2>Ice</type2>
+	<move level="1">WITHDRAW</move>
+	<move level="1">SUPERSONIC</move>
+	<move level="1">CLAMP</move>
+	<move level="1">AURORA_BEAM</move>
+	<move level="50">SPIKE_CANNON</move>
+</enemy>
+<enemy>
+	<name>Gastly</name>
+	<health>30</health>
+	<attack>35</attack>
+	<defense>30</defense>
+	<specatk>100</specatk>
+	<specdef>35</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>95</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Ghost</type1>
+	<type2>Poison</type2>
+	<evolve level="25" />
+	<move level="1">LICK</move>
+	<move level="1">CONFUSE_RAY</move>
+	<move level="1">NIGHT_SHADE</move>
+	<move level="27">HYPNOSIS</move>
+	<move level="35">DREAM_EATER</move>
+</enemy>
+<enemy>
+	<name>Haunter</name>
+	<health>45</health>
+	<attack>50</attack>
+	<defense>45</defense>
+	<specatk>115</specatk>
+	<specdef>55</specdef>
+	<speed>95</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>126</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Ghost</type1>
+	<type2>Poison</type2>
+	<move level="1">LICK</move>
+	<move level="1">CONFUSE_RAY</move>
+	<move level="1">NIGHT_SHADE</move>
+	<move level="29">HYPNOSIS</move>
+	<move level="38">DREAM_EATER</move>
+</enemy>
+<enemy>
+	<name>Gengar</name>
+	<health>60</health>
+	<attack>65</attack>
+	<defense>60</defense>
+	<specatk>130</specatk>
+	<specdef>75</specdef>
+	<speed>110</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>190</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Ghost</type1>
+	<type2>Poison</type2>
+	<move level="1">LICK</move>
+	<move level="1">CONFUSE_RAY</move>
+	<move level="1">NIGHT_SHADE</move>
+	<move level="29">HYPNOSIS</move>
+	<move level="38">DREAM_EATER</move>
+</enemy>
+<enemy>
+	<name>Onix</name>
+	<health>35</health>
+	<attack>45</attack>
+	<defense>160</defense>
+	<specatk>30</specatk>
+	<specdef>45</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>108</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Ground</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">SCREECH</move>
+	<move level="15">BIND</move>
+	<move level="19">ROCK_THROW</move>
+	<move level="25">RAGE</move>
+	<move level="33">SLAM</move>
+	<move level="43">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Drowzee</name>
+	<health>60</health>
+	<attack>48</attack>
+	<defense>45</defense>
+	<specatk>43</specatk>
+	<specdef>90</specdef>
+	<speed>42</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>102</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Psychic</type1>
+	<evolve level="26" />
+	<move level="1">POUND</move>
+	<move level="1">HYPNOSIS</move>
+	<move level="12">DISABLE</move>
+	<move level="17">CONFUSION</move>
+	<move level="24">HEADBUTT</move>
+	<move level="29">POISON_GAS</move>
+	<move level="32">PSYCHIC_M</move>
+	<move level="37">MEDITATE</move>
+</enemy>
+<enemy>
+	<name>Hypno</name>
+	<health>85</health>
+	<attack>73</attack>
+	<defense>70</defense>
+	<specatk>73</specatk>
+	<specdef>115</specdef>
+	<speed>67</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>165</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Psychic</type1>
+	<move level="1">POUND</move>
+	<move level="1">HYPNOSIS</move>
+	<move level="1">DISABLE</move>
+	<move level="1">CONFUSION</move>
+	<move level="12">DISABLE</move>
+	<move level="17">CONFUSION</move>
+	<move level="24">HEADBUTT</move>
+	<move level="33">POISON_GAS</move>
+	<move level="37">PSYCHIC_M</move>
+	<move level="43">MEDITATE</move>
+</enemy>
+<enemy>
+	<name>Krabby</name>
+	<health>30</health>
+	<attack>105</attack>
+	<defense>90</defense>
+	<specatk>25</specatk>
+	<specdef>25</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>115</yieldxp>
+	<catchrate>225</catchrate>
+	<type1>Water</type1>
+	<evolve level="28" />
+	<move level="1">BUBBLE</move>
+	<move level="1">LEER</move>
+	<move level="20">VICEGRIP</move>
+	<move level="25">GUILLOTINE</move>
+	<move level="30">STOMP</move>
+	<move level="35">CRABHAMMER</move>
+	<move level="40">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Kingler</name>
+	<health>55</health>
+	<attack>130</attack>
+	<defense>115</defense>
+	<specatk>50</specatk>
+	<specdef>50</specdef>
+	<speed>75</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>206</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Water</type1>
+	<move level="1">BUBBLE</move>
+	<move level="1">LEER</move>
+	<move level="1">VICEGRIP</move>
+	<move level="20">VICEGRIP</move>
+	<move level="25">GUILLOTINE</move>
+	<move level="34">STOMP</move>
+	<move level="42">CRABHAMMER</move>
+	<move level="49">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Voltorb</name>
+	<health>40</health>
+	<attack>30</attack>
+	<defense>50</defense>
+	<specatk>55</specatk>
+	<specdef>55</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>103</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Electric</type1>
+	<evolve level="30" />
+	<move level="1">TACKLE</move>
+	<move level="1">SCREECH</move>
+	<move level="17">SONICBOOM</move>
+	<move level="22">SELFDESTRUCT</move>
+	<move level="29">LIGHT_SCREEN</move>
+	<move level="36">SWIFT</move>
+	<move level="43">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Electrode</name>
+	<health>60</health>
+	<attack>50</attack>
+	<defense>70</defense>
+	<specatk>80</specatk>
+	<specdef>80</specdef>
+	<speed>150</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>150</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Electric</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SCREECH</move>
+	<move level="1">SONICBOOM</move>
+	<move level="17">SONICBOOM</move>
+	<move level="22">SELFDESTRUCT</move>
+	<move level="29">LIGHT_SCREEN</move>
+	<move level="40">SWIFT</move>
+	<move level="50">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Exeggcute</name>
+	<health>60</health>
+	<attack>40</attack>
+	<defense>80</defense>
+	<specatk>60</specatk>
+	<specdef>45</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>98</yieldxp>
+	<catchrate>90</catchrate>
+	<type1>Grass</type1>
+	<type2>Psychic</type2>
+	<move level="1">BARRAGE</move>
+	<move level="1">HYPNOSIS</move>
+	<move level="25">REFLECT</move>
+	<move level="28">LEECH_SEED</move>
+	<move level="32">STUN_SPORE</move>
+	<move level="37">POISONPOWDER</move>
+	<move level="42">SOLARBEAM</move>
+	<move level="48">SLEEP_POWDER</move>
+</enemy>
+<enemy>
+	<name>Exeggutor</name>
+	<health>95</health>
+	<attack>95</attack>
+	<defense>85</defense>
+	<specatk>125</specatk>
+	<specdef>75</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>212</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<type2>Psychic</type2>
+	<move level="1">BARRAGE</move>
+	<move level="1">HYPNOSIS</move>
+	<move level="28">STOMP</move>
+</enemy>
+<enemy>
+	<name>Cubone</name>
+	<health>50</health>
+	<attack>50</attack>
+	<defense>95</defense>
+	<specatk>40</specatk>
+	<specdef>50</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>87</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Ground</type1>
+	<evolve level="28" />
+	<move level="1">BONE_CLUB</move>
+	<move level="1">GROWL</move>
+	<move level="25">LEER</move>
+	<move level="31">FOCUS_ENERGY</move>
+	<move level="38">THRASH</move>
+	<move level="43">BONEMERANG</move>
+	<move level="46">RAGE</move>
+</enemy>
+<enemy>
+	<name>Marowak</name>
+	<health>60</health>
+	<attack>80</attack>
+	<defense>110</defense>
+	<specatk>50</specatk>
+	<specdef>80</specdef>
+	<speed>45</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>124</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Ground</type1>
+	<move level="1">BONE_CLUB</move>
+	<move level="1">GROWL</move>
+	<move level="1">LEER</move>
+	<move level="1">FOCUS_ENERGY</move>
+	<move level="25">LEER</move>
+	<move level="33">FOCUS_ENERGY</move>
+	<move level="41">THRASH</move>
+	<move level="48">BONEMERANG</move>
+	<move level="55">RAGE</move>
+</enemy>
+<enemy>
+	<name>Hitmonlee</name>
+	<health>50</health>
+	<attack>120</attack>
+	<defense>53</defense>
+	<specatk>35</specatk>
+	<specdef>110</specdef>
+	<speed>87</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>139</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fighting</type1>
+	<move level="1">DOUBLE_KICK</move>
+	<move level="1">MEDITATE</move>
+	<move level="33">ROLLING_KICK</move>
+	<move level="38">JUMP_KICK</move>
+	<move level="43">FOCUS_ENERGY</move>
+	<move level="48">HI_JUMP_KICK</move>
+	<move level="53">MEGA_KICK</move>
+</enemy>
+<enemy>
+	<name>Hitmonchan</name>
+	<health>50</health>
+	<attack>105</attack>
+	<defense>79</defense>
+	<specatk>35</specatk>
+	<specdef>110</specdef>
+	<speed>76</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>140</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fighting</type1>
+	<move level="1">COMET_PUNCH</move>
+	<move level="1">AGILITY</move>
+	<move level="33">FIRE_PUNCH</move>
+	<move level="38">ICE_PUNCH</move>
+	<move level="43">THUNDERPUNCH</move>
+	<move level="48">MEGA_PUNCH</move>
+	<move level="53">COUNTER</move>
+</enemy>
+<enemy>
+	<name>Lickitung</name>
+	<health>90</health>
+	<attack>55</attack>
+	<defense>75</defense>
+	<specatk>60</specatk>
+	<specdef>75</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>127</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<move level="1">WRAP</move>
+	<move level="1">SUPERSONIC</move>
+	<move level="7">STOMP</move>
+	<move level="15">DISABLE</move>
+	<move level="23">DEFENSE_CURL</move>
+	<move level="31">SLAM</move>
+	<move level="39">SCREECH</move>
+</enemy>
+<enemy>
+	<name>Koffing</name>
+	<health>40</health>
+	<attack>65</attack>
+	<defense>95</defense>
+	<specatk>60</specatk>
+	<specdef>45</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>114</yieldxp>
+	<catchrate>190</catchrate>
+	<type1>Poison</type1>
+	<evolve level="35" />
+	<move level="1">TACKLE</move>
+	<move level="1">SMOG</move>
+	<move level="32">SLUDGE</move>
+	<move level="37">SMOKESCREEN</move>
+	<move level="40">SELFDESTRUCT</move>
+	<move level="45">HAZE</move>
+	<move level="48">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Weezing</name>
+	<health>65</health>
+	<attack>90</attack>
+	<defense>120</defense>
+	<specatk>85</specatk>
+	<specdef>70</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>173</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Poison</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SMOG</move>
+	<move level="1">SLUDGE</move>
+	<move level="32">SLUDGE</move>
+	<move level="39">SMOKESCREEN</move>
+	<move level="43">SELFDESTRUCT</move>
+	<move level="49">HAZE</move>
+	<move level="53">EXPLOSION</move>
+</enemy>
+<enemy>
+	<name>Rhyhorn</name>
+	<health>80</health>
+	<attack>85</attack>
+	<defense>95</defense>
+	<specatk>30</specatk>
+	<specdef>30</specdef>
+	<speed>25</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>135</yieldxp>
+	<catchrate>120</catchrate>
+	<type1>Ground</type1>
+	<type2>Rock</type2>
+	<evolve level="42" />
+	<move level="1">HORN_ATTACK</move>
+	<move level="30">STOMP</move>
+	<move level="35">TAIL_WHIP</move>
+	<move level="40">FURY_ATTACK</move>
+	<move level="45">HORN_DRILL</move>
+	<move level="50">LEER</move>
+	<move level="55">TAKE_DOWN</move>
+</enemy>
+<enemy>
+	<name>Rhydon</name>
+	<health>105</health>
+	<attack>130</attack>
+	<defense>120</defense>
+	<specatk>45</specatk>
+	<specdef>45</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>204</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Ground</type1>
+	<type2>Rock</type2>
+	<move level="1">HORN_ATTACK</move>
+	<move level="1">STOMP</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">FURY_ATTACK</move>
+	<move level="30">STOMP</move>
+	<move level="35">TAIL_WHIP</move>
+	<move level="40">FURY_ATTACK</move>
+	<move level="48">HORN_DRILL</move>
+	<move level="55">LEER</move>
+	<move level="64">TAKE_DOWN</move>
+</enemy>
+<enemy>
+	<name>Chansey</name>
+	<health>250</health>
+	<attack>5</attack>
+	<defense>5</defense>
+	<specatk>35</specatk>
+	<specdef>105</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>255</yieldxp>
+	<catchrate>30</catchrate>
+	<type1>Normal</type1>
+	<move level="1">POUND</move>
+	<move level="1">DOUBLESLAP</move>
+	<move level="24">SING</move>
+	<move level="30">GROWL</move>
+	<move level="38">MINIMIZE</move>
+	<move level="44">DEFENSE_CURL</move>
+	<move level="48">LIGHT_SCREEN</move>
+	<move level="54">DOUBLE_EDGE</move>
+</enemy>
+<enemy>
+	<name>Tangela</name>
+	<health>65</health>
+	<attack>55</attack>
+	<defense>115</defense>
+	<specatk>100</specatk>
+	<specdef>40</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>166</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Grass</type1>
+	<move level="1">CONSTRICT</move>
+	<move level="1">BIND</move>
+	<move level="29">ABSORB</move>
+	<move level="32">POISONPOWDER</move>
+	<move level="36">STUN_SPORE</move>
+	<move level="39">SLEEP_POWDER</move>
+	<move level="45">SLAM</move>
+	<move level="49">GROWTH</move>
+</enemy>
+<enemy>
+	<name>Kangaskhan</name>
+	<health>105</health>
+	<attack>95</attack>
+	<defense>80</defense>
+	<specatk>40</specatk>
+	<specdef>80</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>175</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<move level="1">COMET_PUNCH</move>
+	<move level="1">RAGE</move>
+	<move level="26">BITE</move>
+	<move level="31">TAIL_WHIP</move>
+	<move level="36">MEGA_PUNCH</move>
+	<move level="41">LEER</move>
+	<move level="46">DIZZY_PUNCH</move>
+</enemy>
+<enemy>
+	<name>Horsea</name>
+	<health>30</health>
+	<attack>40</attack>
+	<defense>70</defense>
+	<specatk>70</specatk>
+	<specdef>25</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>83</yieldxp>
+	<catchrate>225</catchrate>
+	<type1>Water</type1>
+	<evolve level="32" />
+	<move level="1">BUBBLE</move>
+	<move level="19">SMOKESCREEN</move>
+	<move level="24">LEER</move>
+	<move level="30">WATER_GUN</move>
+	<move level="37">AGILITY</move>
+	<move level="45">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Seadra</name>
+	<health>55</health>
+	<attack>65</attack>
+	<defense>95</defense>
+	<specatk>95</specatk>
+	<specdef>45</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>155</yieldxp>
+	<catchrate>75</catchrate>
+	<type1>Water</type1>
+	<move level="1">BUBBLE</move>
+	<move level="1">SMOKESCREEN</move>
+	<move level="19">SMOKESCREEN</move>
+	<move level="24">LEER</move>
+	<move level="30">WATER_GUN</move>
+	<move level="41">AGILITY</move>
+	<move level="52">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Goldeen</name>
+	<health>45</health>
+	<attack>67</attack>
+	<defense>60</defense>
+	<specatk>35</specatk>
+	<specdef>50</specdef>
+	<speed>63</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>111</yieldxp>
+	<catchrate>225</catchrate>
+	<type1>Water</type1>
+	<evolve level="33" />
+	<move level="1">PECK</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="19">SUPERSONIC</move>
+	<move level="24">HORN_ATTACK</move>
+	<move level="30">FURY_ATTACK</move>
+	<move level="37">WATERFALL</move>
+	<move level="45">HORN_DRILL</move>
+	<move level="54">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Seaking</name>
+	<health>80</health>
+	<attack>92</attack>
+	<defense>65</defense>
+	<specatk>65</specatk>
+	<specdef>80</specdef>
+	<speed>68</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>170</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Water</type1>
+	<move level="1">PECK</move>
+	<move level="1">TAIL_WHIP</move>
+	<move level="1">SUPERSONIC</move>
+	<move level="19">SUPERSONIC</move>
+	<move level="24">HORN_ATTACK</move>
+	<move level="30">FURY_ATTACK</move>
+	<move level="39">WATERFALL</move>
+	<move level="48">HORN_DRILL</move>
+	<move level="54">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Staryu</name>
+	<health>30</health>
+	<attack>45</attack>
+	<defense>55</defense>
+	<specatk>70</specatk>
+	<specdef>55</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>106</yieldxp>
+	<catchrate>225</catchrate>
+	<type1>Water</type1>
+	<move level="1">TACKLE</move>
+	<move level="17">WATER_GUN</move>
+	<move level="22">HARDEN</move>
+	<move level="27">RECOVER</move>
+	<move level="32">SWIFT</move>
+	<move level="37">MINIMIZE</move>
+	<move level="42">LIGHT_SCREEN</move>
+	<move level="47">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Starmie</name>
+	<health>60</health>
+	<attack>75</attack>
+	<defense>85</defense>
+	<specatk>100</specatk>
+	<specdef>85</specdef>
+	<speed>115</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>207</yieldxp>
+	<catchrate>60</catchrate>
+	<type1>Water</type1>
+	<type2>Psychic</type2>
+	<move level="1">TACKLE</move>
+	<move level="1">WATER_GUN</move>
+	<move level="1">HARDEN</move>
+</enemy>
+<enemy>
+	<name>Mr.  Mime</name>
+	<health>40</health>
+	<attack>45</attack>
+	<defense>65</defense>
+	<specatk>100</specatk>
+	<specdef>120</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>136</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Psychic</type1>
+	<type2>Fairy</type2>
+	<move level="1">CONFUSION</move>
+	<move level="1">BARRIER</move>
+	<move level="15">CONFUSION</move>
+	<move level="23">LIGHT_SCREEN</move>
+	<move level="31">DOUBLESLAP</move>
+	<move level="39">MEDITATE</move>
+	<move level="47">SUBSTITUTE</move>
+</enemy>
+<enemy>
+	<name>Scyther</name>
+	<health>70</health>
+	<attack>110</attack>
+	<defense>80</defense>
+	<specatk>55</specatk>
+	<specdef>80</specdef>
+	<speed>105</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>187</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Bug</type1>
+	<type2>Flying</type2>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="17">LEER</move>
+	<move level="20">FOCUS_ENERGY</move>
+	<move level="24">DOUBLE_TEAM</move>
+	<move level="29">SLASH</move>
+	<move level="35">SWORDS_DANCE</move>
+	<move level="42">AGILITY</move>
+</enemy>
+<enemy>
+	<name>Jynx</name>
+	<health>65</health>
+	<attack>50</attack>
+	<defense>35</defense>
+	<specatk>115</specatk>
+	<specdef>95</specdef>
+	<speed>95</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>137</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Ice</type1>
+	<type2>Psychic</type2>
+	<move level="1">POUND</move>
+	<move level="1">LOVELY_KISS</move>
+	<move level="18">LICK</move>
+	<move level="23">DOUBLESLAP</move>
+	<move level="31">ICE_PUNCH</move>
+	<move level="39">BODY_SLAM</move>
+	<move level="47">THRASH</move>
+	<move level="58">BLIZZARD</move>
+</enemy>
+<enemy>
+	<name>Electabuzz</name>
+	<health>65</health>
+	<attack>83</attack>
+	<defense>57</defense>
+	<specatk>95</specatk>
+	<specdef>85</specdef>
+	<speed>105</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>156</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Electric</type1>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="1">LEER</move>
+	<move level="34">THUNDERSHOCK</move>
+	<move level="37">SCREECH</move>
+	<move level="42">THUNDERPUNCH</move>
+	<move level="49">LIGHT_SCREEN</move>
+	<move level="54">THUNDER</move>
+</enemy>
+<enemy>
+	<name>Magmar</name>
+	<health>65</health>
+	<attack>95</attack>
+	<defense>57</defense>
+	<specatk>100</specatk>
+	<specdef>85</specdef>
+	<speed>93</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>167</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fire</type1>
+	<move level="1">EMBER</move>
+	<move level="36">LEER</move>
+	<move level="39">CONFUSE_RAY</move>
+	<move level="43">FIRE_PUNCH</move>
+	<move level="48">SMOKESCREEN</move>
+	<move level="52">SMOG</move>
+	<move level="55">FLAMETHROWER</move>
+</enemy>
+<enemy>
+	<name>Pinsir</name>
+	<health>65</health>
+	<attack>125</attack>
+	<defense>100</defense>
+	<specatk>55</specatk>
+	<specdef>70</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>200</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Bug</type1>
+	<move level="1">VICEGRIP</move>
+	<move level="25">SEISMIC_TOSS</move>
+	<move level="30">GUILLOTINE</move>
+	<move level="36">FOCUS_ENERGY</move>
+	<move level="43">HARDEN</move>
+	<move level="49">SLASH</move>
+	<move level="54">SWORDS_DANCE</move>
+</enemy>
+<enemy>
+	<name>Tauros</name>
+	<health>75</health>
+	<attack>100</attack>
+	<defense>95</defense>
+	<specatk>40</specatk>
+	<specdef>70</specdef>
+	<speed>110</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>211</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<move level="1">TACKLE</move>
+	<move level="21">STOMP</move>
+	<move level="28">TAIL_WHIP</move>
+	<move level="35">LEER</move>
+	<move level="44">RAGE</move>
+	<move level="51">TAKE_DOWN</move>
+</enemy>
+<enemy>
+	<name>Magikarp</name>
+	<health>20</health>
+	<attack>10</attack>
+	<defense>55</defense>
+	<specatk>15</specatk>
+	<specdef>20</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>20</yieldxp>
+	<catchrate>255</catchrate>
+	<type1>Water</type1>
+	<evolve level="20" />
+	<move level="1">SPLASH</move>
+	<move level="15">TACKLE</move>
+</enemy>
+<enemy>
+	<name>Gyarados</name>
+	<health>95</health>
+	<attack>125</attack>
+	<defense>79</defense>
+	<specatk>60</specatk>
+	<specdef>100</specdef>
+	<speed>81</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>214</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Water</type1>
+	<type2>Flying</type2>
+	<move level="1">BITE</move>
+	<move level="1">DRAGON_RAGE</move>
+	<move level="1">LEER</move>
+	<move level="1">HYDRO_PUMP</move>
+	<move level="20">BITE</move>
+	<move level="25">DRAGON_RAGE</move>
+	<move level="32">LEER</move>
+	<move level="41">HYDRO_PUMP</move>
+	<move level="52">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Lapras</name>
+	<health>130</health>
+	<attack>85</attack>
+	<defense>80</defense>
+	<specatk>85</specatk>
+	<specdef>95</specdef>
+	<speed>60</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>219</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Water</type1>
+	<type2>Ice</type2>
+	<move level="1">WATER_GUN</move>
+	<move level="1">GROWL</move>
+	<move level="16">SING</move>
+	<move level="20">MIST</move>
+	<move level="25">BODY_SLAM</move>
+	<move level="31">CONFUSE_RAY</move>
+	<move level="38">ICE_BEAM</move>
+	<move level="46">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Ditto</name>
+	<health>48</health>
+	<attack>48</attack>
+	<defense>48</defense>
+	<specatk>48</specatk>
+	<specdef>48</specdef>
+	<speed>48</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>61</yieldxp>
+	<catchrate>35</catchrate>
+	<type1>Normal</type1>
+	<move level="1">TRANSFORM</move>
+</enemy>
+<enemy>
+	<name>Eevee</name>
+	<health>55</health>
+	<attack>55</attack>
+	<defense>50</defense>
+	<specatk>45</specatk>
+	<specdef>65</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>92</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="27">QUICK_ATTACK</move>
+	<move level="31">TAIL_WHIP</move>
+	<move level="37">BITE</move>
+	<move level="45">TAKE_DOWN</move>
+</enemy>
+<enemy>
+	<name>Vaporeon</name>
+	<health>130</health>
+	<attack>65</attack>
+	<defense>60</defense>
+	<specatk>110</specatk>
+	<specdef>95</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>196</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Water</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="1">WATER_GUN</move>
+	<move level="27">QUICK_ATTACK</move>
+	<move level="31">WATER_GUN</move>
+	<move level="37">TAIL_WHIP</move>
+	<move level="40">BITE</move>
+	<move level="42">ACID_ARMOR</move>
+	<move level="44">HAZE</move>
+	<move level="48">MIST</move>
+	<move level="54">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Jolteon</name>
+	<health>65</health>
+	<attack>65</attack>
+	<defense>60</defense>
+	<specatk>110</specatk>
+	<specdef>95</specdef>
+	<speed>130</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>197</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Electric</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="1">THUNDERSHOCK</move>
+	<move level="27">QUICK_ATTACK</move>
+	<move level="31">THUNDERSHOCK</move>
+	<move level="37">TAIL_WHIP</move>
+	<move level="40">THUNDER_WAVE</move>
+	<move level="42">DOUBLE_KICK</move>
+	<move level="44">AGILITY</move>
+	<move level="48">PIN_MISSILE</move>
+	<move level="54">THUNDER</move>
+</enemy>
+<enemy>
+	<name>Flareon</name>
+	<health>65</health>
+	<attack>130</attack>
+	<defense>60</defense>
+	<specatk>95</specatk>
+	<specdef>110</specdef>
+	<speed>65</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>198</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Fire</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SAND_ATTACK</move>
+	<move level="1">QUICK_ATTACK</move>
+	<move level="1">EMBER</move>
+	<move level="27">QUICK_ATTACK</move>
+	<move level="31">EMBER</move>
+	<move level="37">TAIL_WHIP</move>
+	<move level="40">BITE</move>
+	<move level="42">LEER</move>
+	<move level="44">FIRE_SPIN</move>
+	<move level="48">RAGE</move>
+	<move level="54">FLAMETHROWER</move>
+</enemy>
+<enemy>
+	<name>Porygon</name>
+	<health>65</health>
+	<attack>60</attack>
+	<defense>70</defense>
+	<specatk>85</specatk>
+	<specdef>75</specdef>
+	<speed>40</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>130</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Normal</type1>
+	<move level="1">TACKLE</move>
+	<move level="1">SHARPEN</move>
+	<move level="1">CONVERSION</move>
+	<move level="23">PSYBEAM</move>
+	<move level="28">RECOVER</move>
+	<move level="35">AGILITY</move>
+	<move level="42">TRI_ATTACK</move>
+</enemy>
+<enemy>
+	<name>Omanyte</name>
+	<health>35</health>
+	<attack>40</attack>
+	<defense>100</defense>
+	<specatk>90</specatk>
+	<specdef>55</specdef>
+	<speed>35</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>120</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Water</type2>
+	<evolve level="40" />
+	<move level="1">WATER_GUN</move>
+	<move level="1">WITHDRAW</move>
+	<move level="34">HORN_ATTACK</move>
+	<move level="39">LEER</move>
+	<move level="46">SPIKE_CANNON</move>
+	<move level="53">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Omastar</name>
+	<health>70</health>
+	<attack>60</attack>
+	<defense>125</defense>
+	<specatk>115</specatk>
+	<specdef>70</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>199</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Water</type2>
+	<move level="1">WATER_GUN</move>
+	<move level="1">WITHDRAW</move>
+	<move level="1">HORN_ATTACK</move>
+	<move level="34">HORN_ATTACK</move>
+	<move level="39">LEER</move>
+	<move level="44">SPIKE_CANNON</move>
+	<move level="49">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Kabuto</name>
+	<health>30</health>
+	<attack>80</attack>
+	<defense>90</defense>
+	<specatk>55</specatk>
+	<specdef>45</specdef>
+	<speed>55</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>119</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Water</type2>
+	<evolve level="40" />
+	<move level="1">SCRATCH</move>
+	<move level="1">HARDEN</move>
+	<move level="34">ABSORB</move>
+	<move level="39">SLASH</move>
+	<move level="44">LEER</move>
+	<move level="49">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Kabutops</name>
+	<health>60</health>
+	<attack>115</attack>
+	<defense>105</defense>
+	<specatk>65</specatk>
+	<specdef>70</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>201</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Water</type2>
+	<move level="1">SCRATCH</move>
+	<move level="1">HARDEN</move>
+	<move level="1">ABSORB</move>
+	<move level="34">ABSORB</move>
+	<move level="39">SLASH</move>
+	<move level="46">LEER</move>
+	<move level="53">HYDRO_PUMP</move>
+</enemy>
+<enemy>
+	<name>Aerodactyl</name>
+	<health>80</health>
+	<attack>105</attack>
+	<defense>65</defense>
+	<specatk>60</specatk>
+	<specdef>75</specdef>
+	<speed>130</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>202</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Rock</type1>
+	<type2>Flying</type2>
+	<move level="1">WING_ATTACK</move>
+	<move level="1">AGILITY</move>
+	<move level="33">SUPERSONIC</move>
+	<move level="38">BITE</move>
+	<move level="45">TAKE_DOWN</move>
+	<move level="54">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Snorlax</name>
+	<health>160</health>
+	<attack>110</attack>
+	<defense>65</defense>
+	<specatk>65</specatk>
+	<specdef>110</specdef>
+	<speed>30</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>154</yieldxp>
+	<catchrate>25</catchrate>
+	<type1>Normal</type1>
+	<move level="1">HEADBUTT</move>
+	<move level="1">AMNESIA</move>
+	<move level="1">REST</move>
+	<move level="35">BODY_SLAM</move>
+	<move level="41">HARDEN</move>
+	<move level="48">DOUBLE_EDGE</move>
+	<move level="56">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Articuno</name>
+	<health>90</health>
+	<attack>85</attack>
+	<defense>100</defense>
+	<specatk>95</specatk>
+	<specdef>125</specdef>
+	<speed>85</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>215</yieldxp>
+	<catchrate>3</catchrate>
+	<type1>Ice</type1>
+	<type2>Flying</type2>
+	<move level="1">PECK</move>
+	<move level="1">ICE_BEAM</move>
+	<move level="51">BLIZZARD</move>
+	<move level="55">AGILITY</move>
+	<move level="60">MIST</move>
+</enemy>
+<enemy>
+	<name>Zapdos</name>
+	<health>90</health>
+	<attack>90</attack>
+	<defense>85</defense>
+	<specatk>125</specatk>
+	<specdef>90</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>216</yieldxp>
+	<catchrate>3</catchrate>
+	<type1>Electric</type1>
+	<type2>Flying</type2>
+	<move level="1">THUNDERSHOCK</move>
+	<move level="1">DRILL_PECK</move>
+	<move level="51">THUNDER</move>
+	<move level="55">AGILITY</move>
+	<move level="60">LIGHT_SCREEN</move>
+</enemy>
+<enemy>
+	<name>Moltres</name>
+	<health>90</health>
+	<attack>100</attack>
+	<defense>90</defense>
+	<specatk>125</specatk>
+	<specdef>85</specdef>
+	<speed>90</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>217</yieldxp>
+	<catchrate>3</catchrate>
+	<type1>Fire</type1>
+	<type2>Flying</type2>
+	<move level="1">PECK</move>
+	<move level="1">FIRE_SPIN</move>
+	<move level="51">LEER</move>
+	<move level="55">AGILITY</move>
+	<move level="60">SKY_ATTACK</move>
+</enemy>
+<enemy>
+	<name>Dratini</name>
+	<health>41</health>
+	<attack>64</attack>
+	<defense>45</defense>
+	<specatk>50</specatk>
+	<specdef>50</specdef>
+	<speed>50</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>67</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Dragon</type1>
+	<evolve level="30" />
+	<move level="1">WRAP</move>
+	<move level="1">LEER</move>
+	<move level="10">THUNDER_WAVE</move>
+	<move level="20">AGILITY</move>
+	<move level="30">SLAM</move>
+	<move level="40">DRAGON_RAGE</move>
+	<move level="50">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Dragonair</name>
+	<health>61</health>
+	<attack>84</attack>
+	<defense>65</defense>
+	<specatk>70</specatk>
+	<specdef>70</specdef>
+	<speed>70</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>144</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Dragon</type1>
+	<evolve level="55" />
+	<move level="1">WRAP</move>
+	<move level="1">LEER</move>
+	<move level="1">THUNDER_WAVE</move>
+	<move level="10">THUNDER_WAVE</move>
+	<move level="20">AGILITY</move>
+	<move level="35">SLAM</move>
+	<move level="45">DRAGON_RAGE</move>
+	<move level="55">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Dragonite</name>
+	<health>91</health>
+	<attack>134</attack>
+	<defense>95</defense>
+	<specatk>100</specatk>
+	<specdef>100</specdef>
+	<speed>80</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>218</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Dragon</type1>
+	<type2>Flying</type2>
+	<move level="1">WRAP</move>
+	<move level="1">LEER</move>
+	<move level="1">THUNDER_WAVE</move>
+	<move level="1">AGILITY</move>
+	<move level="10">THUNDER_WAVE</move>
+	<move level="20">AGILITY</move>
+	<move level="35">SLAM</move>
+	<move level="45">DRAGON_RAGE</move>
+	<move level="60">HYPER_BEAM</move>
+</enemy>
+<enemy>
+	<name>Mewtwo</name>
+	<health>106</health>
+	<attack>110</attack>
+	<defense>90</defense>
+	<specatk>154</specatk>
+	<specdef>90</specdef>
+	<speed>130</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>220</yieldxp>
+	<catchrate>3</catchrate>
+	<type1>Psychic</type1>
+	<move level="1">CONFUSION</move>
+	<move level="1">DISABLE</move>
+	<move level="1">SWIFT</move>
+	<move level="1">PSYCHIC_M</move>
+	<move level="63">BARRIER</move>
+	<move level="66">PSYCHIC_M</move>
+	<move level="70">RECOVER</move>
+	<move level="75">MIST</move>
+	<move level="81">AMNESIA</move>
+</enemy>
+<enemy>
+	<name>Mew</name>
+	<health>100</health>
+	<attack>100</attack>
+	<defense>100</defense>
+	<specatk>100</specatk>
+	<specdef>100</specdef>
+	<speed>100</speed>
+	<xpcurve>1</xpcurve>
+	<yieldxp>64</yieldxp>
+	<catchrate>45</catchrate>
+	<type1>Psychic</type1>
+	<move level="1">POUND</move>
+	<move level="10">TRANSFORM</move>
+	<move level="20">MEGA_PUNCH</move>
+	<move level="30">METRONOME</move>
+	<move level="40">PSYCHIC_M</move>
 </enemy>

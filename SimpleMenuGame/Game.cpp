@@ -7,6 +7,14 @@
         to any future UI.
 //*/
 
+constexpr auto CURRENCY_PFIX = "$";
+constexpr auto CURRENCY_SFIX = "";
+std::string Money(int money)
+{
+    return CURRENCY_PFIX + std::to_string(int(money)) + CURRENCY_SFIX;
+}
+
+
 Game::Game()
 {
     firstBoot = true;
@@ -129,13 +137,18 @@ void Game::InitPlayer()
             The constructor initializes
             party members as null pointers.
         //*/
-        party[i] = new PartyMember;
-        party[i]->Create(combatSys->EnemyFromIndex(7), 5);
+        party[i] = new PartyMember(this);
+        party[i]->Create(7, 5);
     }
 }
 PartyMember* Game::GetPartyMember(int index)
 {
     return party[std::clamp(index, 0, PARTYSIZE - 1)];
+}
+
+CombatSys* Game::GetCombatSys()
+{
+    return combatSys;
 }
 
 /* Set a room to set a variable. */

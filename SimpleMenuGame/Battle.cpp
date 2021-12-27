@@ -1,4 +1,6 @@
+#include <algorithm>
 #include "enemies.h"
+#include "moves.h"
 #include "battle.h"
 
 /* TODO: Split the combat system from the battle itself. */
@@ -22,6 +24,7 @@ std::string ColoredHp(int cur, int max)
 CombatSys::CombatSys(Game* gameObj)
 {
 	theGame = gameObj;
+	_ASSERT(gameObj);
 	mCount = eCount = eLevel = 0;
 	totalEhp = totalPhp =
 		eHp = pHp = 10;
@@ -143,16 +146,11 @@ void CombatSys::StartBattle()
 		eIndex = 16;
 
 	opponent = enemies[eIndex];
-	if (!opponent)
-	{
-		std::cout << "INVALID BAD GUY!" << std::endl;
-		EndBattle();
-		return;
-	}
 
 	int minLv = 2;
 	int maxLv = 5;
 	eLevel = rand() % (maxLv - minLv + 1) + minLv;
+	opponent->BuildMoveList(eLevel);
 
 	CalcStats(eIndex, eLevel);
 	std::cout << "A wild " << opponent->GetName() << " appeared!" << std::endl;
@@ -165,8 +163,8 @@ void CombatSys::StartBattle()
 		EndBattle();
 		return;
 	}
-
-	PrintHealth();
+	else
+		PrintHealth();
 }
 
 void CombatSys::EndBattle()
@@ -194,41 +192,45 @@ bool CombatSys::BattleTurn()
 	/* The enemy only gets a turn when you enter a valid command like ATTACK or BAG */
 	if (theGame->GetChoice() == "ATTACK")
 	{
-		Move* theMove = moveList[0]; // Tackle
-		std::string choice = "0";
+		std::string choice = "";
 
 		std::cout << partyMember->GetNickname() << " knows these moves:" << std::endl;
-		for (auto i = 0; i < mCount; i++)
-			std::cout << moveList[i]->GetName() << std::endl;
+		for (auto i = 0; i < MOVE_MEM; i++)
+			if (partyMember->MoveName(i) != "")
+				std::cout << partyMember->MoveName(i) << std::endl;
+
 		std::cout << "Attack with which move?" << std::endl;
 		std::getline(std::cin, choice);
 		toupper(choice);
 
-		if (choice != "TAIL WHIP")
+		bool chosen = false;
+		for (auto i = 0; i < MOVE_MEM; i++)
 		{
-			int pDmg = CalcDamage(partyMember->GetLevel(), theMove->GetPower(), pStat[ATTACK], eStat[DEFENSE]);
-			std::cout << "Your " << partyMember->GetNickname() << " attacked with " << theMove->GetName() << ", dealing " << pDmg << " points of damage." << std::endl;
-			eHp -= pDmg;
+			std::string pMove = partyMember->MoveName(i);
+			toupper(pMove);
+			if (pMove == choice)
+			{
+				chosen = true;
+				MoveAction(partyMember->MoveName(i), true);
+			}
 		}
-		else
-		{
-			theMove = moveList[1]; // Tail Whip
-			std::cout << "You " << partyMember->GetNickname() << " used " << theMove->GetName() << ", lowering " << opponent->GetName() << "'s defense." << std::endl;
-			eStat[DEFENSE]--;
-		}
+		if (!chosen)
+			return false;
 
-		/* Decide to attack */
-		if (rand() % 100 <= 60)
-		{
-			int eDmg = CalcDamage(eLevel, moveList[0]->GetPower(), eStat[ATTACK], pStat[DEFENSE]);
-			std::cout << "Enemy " << opponent->GetName() << " attacked with " << moveList[0]->GetName() << ", dealing " << eDmg << " points of damage." << std::endl;
-			pHp -= eDmg;
-		}
-		else
-		{
-			std::cout << "Enemy " << opponent->GetName() << " used " << moveList[1]->GetName() << ", lowering " << partyMember->GetNickname() << "'s defense." << std::endl;
-			pStat[DEFENSE]--;
-		}
+		/* Pick a random enemy move. */
+		// TODO: Favor attacking moves?
+		std::string eMoves[MOVE_MEM] = {""};
+		auto i = 0;
+		for (; i < MOVE_MEM; i++)
+			if (opponent->MoveName(i) != "")
+				eMoves[i] = opponent->MoveName(i);
+		MoveAction(eMoves[rand() % i]);
+	}
+	if ((theGame->GetChoice() == "RUN") || (theGame->GetChoice() == "QUIT"))
+	{
+		std::cout << "You ran." << std::endl;
+		EndBattle();
+		return true;
 	}
 
 	PrintHealth();
@@ -279,4 +281,212 @@ bool CombatSys::BattleTurn()
 		return true;
 	}
 	return false;
+}
+
+Move* CombatSys::MovesByName(std::string mv)
+{
+	for (auto i = 0; i < mCount; i++)
+		if (moveList[i]->GetName() == mv)
+			return moveList[i];
+	return moveList[33];
+}
+
+void CombatSys::MoveAction(std::string mov, bool plr)
+{
+	Move* move = MovesByName(mov);
+	std::string summ = "";
+	std::string pnam = opponent->GetName();
+	std::string oppo = partyMember->GetNickname();
+
+	if (plr)
+	{
+		oppo = opponent->GetName();
+		pnam = partyMember->GetNickname();
+		summ += "Your";
+	}
+	else
+		summ += "Enemy";
+	summ += " " + pnam + " used " + move->GetName();
+	if (move->GetPower())
+	{
+		int level = eLevel;
+		int attack = eStat[ATTACK];
+		int def = pStat[DEFENSE];
+		if (plr)
+		{
+			level = partyMember->GetLevel();
+			attack = pStat[ATTACK];
+			def = eStat[DEFENSE];
+		}
+		int dmg = CalcDamage(level, move->GetPower(), attack, def);
+		if (plr)
+			eHp -= dmg;
+		else
+			pHp -= dmg;
+		summ += ", dealing " + std::to_string(dmg) + " points of damage.";
+	}
+	else
+	{
+		if (plr)
+			eStat[DEFENSE]--;
+		else
+			pStat[DEFENSE]--;
+		summ += ", lowering " + oppo + "'s defense.";
+	}
+	std::cout << summ << std::endl;
+}
+
+std::string GetTypeName(Types typ)
+{
+	std::string myName = "Normal"; // This covers the "Default" case.
+	switch (typ)
+	{
+	case Types::BUG:
+		myName = "Bug";
+		break;
+	case Types::DARK:
+		myName = "Dark";
+		break;
+	case Types::DRAGON:
+		myName = "Dragon";
+		break;
+	case Types::ELECTRIC:
+		myName = "Electric";
+		break;
+	case Types::FAIRY:
+		myName = "Fairy";
+		break;
+	case Types::FIGHTING:
+		myName = "Fighting";
+		break;
+	case Types::FIRE:
+		myName = "Fire";
+		break;
+	case Types::FLYING:
+		myName = "Flying";
+		break;
+	case Types::GHOST:
+		myName = "Ghost";
+		break;
+	case Types::GRASS:
+		myName = "Grass";
+		break;
+	case Types::GROUND:
+		myName = "Ground";
+		break;
+	case Types::ICE:
+		myName = "Ice";
+		break;
+	case Types::POISON:
+		myName = "Poison";
+		break;
+	case Types::PSYCHIC:
+		myName = "Psychic";
+		break;
+	case Types::ROCK:
+		myName = "Rock";
+		break;
+	case Types::STEEL:
+		myName = "Steel";
+		break;
+	case Types::WATER:
+		myName = "Water";
+	}
+	return myName;
+}
+
+Types TypeFromNum(int num)
+{
+	Types retType = Types::NORMAL; // This covers the "Default" case.
+
+	switch (num)
+	{
+	case 0:
+		retType = Types::BUG;
+		break;
+	case 1:
+		retType = Types::DARK;
+		break;
+	case 2:
+		retType = Types::DRAGON;
+		break;
+	case 3:
+		retType = Types::ELECTRIC;
+		break;
+	case 4:
+		retType = Types::FAIRY;
+		break;
+	case 5:
+		retType = Types::FIGHTING;
+		break;
+	case 6:
+		retType = Types::FIRE;
+		break;
+	case 7:
+		retType = Types::FLYING;
+		break;
+	case 8:
+		retType = Types::GHOST;
+		break;
+	case 9:
+		retType = Types::GRASS;
+		break;
+	case 10:
+		retType = Types::GROUND;
+		break;
+	case 11:
+		retType = Types::ICE;
+		break;
+	case 13:
+		retType = Types::POISON;
+		break;
+	case 14:
+		retType = Types::PSYCHIC;
+		break;
+	case 15:
+		retType = Types::ROCK;
+		break;
+	case 16:
+		retType = Types::STEEL;
+		break;
+	case 17:
+		retType = Types::WATER;
+	};
+
+	return retType;
+}
+
+Types TypeFromName(std::string nme)
+{
+	nme = LoadString(nme, "invalid");
+	
+	std::string tNames[18] =
+	{
+		"Bug",
+		"Dark",
+		"Dragon",
+		"Electric",
+		"Fairy",
+		"Fighting",
+		"Fire",
+		"Flying",
+		"Ghost",
+		"Grass",
+		"Ground",
+		"Ice",
+		"Normal",
+		"Poison",
+		"Psychic",
+		"Rock",
+		"Steel",
+		"Water"
+	};
+
+	/* Convert test to title case. */
+	transform(nme.begin(), nme.begin() + 1, nme.begin(), std::toupper);
+
+	for (auto i = 0; i < 18; i++)
+		if (nme == tNames[i])
+			return TypeFromNum(i);
+	return Types::NORMAL;
 }

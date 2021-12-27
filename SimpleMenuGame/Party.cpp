@@ -17,6 +17,7 @@ const enum XP_CURVES
 
 PartyMember::PartyMember(Game* mygame)
 {
+	created = false;
 	myGame = mygame;
 	nickname = "";
 	health =
@@ -127,20 +128,27 @@ void PartyMember::AwardEV(int gain, int st)
 
 bool PartyMember::AwardXP(int xp)
 {
+	bool leveledUp = false;
+
 	if (xp <= 0)
 		return false;
 
 	if (myLevel >= MAX_LEVEL)
+	{
+		/* EVs can be earned
+		 * for a long time.
+		//*/
+		CalcStats();
 		return false;
+	}
 
 	curXp += xp;
 
 	while (XpForLevel(myLevel + 1, GetXpCurve()) <= curXp)
 	{
+		leveledUp = true;
 		myLevel++;
 		std::cout << nickname << " reached level " << myLevel << "!" << std::endl;
-		if (myLevel >= MAX_LEVEL)
-			break;
 		if (myLevel >= GetEvoLevel())
 		{
 			std::cout << nickname << " is evolving!" << std::endl;
@@ -152,8 +160,12 @@ bool PartyMember::AwardXP(int xp)
 			if (!nicknamed)
 				nickname = GetName();
 		}
+		// FIXME: Check for new moves based on level/evolution.
 	}
 
+	/* HP is calculated each time
+	 * because EVs can raise the HP.
+	//*/
 	float hpFrac = hitP / totalHP;
 	CalcStats();
 	SetHP(hpFrac * totalHP);
@@ -182,20 +194,24 @@ bool PartyMember::Create(int basetype, int level, int healthIV, int attackIV, in
 
 	CalcStats();
 	hitP = totalHP;
+	
+	BuildMoveList(level);
 
 	return true;
 }
 
 bool PartyMember::SetBaseType(int idx)
 {
-	_ASSERT(myGame);
-	_ASSERT(myGame->GetCombatSys());
-
 	Enemy* basetype = myGame->GetCombatSys()->EnemyFromIndex(idx);
 
 	if (!basetype)
 		return false;
 
+	/* BUGBUG: If all stats
+	 * reload when evolving,
+	 * what if a stat was
+	 * raised by a powerup?
+	//*/
 	Setup(
 		basetype->GetName(),
 		idx,
@@ -209,7 +225,19 @@ bool PartyMember::SetBaseType(int idx)
 		basetype->GetXpYield(),
 		basetype->GetCatchRate(),
 		basetype->GetEvoLevel());
-	return basetype;
+
+	// Get Move List
+	if (!created)
+	{
+		std::map<std::string, int> mMap = basetype->GetAllMoves();
+		for (auto&& item : mMap)
+		{
+			AddMove(item.first, item.second);
+		}
+		created = true;
+	}
+
+	return true;
 }
 
 void PartyMember::CalcStats()

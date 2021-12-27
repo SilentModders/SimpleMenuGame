@@ -33,7 +33,7 @@ public:
 	void SetHP(int hp = 0);
 
 private:
-	std::string nickname;
+	bool created;
 
 	// IVs and EVs
 	int iv[NUM_STATS], ev[NUM_STATS];
@@ -48,6 +48,8 @@ private:
 	int myLevel; // Level
 	int hitP, totalHP; // HP
 	int curXp; // Experience
+
+	std::string nickname;
 
 	Game* myGame; // The Game
 

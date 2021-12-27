@@ -20,6 +20,8 @@ Enemy::Enemy()
 	xpCurve = 0;
 	catchRate =
 	evolve = 255;
+	for (auto i = 0; i < MOVE_MEM; i++)
+		myMoves[i] = "";
 }
 std::string Enemy::GetName()
 {
@@ -90,6 +92,54 @@ void Enemy::Setup(std::string nme, int idx, int hlh,
 	bXpYield = xpy;
 	catchRate = crt;
 	evolve = evl;
+}
+
+bool Enemy::AddMove(std::string nme, int lv)
+{
+	/* Too early to search the
+	 * Game's Move dictionary. 
+	//*/
+	if (nme.length() < 2)
+		return false;
+	lv = std::clamp(lv, 1, MAX_LEVEL);
+
+	moveMap.insert(std::pair<std::string, int>(nme, lv));
+	/*
+	if (nme == "Tail Whip")
+		for (auto&& item : moveMap)
+		{
+			std::cout << item.second << std::endl;
+		}
+	//*/
+	return true;
+}
+
+void Enemy::BuildMoveList(int lv)
+{
+	/* Reads all moves the that
+	 * this creature can learn
+	 * and overwrites the oldest.
+	//*/
+	int i = 0;
+	for (auto&& item : moveMap)
+	{
+		if (item.second <= lv)
+			myMoves[i % 4] = item.first;
+		i++;
+	}
+}
+
+std::map<std::string, int> Enemy::GetAllMoves()
+{
+	return moveMap;
+}
+
+std::string Enemy::MoveName(int idx)
+{
+	if (myMoves[0] == "")
+		BuildMoveList();
+	idx = std::clamp(idx, 0, MOVE_MEM);
+	return myMoves[idx];
 }
 
 int Enemy::SetIdNum(int id)

@@ -1,8 +1,13 @@
 #pragma once
 #include <string>
+#include <map>
+#include "moves.h"
 
 constexpr auto MAX_ENEMIES = 1000;
 constexpr auto MAX_LEVEL = 100;
+
+// A monster can only know this many moves.
+constexpr auto MOVE_MEM = 4;
 
 class Enemy
 {
@@ -21,7 +26,6 @@ public:
 	int GetCatchRate();
 	int GetEvoLevel();
 
-
 	// Load all base stats
 	void Setup(std::string name,
 		int idx = 0,
@@ -33,6 +37,17 @@ public:
 		int xpy = 5,
 		int crt = 255,
 		int evl = 255);
+
+	// Add a move the this monster's total list.
+	bool AddMove(std::string nme, int lv = 1);
+
+	// Gives this enemy the newest moves for that level
+	void BuildMoveList(int lv = 1);
+
+	std::map<std::string, int> GetAllMoves();
+
+	// Get the specified move, out of 4.
+	std::string MoveName(int idx = 0);
 
 protected:
 	// Don't call this without reloading Stats!
@@ -52,9 +67,15 @@ private:
 	int bXpYield; // XP Yield when beaten
 	int catchRate; // Catch Rate
 	int evolve; // Level to evolve
+
+	// All moves
+	std::map<std::string, int> moveMap;
+
+	// Known Moves, Not always loaded
+	std::string myMoves[4];
 };
 
-enum stats
+const enum Stats
 {
 	HEALTH,
 	ATTACK,

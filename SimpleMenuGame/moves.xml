@@ -1,20 +1,1060 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Pokey Moves, v0.002</banner>
+<banner>Pokey Moves, v1.000</banner>
 <!-- This file describes the "Gen 1" Pokémon moves. (Nintendo owns Pokémon.) -->
 <move>
-	<name>Tackle</name>
-	<power>40</power>
+	<name>Missing Move</name>
+	<!-- #0  -->
+</move>
+<move>
+	<name>Pound</name>
+	<type>Normal</type>
 	<pp>35</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Karate Chop</name>
+	<type>Fighting</type>
+	<pp>25</pp>
+	<power>50</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Double Slap</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>15</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Comet Punch</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>18</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Mega Punch</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>80</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Pay Day</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Fire Punch</name>
+	<type>Fire</type>
+	<pp>15</pp>
+	<power>75</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Ice Punch</name>
+	<type>Ice</type>
+	<pp>15</pp>
+	<power>75</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Thunder Punch</name>
+	<type>Electric</type>
+	<pp>15</pp>
+	<power>75</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Scratch</name>
+	<type>Normal</type>
+	<pp>35</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Vise Grip</name>
+	<type>Normal</type>
+	<pp>30</pp>
+	<power>55</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Guillotine</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<accuracy>30</accuracy>
+</move>
+<move>
+	<name>Razor Wind</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Swords Dance</name>
+	<type>Normal</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Cut</name>
+	<type>Normal</type>
+	<pp>30</pp>
+	<power>50</power>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Gust</name>
+	<type>Flying</type>
+	<pp>35</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Wing Attack</name>
+	<type>Flying</type>
+	<pp>35</pp>
+	<power>60</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Whirlwind</name>
+	<type>Normal</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Fly</name>
+	<type>Flying</type>
+	<pp>15</pp>
+	<power>90</power>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Bind</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>15</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Slam</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>80</power>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Vine Whip</name>
+	<type>Grass</type>
+	<pp>25</pp>
+	<power>45</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Stomp</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Double Kick</name>
+	<type>Fighting</type>
+	<pp>30</pp>
+	<power>30</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Mega Kick</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<power>120</power>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Jump Kick</name>
+	<type>Fighting</type>
+	<pp>10</pp>
+	<power>100</power>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Rolling Kick</name>
+	<type>Fighting</type>
+	<pp>15</pp>
+	<power>60</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Sand Attack</name>
+	<type>Ground</type>
+	<pp>15</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Headbutt</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>70</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Horn Attack</name>
+	<type>Normal</type>
+	<pp>25</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Fury Attack</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>15</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Horn Drill</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<accuracy>30</accuracy>
+</move>
+<move>
+	<name>Tackle</name>
+	<type>Normal</type>
+	<pp>35</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Body Slam</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>85</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Wrap</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>15</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Take Down</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>90</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Thrash</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>120</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Double-Edge</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>120</power>
 	<accuracy>100</accuracy>
 </move>
 <move>
 	<name>Tail Whip</name>
+	<type>Normal</type>
 	<pp>30</pp>
 	<accuracy>100</accuracy>
 </move>
 <move>
-	<name>Gust</name>
-	<power>40</power>
+	<name>Poison Sting</name>
+	<type>Poison</type>
 	<pp>35</pp>
+	<power>15</power>
 	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Twineedle</name>
+	<type>Bug</type>
+	<pp>20</pp>
+	<power>25</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Pin Missile</name>
+	<type>Bug</type>
+	<pp>20</pp>
+	<power>25</power>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Leer</name>
+	<type>Normal</type>
+	<pp>30</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Bite</name>
+	<type>Dark</type>
+	<pp>25</pp>
+	<power>60</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Growl</name>
+	<type>Normal</type>
+	<pp>40</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Roar</name>
+	<type>Normal</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Sing</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<accuracy>55</accuracy>
+</move>
+<move>
+	<name>Supersonic</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<accuracy>55</accuracy>
+</move>
+<move>
+	<name>Sonic Boom</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Disable</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Acid</name>
+	<type>Poison</type>
+	<pp>30</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Ember</name>
+	<type>Fire</type>
+	<pp>25</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Flamethrower</name>
+	<type>Fire</type>
+	<pp>15</pp>
+	<power>90</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Mist</name>
+	<type>Ice</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Water Gun</name>
+	<type>Water</type>
+	<pp>25</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Hydro Pump</name>
+	<type>Water</type>
+	<pp>5</pp>
+	<power>110</power>
+	<accuracy>80</accuracy>
+</move>
+<move>
+	<name>Surf</name>
+	<type>Water</type>
+	<pp>15</pp>
+	<power>90</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Ice Beam</name>
+	<type>Ice</type>
+	<pp>10</pp>
+	<power>90</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Blizzard</name>
+	<type>Ice</type>
+	<pp>5</pp>
+	<power>110</power>
+	<accuracy>70</accuracy>
+</move>
+<move>
+	<name>Psybeam</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Bubble Beam</name>
+	<type>Water</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Aurora Beam</name>
+	<type>Ice</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Hyper Beam</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<power>150</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Peck</name>
+	<type>Flying</type>
+	<pp>35</pp>
+	<power>35</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Drill Peck</name>
+	<type>Flying</type>
+	<pp>20</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Submission</name>
+	<type>Fighting</type>
+	<pp>20</pp>
+	<power>80</power>
+	<accuracy>80</accuracy>
+</move>
+<move>
+	<name>Low Kick</name>
+	<type>Fighting</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Counter</name>
+	<type>Fighting</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Seismic Toss</name>
+	<type>Fighting</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Strength</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Absorb</name>
+	<type>Grass</type>
+	<pp>25</pp>
+	<power>20</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Mega Drain</name>
+	<type>Grass</type>
+	<pp>15</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Leech Seed</name>
+	<type>Grass</type>
+	<pp>10</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Growth</name>
+	<type>Normal</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Razor Leaf</name>
+	<type>Grass</type>
+	<pp>25</pp>
+	<power>55</power>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Solar Beam</name>
+	<type>Grass</type>
+	<pp>10</pp>
+	<power>120</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Poison Powder</name>
+	<type>Poison</type>
+	<pp>35</pp>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Stun Spore</name>
+	<type>Grass</type>
+	<pp>30</pp>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Sleep Powder</name>
+	<type>Grass</type>
+	<pp>15</pp>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Petal Dance</name>
+	<type>Grass</type>
+	<pp>10</pp>
+	<power>120</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>String Shot</name>
+	<type>Bug</type>
+	<pp>40</pp>
+	<accuracy>95</accuracy>
+</move>
+<move>
+	<name>Dragon Rage</name>
+	<type>Dragon</type>
+	<pp>10</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Fire Spin</name>
+	<type>Fire</type>
+	<pp>15</pp>
+	<power>35</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Thunder Shock</name>
+	<type>Electric</type>
+	<pp>30</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Thunderbolt</name>
+	<type>Electric</type>
+	<pp>15</pp>
+	<power>90</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Thunder Wave</name>
+	<type>Electric</type>
+	<pp>20</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Thunder</name>
+	<type>Electric</type>
+	<pp>10</pp>
+	<power>110</power>
+	<accuracy>70</accuracy>
+</move>
+<move>
+	<name>Rock Throw</name>
+	<type>Rock</type>
+	<pp>15</pp>
+	<power>50</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Earthquake</name>
+	<type>Ground</type>
+	<pp>10</pp>
+	<power>100</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Fissure</name>
+	<type>Ground</type>
+	<pp>5</pp>
+	<accuracy>30</accuracy>
+</move>
+<move>
+	<name>Dig</name>
+	<type>Ground</type>
+	<pp>10</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Toxic</name>
+	<type>Poison</type>
+	<pp>10</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Confusion</name>
+	<type>Psychic</type>
+	<pp>25</pp>
+	<power>50</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Psychic</name>
+	<type>Psychic</type>
+	<pp>10</pp>
+	<power>90</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Hypnosis</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+	<accuracy>60</accuracy>
+</move>
+<move>
+	<name>Meditate</name>
+	<type>Psychic</type>
+	<pp>40</pp>
+</move>
+<move>
+	<name>Agility</name>
+	<type>Psychic</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Quick Attack</name>
+	<type>Normal</type>
+	<pp>30</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Rage</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>20</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Teleport</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Night Shade</name>
+	<type>Ghost</type>
+	<pp>15</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Mimic</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Screech</name>
+	<type>Normal</type>
+	<pp>40</pp>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Double Team</name>
+	<type>Normal</type>
+	<pp>15</pp>
+</move>
+<move>
+	<name>Recover</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Harden</name>
+	<type>Normal</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Minimize</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Smokescreen</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Confuse Ray</name>
+	<type>Ghost</type>
+	<pp>10</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Withdraw</name>
+	<type>Water</type>
+	<pp>40</pp>
+</move>
+<move>
+	<name>Defense Curl</name>
+	<type>Normal</type>
+	<pp>40</pp>
+</move>
+<move>
+	<name>Barrier</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Light Screen</name>
+	<type>Psychic</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Haze</name>
+	<type>Ice</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Reflect</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Focus Energy</name>
+	<type>Normal</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Bide</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Metronome</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Mirror Move</name>
+	<type>Flying</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Self-Destruct</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<power>200</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Egg Bomb</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>100</power>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Lick</name>
+	<type>Ghost</type>
+	<pp>30</pp>
+	<power>30</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Smog</name>
+	<type>Poison</type>
+	<pp>20</pp>
+	<power>30</power>
+	<accuracy>70</accuracy>
+</move>
+<move>
+	<name>Sludge</name>
+	<type>Poison</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Bone Club</name>
+	<type>Ground</type>
+	<pp>20</pp>
+	<power>65</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Fire Blast</name>
+	<type>Fire</type>
+	<pp>5</pp>
+	<power>110</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Waterfall</name>
+	<type>Water</type>
+	<pp>15</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Clamp</name>
+	<type>Water</type>
+	<pp>15</pp>
+	<power>35</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Swift</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>60</power>
+</move>
+<move>
+	<name>Skull Bash</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>130</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Spike Cannon</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>20</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Constrict</name>
+	<type>Normal</type>
+	<pp>35</pp>
+	<power>10</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Amnesia</name>
+	<type>Psychic</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Kinesis</name>
+	<type>Psychic</type>
+	<pp>15</pp>
+	<accuracy>80</accuracy>
+</move>
+<move>
+	<name>Soft-Boiled</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>High Jump Kick</name>
+	<type>Fighting</type>
+	<pp>10</pp>
+	<power>130</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Glare</name>
+	<type>Normal</type>
+	<pp>30</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Dream Eater</name>
+	<type>Psychic</type>
+	<pp>15</pp>
+	<power>100</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Poison Gas</name>
+	<type>Poison</type>
+	<pp>40</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Barrage</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>15</power>
+	<accuracy>85</accuracy>
+</move>
+<move>
+	<name>Leech Life</name>
+	<type>Bug</type>
+	<pp>10</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Lovely Kiss</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<accuracy>75</accuracy>
+</move>
+<move>
+	<name>Sky Attack</name>
+	<type>Flying</type>
+	<pp>5</pp>
+	<power>140</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Transform</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Bubble</name>
+	<type>Water</type>
+	<pp>30</pp>
+	<power>40</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Dizzy Punch</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>70</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Spore</name>
+	<type>Grass</type>
+	<pp>15</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Flash</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Psywave</name>
+	<type>Psychic</type>
+	<pp>15</pp>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Splash</name>
+	<type>Normal</type>
+	<pp>40</pp>
+</move>
+<move>
+	<name>Acid Armor</name>
+	<type>Poison</type>
+	<pp>20</pp>
+</move>
+<move>
+	<name>Crabhammer</name>
+	<type>Water</type>
+	<pp>10</pp>
+	<power>100</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Explosion</name>
+	<type>Normal</type>
+	<pp>5</pp>
+	<power>250</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Fury Swipes</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>18</power>
+	<accuracy>80</accuracy>
+</move>
+<move>
+	<name>Bonemerang</name>
+	<type>Ground</type>
+	<pp>10</pp>
+	<power>50</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Rest</name>
+	<type>Psychic</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Rock Slide</name>
+	<type>Rock</type>
+	<pp>10</pp>
+	<power>75</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Hyper Fang</name>
+	<type>Normal</type>
+	<pp>15</pp>
+	<power>80</power>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Sharpen</name>
+	<type>Normal</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Conversion</name>
+	<type>Normal</type>
+	<pp>30</pp>
+</move>
+<move>
+	<name>Tri Attack</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<power>80</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Super Fang</name>
+	<type>Normal</type>
+	<pp>10</pp>
+	<accuracy>90</accuracy>
+</move>
+<move>
+	<name>Slash</name>
+	<type>Normal</type>
+	<pp>20</pp>
+	<power>70</power>
+	<accuracy>100</accuracy>
+</move>
+<move>
+	<name>Substitute</name>
+	<type>Normal</type>
+	<pp>10</pp>
+</move>
+<move>
+	<name>Struggle</name>
+	<type>Normal</type>
+	<power>50</power>
 </move>

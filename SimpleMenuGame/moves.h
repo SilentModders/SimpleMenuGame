@@ -1,16 +1,18 @@
 #pragma once
-#include <string>
 
 class Move
 {
 public:
 	Move();
 	std::string GetName();
-	int GetPower();
-	int GetPP();
-	int GetAccuracy();
-	void Setup(std::string name, int power, int pp, int accuracy);
+	int GetPP(), GetPower(), GetAccuracy();
+	void Setup(
+		std::string name = "Unknown",
+		std::string typ = "Normal",
+		int pp = 0, int power = 0,
+		int accuracy = 100);
 private:
 	std::string name;
-	int power, pp, accuracy;
+	int pp, power, accuracy;
+	int mType;
 };

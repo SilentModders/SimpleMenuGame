@@ -180,6 +180,9 @@ bool CombatSys::ReadFile(std::string file)
                     atoi(enemy.child_value("catchrate")),
                     atoi(enemy.child("evolve").attribute("level").value())
                 );
+                /* Load the leanset. */
+                for (pugi::xml_node move = enemy.child("move"); move; move = move.next_sibling("move"))
+                    enemies[eCount]->AddMove(LoadString(move.child_value(), "Unnamed"), atoi(move.attribute("level").value()));
                 eCount++;
             }
         }
@@ -215,8 +218,9 @@ bool CombatSys::ReadMoveFile(std::string file)
             {
                 moveList[mCount]->Setup(
                     move.child_value("name"),
-                    atoi(move.child_value("power")),
+                    move.child_value("type"),
                     atoi(move.child_value("pp")),
+                    atoi(move.child_value("power")),
                     atoi(move.child_value("accuracy"))
                 );
                 mCount++;

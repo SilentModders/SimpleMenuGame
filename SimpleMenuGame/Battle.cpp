@@ -190,36 +190,60 @@ bool CombatSys::BattleTurn()
 	}
 
 	/* The enemy only gets a turn when you enter a valid command like ATTACK or BAG */
-	if (theGame->GetChoice() == "ATTACK")
+	if ((theGame->GetChoice() == "ATTACK") || (theGame->GetChoice() == "BAG"))
 	{
-		std::string choice = "";
-
-		std::cout << partyMember->GetNickname() << " knows these moves:" << std::endl;
-		for (auto i = 0; i < MOVE_MEM; i++)
-			if (partyMember->MoveName(i) != "")
-				std::cout << partyMember->MoveName(i) << std::endl;
-
-		std::cout << "Attack with which move?" << std::endl;
-		std::getline(std::cin, choice);
-		toupper(choice);
-
-		bool chosen = false;
-		for (auto i = 0; i < MOVE_MEM; i++)
+		if (theGame->GetChoice() == "BAG")
 		{
-			std::string pMove = partyMember->MoveName(i);
-			toupper(pMove);
-			if (pMove == choice)
+			std::string choice = "";
+			std::cout << "Use Which item?" << std::endl;
+			std::getline(std::cin, choice);
+			toupper(choice);
+			if (choice != "POKEBALL")
+				return false;
+			if (theGame->RemoveInventoryItem("Pokeball"))
 			{
-				chosen = true;
-				MoveAction(partyMember->MoveName(i), true);
+				std::cout << "You threw a pokeball." << std::endl;
+				std::cout << "You caught " << opponent->GetName() << "!" << std::endl;
+				theGame->AddPartyMember(eIndex, eLevel, eHp);
+				EndBattle();
+				return true;
+			}
+			else
+			{
+				std::cout << "You don't have any!" << std::endl;
+				return false;
 			}
 		}
-		if (!chosen)
-			return false;
+		if (theGame->GetChoice() == "ATTACK")
+		{
+			std::string choice = "";
 
+			std::cout << partyMember->GetNickname() << " knows these moves:" << std::endl;
+			for (auto i = 0; i < MOVE_MEM; i++)
+				if (partyMember->MoveName(i) != "")
+					std::cout << partyMember->MoveName(i) << std::endl;
+
+			std::cout << "Attack with which move?" << std::endl;
+			std::getline(std::cin, choice);
+			toupper(choice);
+
+			bool chosen = false;
+			for (auto i = 0; i < MOVE_MEM; i++)
+			{
+				std::string pMove = partyMember->MoveName(i);
+				toupper(pMove);
+				if (pMove == choice)
+				{
+					chosen = true;
+					MoveAction(partyMember->MoveName(i), true);
+				}
+			}
+			if (!chosen)
+				return false;
+		}
 		/* Pick a random enemy move. */
 		// TODO: Favor attacking moves?
-		std::string eMoves[MOVE_MEM] = {""};
+		std::string eMoves[MOVE_MEM] = { "" };
 		auto i = 0;
 		for (; i < MOVE_MEM; i++)
 			if (opponent->MoveName(i) != "")

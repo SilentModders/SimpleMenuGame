@@ -40,8 +40,13 @@ public:
 
 	/* Get Party Members. Empty slots are nullptr. */
 	PartyMember* GetPartyMember(int index = 0);
+	int AddPartyMember(int basetype, int level, int Hp);
 
 	CombatSys* GetCombatSys();
+
+	/* Add an item to the inventory. */
+	bool AddInventoryItem(std::string item, int count = 1);
+	bool RemoveInventoryItem(std::string item, int count = 1);
 
 private:
 	/* The Current Room */
@@ -76,7 +81,6 @@ private:
 
 	/* Player's Party */
 	PartyMember* party[PARTYSIZE];
-	int partyHP[PARTYSIZE];
 
 	/* Setup the intial player state. */
 	void InitPlayer();
@@ -101,9 +105,6 @@ private:
 
 	/* Check the Inventory. */
 	bool FindInventoryItem(std::string key);
-
-	/* Add an item to the inventory. */
-	void AddInventoryItem(std::string item, int count);
 
 	/* Perform Room actions. */
 	bool RoomFunc(std::string key);

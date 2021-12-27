@@ -116,7 +116,7 @@ bool Game::Setup()
     AddRoom("YE FLASK", "You can't get YE FLASK!");
     AddRoom("FLASK", "Ye cannot get the FLASK.");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
-    AddRoom("Battle", "You are in a battle. You can ATTACK or RUN.", true);
+    AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
     /* Rooms below here will not be read. */
 
     /* Setup the intial player state. */
@@ -130,19 +130,30 @@ bool Game::Setup()
 void Game::InitPlayer()
 {
     /* Default Party for testing */
-    for (auto i = 0; i < 2; i++)
-    {
-        /*
-            The constructor initializes
-            party members as null pointers.
-        //*/
-        party[i] = new PartyMember(this);
-        party[i]->Create(7, 5);
-    }
+    party[0] = new PartyMember(this);
+    party[0]->Create(7, 5);
 }
 PartyMember* Game::GetPartyMember(int index)
 {
     return party[std::clamp(index, 0, PARTYSIZE - 1)];
+}
+int Game::AddPartyMember(int basetype, int level, int Hp)
+{
+    for (auto i = 0; i < PARTYSIZE; i++)
+    {
+        if (!party[i])
+        {
+            party[1] = new PartyMember(this);
+            party[1]->Create(basetype, level);
+            party[i]->SetHP(Hp);
+            return i;
+        }
+        // TODO: Pokemon Boxes
+    }
+    return 0;
+    /* This is okay, because you can
+     * (almost) never have an empty party.
+    //*/
 }
 
 CombatSys* Game::GetCombatSys()
@@ -197,13 +208,29 @@ bool Game::FindInventoryItem(std::string key)
 }
 
 /* Add an item to the inventory. */
-void Game::AddInventoryItem(std::string item, int count)
+bool Game::AddInventoryItem(std::string item, int count)
 {
     if (item != "")
+    {
         if (Inventory.find(item) != Inventory.end())
             Inventory.find(item)->second += count;
         else
             Inventory.insert(std::pair<std::string, int>(item, count));
+        return true;
+    }
+    return false;
+}
+bool Game::RemoveInventoryItem(std::string item, int count)
+{
+    if (item != "")
+        if (Inventory.find(item) != Inventory.end())
+        {
+            Inventory.find(item)->second -= count;
+            if (Inventory.find(item)->second <= 0)
+                Inventory.extract(item);
+            return true;
+        }
+    return false;
 }
 
 /* Sets a game variable when specified by the room. */

@@ -6,6 +6,17 @@
 
 constexpr auto PARTYSIZE = 6;
 
+constexpr auto MAX_WILD = 16;
+struct encounterData
+{
+	bool trainer = false;
+	int enemies[MAX_WILD]= { 0 };
+	int chance[MAX_WILD] = { 0 };
+	int minLv[MAX_WILD]  = { 5 };
+	int maxLv[MAX_WILD]  = { 5 };
+	int randType[MAX_WILD]={ 0 };
+};
+
 std::string Money(int money);
 
 class CombatSys;
@@ -42,7 +53,11 @@ public:
 	PartyMember* GetPartyMember(int index = 0);
 	int AddPartyMember(int basetype, int level, int Hp);
 
+	int AddMoney(int money);
+
 	CombatSys* GetCombatSys();
+
+	encounterData* ReadEncounterZone(std::string key);
 
 	/* Add an item to the inventory. */
 	bool AddInventoryItem(std::string item, int count = 1);
@@ -74,8 +89,14 @@ private:
 	/* Rooms which change variables */
 	std::map<std::string, std::pair<std::string, std::string>> roomVars;
 
+	/* Encounter Data */
+	std::map<std::string, encounterData> encounterMap;
+
 	/* Game Inventory */
 	std::map<std::string, int> Inventory;
+
+	/* Player's Money. */
+	int pMoney;
 
 	CombatSys* combatSys;
 
@@ -112,4 +133,5 @@ private:
 	/* The XML file is re-read every time a new command is issued. */
 	bool ReadFile(bool firstBoot = false);
 	bool ReadVarFile(std::string file);
+	bool ReadEncounterFile(std::string file);
 };

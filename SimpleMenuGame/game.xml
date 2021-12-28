@@ -3,11 +3,13 @@
 <!-- This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
 <file data="enemies">enemies.xml</file>
 <location name="Main">
-	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH. OAK has a lab here.</description>
+	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH.
+OAK has a lab here. You can rest at HOME.</description>
 	<options>
 		<option room="Route 1">NORTH</option>
 		<option room="Sea">SOUTH</option>
 		<option room="OAK">OAK</option>
+		<option room="Home">HOME</option>
 	</options>
 </location>
 <location name="Sea">
@@ -16,6 +18,30 @@
 </location>
 <location name="OAK">
 	<description>$RIVAL$: "OAK isn't here right now, $PLAYER$."</description>
+	<return />
+	<options>
+		<option room="OAKbattle" prohibit="BeatRival01">Back</option>
+		<option room="Main" require="BeatRival01">Back</option>
+	</options>
+</location>
+<location name="OAKbattle">
+	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our Pokémon!"</description>
+	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong Pokémon!"</description>
+	<variable name="BeatRival01">1</variable>
+	<return />
+	<options>
+		<option room="Battle" prohibit="BeatRival01">Back</option>
+		<option room="Main" require="BeatRival01">Back</option>
+	</options>
+</location>
+<location name="Home">
+	<description>You have rested and are now ready to continue.</description>
+	<heal />
+	<return />
+</location>
+<location name="pCenter">
+	<description>Your pokémon are all at full health now.</description>
+	<heal />
 	<return />
 </location>
 <location name="Route 1">
@@ -29,24 +55,40 @@ travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 		<option room="Battle">SEARCH</option>
 	</options>
 </location>
-<location name="Veri City">
-	<description>Your path is blocked by a lazy developer.</description>
-	<return />
-	<!--
-		Rooms that "return" automatically call the "Back" option.
-		Overriding that here makes the player return to Pallet Town instead of Route 1
-	-->
-	<options>
-		<option room="Main">Back</option>
-	</options>
-</location>
 <location name="Rt1Man">
-	<description>The Poke Mart promoter gave you a free POTION and then proceeded NORTH to the store in Veridian City.</description>
+	<description>There is a promoter here for the Poké Mart in Veridian City, north of here. They gave you a free potion!</description>
 	<variable name="ShopMan1met">1</variable>
 	<Inventory name="POTION" />
 	<return />
 </location>
 <location name="Rt1No1">
-	<description>There is no one here.</description>
+	<description>The Poké Mart promoter reminded you to visit the store in Veridian City.</description>
+	<return />
+</location>
+<location name="Veri City">
+	<description>Veridian City is a small city that is enveloped in green year-round. Route 1 is the SOUTH, Route 2 is to the NORTH,
+and Route 22 is to the WEST. You can heal your party at the Pokémon CENTER.</description>
+	<options>
+		<option room="Route 2">NORTH</option>
+		<option room="Route 22">WEST</option>
+		<option room="Route 1">SOUTH</option>
+		<option room="pCenter">CENTER</option>
+	</options>
+</location>
+<location name="Route 2">
+	<description>Your path is blocked by an old man complaining about coffee or something.</description>
+	<return />
+</location>
+<location name="Route 22">
+	<description>You are on a stone road with some grass; this is Route 22.
+You can SEARCH for pokémon, travel EAST to Veridian City, or travel WEST to visit the Pokémon League.</description>
+	<options>
+		<option room="Battle">SEARCH</option>
+		<option room="Veri City">EAST</option>
+		<option room="League">WEST</option>
+	</options>
+</location>
+<location name="League">
+	<description>The League guard cannot let you in until you have a badge from each town's pokémon gym.</description>
 	<return />
 </location>

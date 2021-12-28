@@ -4,5 +4,6 @@
 <variables>
 	<variable name="PLAYER">Blue</variable>
 	<variable name="RIVAL">Red</variable>
+	<variable name="BeatRival01" />
 	<variable name="ShopMan1met" />
 </variables>

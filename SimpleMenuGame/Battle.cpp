@@ -18,13 +18,12 @@ std::string ColoredHp(int cur, int max)
 		color = Color::COLOR_YELLOW;
 	if (frac > 0.67f)
 		color = Color::COLOR_GREEN;
-	return ColoredString(std::to_string(cur)+"/"+ std::to_string(max), color);
+	return ColoredString(std::to_string(cur) + "/" + std::to_string(max), color);
 }
 
 CombatSys::CombatSys(Game* gameObj)
 {
 	theGame = gameObj;
-	_ASSERT(gameObj);
 	mCount = eCount = eLevel = 0;
 	totalEhp = totalPhp =
 		eHp = pHp = 10;
@@ -141,19 +140,67 @@ bool CombatSys::FindPartyMember()
 
 void CombatSys::StartBattle()
 {
-	eIndex = 19;
-	if (rand() % 2 == 0)
-		eIndex = 16;
+	encounterData* encZone = theGame->ReadEncounterZone(theGame->GetLastRoom());
+	if (!encZone)
+	{
+		std::cout << "There's no one to fight here." << std::endl;
+		EndBattle();
+		return;
+	}
 
+	trainerBattle = encZone->trainer;
+
+	auto eChoice = 0; // The baddie that we spawn
+	auto slots = 0; // How many slots did we try?
+	for (auto i = 0; i < MAX_WILD; i++)
+	{
+		if (encZone->enemies[i])
+		{
+			eIndex = 0;
+			int chnce = *encZone->chance;
+			if (chnce)
+			{
+				if ((rand() % 100) <= chnce)
+					eIndex = encZone->enemies[i];
+			}
+			else
+				eIndex = encZone->enemies[i];
+			slots++;
+		}
+		// Stop rolling if one won.
+		if (eIndex)
+		{
+			eChoice = i;
+			break;
+		}
+	}
+	// Dice never rolled hign enough, so choose a random *used* slot.
+	if (!eIndex)
+	{
+		eChoice = rand() % slots;
+		eIndex = encZone->enemies[eChoice];
+	}
 	opponent = enemies[eIndex];
 
-	int minLv = 2;
-	int maxLv = 5;
-	eLevel = rand() % (maxLv - minLv + 1) + minLv;
+	int minLv = encZone->minLv[eChoice];
+	int maxLv = encZone->maxLv[eChoice];
+
+	eLevel = maxLv;
+	if (encZone->randType[eChoice] == 1)
+		eLevel = rand() % (maxLv - minLv + 1) + minLv;
+	if (encZone->randType[eChoice] == 2)
+	{
+		eLevel = minLv;
+		if ((rand() % 2) == 0)
+			eLevel = maxLv;
+	}
 	opponent->BuildMoveList(eLevel);
 
 	CalcStats(eIndex, eLevel);
-	std::cout << "A wild " << opponent->GetName() << " appeared!" << std::endl;
+	if (trainerBattle)
+		std::cout << "Your challenger sent out " << opponent->GetName() << "." << std::endl;
+	else
+		std::cout << "A wild " << opponent->GetName() << " appeared!" << std::endl;
 	std::cout << opponent->GetName() << " is level " << eLevel << "." << std::endl;
 	eHp = totalEhp;
 
@@ -202,6 +249,11 @@ bool CombatSys::BattleTurn()
 				return false;
 			if (theGame->RemoveInventoryItem("Pokeball"))
 			{
+				if (trainerBattle)
+				{
+					std::cout << "You can't use that right now!" << std::endl;
+					return false;
+				}
 				std::cout << "You threw a pokeball." << std::endl;
 				std::cout << "You caught " << opponent->GetName() << "!" << std::endl;
 				theGame->AddPartyMember(eIndex, eLevel, eHp);
@@ -225,6 +277,8 @@ bool CombatSys::BattleTurn()
 
 			std::cout << "Attack with which move?" << std::endl;
 			std::getline(std::cin, choice);
+			if (choice == "")
+				return false;
 			toupper(choice);
 
 			bool chosen = false;
@@ -252,6 +306,11 @@ bool CombatSys::BattleTurn()
 	}
 	if ((theGame->GetChoice() == "RUN") || (theGame->GetChoice() == "QUIT"))
 	{
+		if (trainerBattle)
+		{
+			std::cout << "You can't run from a trainer!" << std::endl;
+			return false;
+		}
 		std::cout << "You ran." << std::endl;
 		EndBattle();
 		return true;
@@ -270,6 +329,7 @@ bool CombatSys::BattleTurn()
 		{
 			std::cout << "You lost!" << std::endl;
 			EndBattle();
+			theGame->SetRoom("GameOver");
 			return true;
 		}
 		PrintHealth();
@@ -288,18 +348,19 @@ bool CombatSys::BattleTurn()
 		int xp = CalcExp();
 		for (auto i = 0; i < PARTYSIZE; i++)
 			if (theGame->GetPartyMember(i))
-				if ((participated[i]) &&
-					(theGame->GetPartyMember(i)->GetHP() > 0) &&
-					(theGame->GetPartyMember(i)->GetLevel() < MAX_LEVEL))
+				if ((participated[i]) && (theGame->GetPartyMember(i)->GetHP() > 0))
 				{
-					std::cout << theGame->GetPartyMember(i)->GetNickname() << " gained " << xp << " experience!" << std::endl;
+					if (theGame->GetPartyMember(i)->GetLevel() < MAX_LEVEL)
+						std::cout << theGame->GetPartyMember(i)->GetNickname() << " gained " << xp << " experience!" << std::endl;
+					// This allows new EVs to be calculated into stats.
 					theGame->GetPartyMember(i)->AwardXP(xp);
 				}
 
 		if (trainerBattle)
 		{
 			int mReward = eLevel * 10;
-			std::cout << "You should get " << Money(mReward) << " for winning." << std::endl;
+			theGame->AddMoney(mReward);
+			std::cout << "You got " << Money(mReward) << " for winning." << std::endl;
 		}
 		EndBattle();
 		return true;

@@ -5,9 +5,10 @@
 constexpr auto GAME_XML = "game.xml";
 constexpr auto VARS_XML = "vars.xml";
 constexpr auto MONSTERS = "enemies.xml";
+constexpr auto ENCO_XML = "encounters.xml";
 constexpr auto MOVE_XML = "moves.xml";
 
-constexpr bool XTRA_BANNERS = true;
+constexpr bool XTRA_BANNERS = false;
 
 bool Game::ReadFile(bool firstBoot)
 {
@@ -41,6 +42,12 @@ bool Game::ReadFile(bool firstBoot)
                 if (std::string(data.attribute("data").value()) == "variables")
                     vFile = doc.child_value("file");
 
+            /* Determine if a custom encounter file was specified. */
+            std::string nFile = ENCO_XML;
+            for (pugi::xml_node data = doc.child("file"); data; data = data.next_sibling("file"))
+                if (std::string(data.attribute("data").value()) == "encounters")
+                    nFile = doc.child_value("file");
+
             /* Read Variable XML file. */
             if (!ReadVarFile(vFile))
             {
@@ -61,15 +68,40 @@ bool Game::ReadFile(bool firstBoot)
                 std::cout << "Move file error!" << std::endl;
                 return false;
             }
+
+            /* Read Encounter XML file. */
+            if (!ReadEncounterFile(nFile))
+            {
+                std::cout << "Encounter file error!" << std::endl;
+                return false;
+            }
         }
 
         /* Read all the "location" tags in the file. */
+        std::string desc = "You are in an empty room.";
         for (pugi::xml_node room = doc.child("location"); room; room = room.next_sibling("location"))
             /* Find the one for the current room. */
             if (room.attribute("name").value() == GetRoom())
             {
-                /* Load the description. */
-                std::string desc = LoadString(room.child_value("description"), "You are in an empty room.");
+                for (pugi::xml_node description = room.child("description"); description; description = description.next_sibling("description"))
+                {
+                    /* Load the description. */
+                    bool allowed = true;
+                    if (description.attribute("prohibit"))
+                    {
+                        allowed = false;
+                        if (FindGameVar(description.attribute("prohibit").value()))
+                            allowed = LoadGameVar(description.attribute("prohibit").value(), true) == "0";
+                    }
+                    if (description.attribute("require"))
+                    {
+                        allowed = false;
+                        if (FindGameVar(description.attribute("require").value()))
+                            allowed = LoadGameVar(description.attribute("require").value(), true) == "1";
+                    }
+                    if (allowed)
+                        desc = LoadString(description.child_value(), desc);
+                }
 
                 /* Search the description for replaceable words. */
                 size_t position = desc.find("$");
@@ -103,6 +135,12 @@ bool Game::ReadFile(bool firstBoot)
                     AddInventoryItem(room.child("inventory").attribute("name").value(),
                         atoi(LoadString(room.child_value("inventory"), "1").c_str()));
 
+                /* This room heals. */
+                if (room.child("heal"))
+                    for (auto i = 0; i < PARTYSIZE; i++)
+                        if (party[i])
+                            party[i]->SetHP(party[i]->GetTotalHP());
+
                 if (room.child("options"))
                     /* Read all of its options. */
                     for (pugi::xml_node option = room.child("options").child("option"); option; option = option.next_sibling("option"))
@@ -130,13 +168,6 @@ bool Game::ReadFile(bool firstBoot)
         AddChoice("RESTART", "RESTART");
         AddChoice("GET YE FLASK", "YE FLASK");
         AddChoice("GET FLASK", "FLASK");
-
-        /* Battle Mode Options */
-        if (GetRoom() == "Battle")
-        {
-            AddChoice("ATTACK", "Battle");
-            AddChoice("RUN", GetLastRoom());
-        }
     }
     /* Print XML Errors to the screen. */
     else
@@ -159,8 +190,7 @@ bool CombatSys::ReadFile(std::string file)
     {
         /* Read the script's startup banner, if available. */
         if (doc.child("banner") && XTRA_BANNERS)
-            std::cout << doc.child_value("banner");
-        std::cout << std::endl;
+            std::cout << doc.child_value("banner") << std::endl;
 
         /* Read all the "enemy" tags in the file. */
         for (pugi::xml_node enemy = doc.child("enemy"); enemy; enemy = enemy.next_sibling("enemy"))
@@ -208,8 +238,7 @@ bool CombatSys::ReadMoveFile(std::string file)
     {
         /* Read the script's startup banner, if available. */
         if (doc.child("banner") && XTRA_BANNERS)
-            std::cout << doc.child_value("banner");
-        std::cout << std::endl;
+            std::cout << doc.child_value("banner") << std::endl;
 
         /* Read all the "enemy" tags in the file. */
         for (pugi::xml_node move = doc.child("move"); move; move = move.next_sibling("move"))
@@ -238,7 +267,7 @@ bool CombatSys::ReadMoveFile(std::string file)
     return result;
 }
 
-/* Read Move File */
+/* Read Var File */
 bool Game::ReadVarFile(std::string file)
 {
     const pugi::char_t* source = file.c_str();
@@ -249,14 +278,83 @@ bool Game::ReadVarFile(std::string file)
     {
         /* Read the script's startup banner, if available. */
         if (doc.child("banner") && XTRA_BANNERS)
-            std::cout << doc.child_value("banner");
-        std::cout << std::endl;
+            std::cout << doc.child_value("banner") << std::endl;
 
         /* Read all the "variable" tags in the file. */
         if (pugi::xml_node varblock = doc.child("variables"))
             for (pugi::xml_node gamevar = varblock.child("variable"); gamevar; gamevar = gamevar.next_sibling("variable"))
                 if (gamevar.attribute("name").value())
                     AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
+    }
+    /* Print XML Errors to the screen. */
+    else
+    {
+        std::cout << "XML [" << source << "] parsed with errors.\n";
+        std::cout << "Error description: " << result.description() << "\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+    }
+    return result;
+}
+
+/* Read Encounter File */
+bool Game::ReadEncounterFile(std::string file)
+{
+    const pugi::char_t* source = file.c_str();
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(source);
+
+    if (result)
+    {
+        /* Read the script's startup banner, if available. */
+        if (doc.child("banner") && XTRA_BANNERS)
+            std::cout << doc.child_value("banner") << std::endl;
+
+        /* Read all the "area" tags in the file. */
+        for (pugi::xml_node area = doc.child("area"); area; area = area.next_sibling("area"))
+        {
+            /* Create a struct to organize the data. */
+            encounterData curArea;
+
+            /* Is this a trainer encounter? */
+            curArea.trainer = area.child("trainer");
+
+            /* Read all the "enemy" tags in the area. */
+            auto i = 0;
+            for (pugi::xml_node enemy = area.child("enemy"); enemy; enemy = enemy.next_sibling("enemy"))
+            {
+                /* Read each enemy. */
+                curArea.enemies[i] = atoi(enemy.child_value());
+
+                /* Read the chance, if present. */
+                if (enemy.attribute("chance"))
+                    curArea.chance[i] = atoi(enemy.attribute("chance").value());
+
+                /* Read the level(s). */
+                if (enemy.attribute("level"))
+                {
+                    std::string levels = enemy.attribute("level").value();
+                    if (levels.find('-') < levels.length() || levels.find(',') < levels.length())
+                    {
+                        if (levels.find('-') < levels.length())
+                        {
+                            curArea.minLv[i] = atoi(levels.substr(0, levels.find('-')).c_str());
+                            curArea.maxLv[i] = atoi(levels.substr(levels.find('-') + 1).c_str());
+                            curArea.randType[i] = 1;
+                        }
+                        if (levels.find(',') < levels.length())
+                        {
+                            curArea.minLv[i] = atoi(levels.substr(0, levels.find(',')).c_str());
+                            curArea.maxLv[i] = atoi(levels.substr(levels.find(',') + 1).c_str());
+                            curArea.randType[i] = 2;
+                        }
+                    }
+                    else
+                        curArea.minLv[i] = curArea.maxLv[i] = atoi(levels.c_str());
+                }
+                i++;
+            }
+            encounterMap.insert(std::pair<std::string, encounterData>(area.attribute("name").value(), curArea));
+        }
     }
     /* Print XML Errors to the screen. */
     else

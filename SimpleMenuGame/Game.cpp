@@ -20,6 +20,7 @@ Game::Game()
     Room = "Main";
     OldRoom = Room;
     Choice = "";
+    pMoney = 0;
     combatSys = new CombatSys(this);
     for (auto i = 0; i < PARTYSIZE; i++)
         party[i] = nullptr;
@@ -58,6 +59,7 @@ void Game::SetRoom(std::string room)
         std::cout << std::endl << std::endl;
         Vars.clear();
         Inventory.clear();
+        pMoney = 0;
         firstBoot = true;
         room = "Main";
         Choice = "";
@@ -117,6 +119,7 @@ bool Game::Setup()
     AddRoom("FLASK", "Ye cannot get the FLASK.");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
+    AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
     /* Rooms below here will not be read. */
 
     /* Setup the intial player state. */
@@ -156,9 +159,22 @@ int Game::AddPartyMember(int basetype, int level, int Hp)
     //*/
 }
 
+int Game::AddMoney(int money)
+{
+    return pMoney += money;
+}
+
 CombatSys* Game::GetCombatSys()
 {
     return combatSys;
+}
+
+encounterData* Game::ReadEncounterZone(std::string key)
+{
+    if (key != "")
+        if (encounterMap.find(key) != encounterMap.end())
+            return &encounterMap.find(key)->second;
+    return nullptr;
 }
 
 /* Set a room to set a variable. */

@@ -97,20 +97,15 @@ void Enemy::Setup(std::string nme, int idx, int hlh,
 bool Enemy::AddMove(std::string nme, int lv)
 {
 	/* Too early to search the
-	 * Game's Move dictionary. 
+	 * Game's Move dictionary,
+	 * or is it?
 	//*/
 	if (nme.length() < 2)
 		return false;
 	lv = std::clamp(lv, 1, MAX_LEVEL);
 
 	moveMap.insert(std::pair<std::string, int>(nme, lv));
-	/*
-	if (nme == "Tail Whip")
-		for (auto&& item : moveMap)
-		{
-			std::cout << item.second << std::endl;
-		}
-	//*/
+
 	return true;
 }
 

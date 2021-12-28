@@ -46,7 +46,6 @@
 	<move level="1">Tackle</move>
 	<move level="1">Growl</move>
 	<move level="1">Leech Seed</move>
-	<move level="7">Leech Seed</move>
 	<move level="13">Vine Whip</move>
 	<move level="22">Poison Powder</move>
 	<move level="30">Razor Leaf</move>
@@ -71,8 +70,6 @@
 	<move level="1">Growl</move>
 	<move level="1">Leech Seed</move>
 	<move level="1">Vine Whip</move>
-	<move level="7">Leech Seed</move>
-	<move level="13">Vine Whip</move>
 	<move level="22">Poison Powder</move>
 	<move level="30">Razor Leaf</move>
 	<move level="43">Growth</move>
@@ -117,7 +114,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Growl</move>
 	<move level="1">Ember</move>
-	<move level="9">Ember</move>
 	<move level="15">Leer</move>
 	<move level="24">Rage</move>
 	<move level="33">Slash</move>
@@ -141,8 +137,6 @@
 	<move level="1">Growl</move>
 	<move level="1">Ember</move>
 	<move level="1">Leer</move>
-	<move level="9">Ember</move>
-	<move level="15">Leer</move>
 	<move level="24">Rage</move>
 	<move level="36">Slash</move>
 	<move level="46">Flamethrower</move>
@@ -420,7 +414,6 @@
 	<move level="1">Tackle</move>
 	<move level="1">Tail Whip</move>
 	<move level="1">Quick Attack</move>
-	<move level="7">Quick Attack</move>
 	<move level="14">Hyper Fang</move>
 	<move level="27">Focus Energy</move>
 	<move level="41">Super Fang</move>
@@ -463,7 +456,6 @@
 	<move level="1">Peck</move>
 	<move level="1">Growl</move>
 	<move level="1">Leer</move>
-	<move level="9">Leer</move>
 	<move level="15">Fury Attack</move>
 	<move level="25">Mirror Move</move>
 	<move level="34">Drill Peck</move>
@@ -505,7 +497,6 @@
 	<move level="1">Wrap</move>
 	<move level="1">Leer</move>
 	<move level="1">Poison Sting</move>
-	<move level="10">Poison Sting</move>
 	<move level="17">Bite</move>
 	<move level="27">Glare</move>
 	<move level="36">Screech</move>
@@ -581,7 +572,6 @@
 	<type1>Ground</type1>
 	<move level="1">Scratch</move>
 	<move level="1">Sand Attack</move>
-	<move level="10">Sand Attack</move>
 	<move level="17">Slash</move>
 	<move level="27">Poison Sting</move>
 	<move level="36">Swift</move>
@@ -624,7 +614,6 @@
 	<move level="1">Growl</move>
 	<move level="1">Tackle</move>
 	<move level="1">Scratch</move>
-	<move level="8">Scratch</move>
 	<move level="14">Poison Sting</move>
 	<move level="23">Tail Whip</move>
 	<move level="32">Bite</move>
@@ -648,7 +637,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Tail Whip</move>
 	<move level="1">Body Slam</move>
-	<move level="8">Scratch</move>
 	<move level="14">Poison Sting</move>
 	<move level="23">Body Slam</move>
 </enemy>
@@ -689,7 +677,6 @@
 	<move level="1">Leer</move>
 	<move level="1">Tackle</move>
 	<move level="1">Horn Attack</move>
-	<move level="8">Horn Attack</move>
 	<move level="14">Poison Sting</move>
 	<move level="23">Focus Energy</move>
 	<move level="32">Fury Attack</move>
@@ -713,8 +700,6 @@
 	<move level="1">Horn Attack</move>
 	<move level="1">Poison Sting</move>
 	<move level="1">Thrash</move>
-	<move level="8">Horn Attack</move>
-	<move level="14">Poison Sting</move>
 	<move level="23">Thrash</move>
 </enemy>
 <enemy>
@@ -867,7 +852,6 @@
 	<move level="1">Screech</move>
 	<move level="1">Bite</move>
 	<move level="10">Supersonic</move>
-	<move level="15">Bite</move>
 	<move level="21">Confuse Ray</move>
 	<move level="32">Wing Attack</move>
 	<move level="43">Haze</move>
@@ -910,8 +894,6 @@
 	<move level="1">Absorb</move>
 	<move level="1">Poison Powder</move>
 	<move level="1">Stun Spore</move>
-	<move level="15">Poison Powder</move>
-	<move level="17">Stun Spore</move>
 	<move level="19">Sleep Powder</move>
 	<move level="28">Acid</move>
 	<move level="38">Petal Dance</move>
@@ -975,8 +957,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Stun Spore</move>
 	<move level="1">Leech Life</move>
-	<move level="13">Stun Spore</move>
-	<move level="20">Leech Life</move>
 	<move level="30">Spore</move>
 	<move level="39">Slash</move>
 	<move level="48">Growth</move>
@@ -1021,8 +1001,6 @@
 	<move level="1">Disable</move>
 	<move level="1">Poison Powder</move>
 	<move level="1">Leech Life</move>
-	<move level="24">Poison Powder</move>
-	<move level="27">Leech Life</move>
 	<move level="30">Stun Spore</move>
 	<move level="38">Psybeam</move>
 	<move level="43">Sleep Powder</move>
@@ -1063,8 +1041,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Growl</move>
 	<move level="1">Dig</move>
-	<move level="15">Growl</move>
-	<move level="19">Dig</move>
 	<move level="24">Sand Attack</move>
 	<move level="35">Slash</move>
 	<move level="47">Earthquake</move>
@@ -1106,7 +1082,6 @@
 	<move level="1">Growl</move>
 	<move level="1">Bite</move>
 	<move level="1">Screech</move>
-	<move level="12">Bite</move>
 	<move level="17">Pay Day</move>
 	<move level="24">Screech</move>
 	<move level="37">Fury Swipes</move>
@@ -1147,7 +1122,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Tail Whip</move>
 	<move level="1">Disable</move>
-	<move level="28">Tail Whip</move>
 	<move level="31">Disable</move>
 	<move level="39">Confusion</move>
 	<move level="48">Fury Swipes</move>
@@ -1190,8 +1164,6 @@
 	<move level="1">Leer</move>
 	<move level="1">Karate Chop</move>
 	<move level="1">Fury Swipes</move>
-	<move level="15">Karate Chop</move>
-	<move level="21">Fury Swipes</move>
 	<move level="27">Focus Energy</move>
 	<move level="37">Seismic Toss</move>
 	<move level="46">Thrash</move>
@@ -1269,8 +1241,6 @@
 	<move level="1">Bubble</move>
 	<move level="1">Hypnosis</move>
 	<move level="1">Water Gun</move>
-	<move level="16">Hypnosis</move>
-	<move level="19">Water Gun</move>
 	<move level="26">Double Slap</move>
 	<move level="33">Body Slam</move>
 	<move level="41">Amnesia</move>
@@ -1293,8 +1263,6 @@
 	<move level="1">Water Gun</move>
 	<move level="1">Double Slap</move>
 	<move level="1">Body Slam</move>
-	<move level="16">Hypnosis</move>
-	<move level="19">Water Gun</move>
 </enemy>
 <enemy>
 	<name>Abra</name>
@@ -1326,8 +1294,6 @@
 	<move level="1">Teleport</move>
 	<move level="1">Confusion</move>
 	<move level="1">Disable</move>
-	<move level="16">Confusion</move>
-	<move level="20">Disable</move>
 	<move level="27">Psybeam</move>
 	<move level="31">Recover</move>
 	<move level="38">Psychic</move>
@@ -1348,8 +1314,6 @@
 	<move level="1">Teleport</move>
 	<move level="1">Confusion</move>
 	<move level="1">Disable</move>
-	<move level="16">Confusion</move>
-	<move level="20">Disable</move>
 	<move level="27">Psybeam</move>
 	<move level="31">Recover</move>
 	<move level="38">Psychic</move>
@@ -1390,8 +1354,6 @@
 	<move level="1">Karate Chop</move>
 	<move level="1">Low Kick</move>
 	<move level="1">Leer</move>
-	<move level="20">Low Kick</move>
-	<move level="25">Leer</move>
 	<move level="36">Focus Energy</move>
 	<move level="44">Seismic Toss</move>
 	<move level="52">Submission</move>
@@ -1411,8 +1373,6 @@
 	<move level="1">Karate Chop</move>
 	<move level="1">Low Kick</move>
 	<move level="1">Leer</move>
-	<move level="20">Low Kick</move>
-	<move level="25">Leer</move>
 	<move level="36">Focus Energy</move>
 	<move level="44">Seismic Toss</move>
 	<move level="52">Submission</move>
@@ -1457,7 +1417,6 @@
 	<move level="1">Vine Whip</move>
 	<move level="1">Growth</move>
 	<move level="1">Wrap</move>
-	<move level="13">Wrap</move>
 	<move level="15">Poison Powder</move>
 	<move level="18">Sleep Powder</move>
 	<move level="23">Stun Spore</move>
@@ -1527,7 +1486,6 @@
 	<move level="1">Supersonic</move>
 	<move level="1">Wrap</move>
 	<move level="7">Supersonic</move>
-	<move level="13">Wrap</move>
 	<move level="18">Poison Sting</move>
 	<move level="22">Water Gun</move>
 	<move level="27">Constrict</move>
@@ -1572,7 +1530,6 @@
 	<type2>Ground</type2>
 	<move level="1">Tackle</move>
 	<move level="1">Defense Curl</move>
-	<move level="11">Defense Curl</move>
 	<move level="16">Rock Throw</move>
 	<move level="21">Self-Destruct</move>
 	<move level="29">Harden</move>
@@ -1594,7 +1551,6 @@
 	<type2>Ground</type2>
 	<move level="1">Tackle</move>
 	<move level="1">Defense Curl</move>
-	<move level="11">Defense Curl</move>
 	<move level="16">Rock Throw</move>
 	<move level="21">Self-Destruct</move>
 	<move level="29">Harden</move>
@@ -1638,9 +1594,6 @@
 	<move level="1">Tail Whip</move>
 	<move level="1">Stomp</move>
 	<move level="1">Growl</move>
-	<move level="30">Tail Whip</move>
-	<move level="32">Stomp</move>
-	<move level="35">Growl</move>
 	<move level="39">Fire Spin</move>
 	<move level="47">Take Down</move>
 	<move level="55">Agility</move>
@@ -1683,8 +1636,6 @@
 	<move level="1">Confusion</move>
 	<move level="1">Disable</move>
 	<move level="1">Headbutt</move>
-	<move level="18">Disable</move>
-	<move level="22">Headbutt</move>
 	<move level="27">Growl</move>
 	<move level="33">Water Gun</move>
 	<move level="37">Withdraw</move>
@@ -1729,8 +1680,6 @@
 	<move level="1">Tackle</move>
 	<move level="1">Sonic Boom</move>
 	<move level="1">Thunder Shock</move>
-	<move level="21">Sonic Boom</move>
-	<move level="25">Thunder Shock</move>
 	<move level="29">Supersonic</move>
 	<move level="38">Thunder Wave</move>
 	<move level="46">Swift</move>
@@ -1795,8 +1744,6 @@
 	<move level="1">Peck</move>
 	<move level="1">Growl</move>
 	<move level="1">Fury Attack</move>
-	<move level="20">Growl</move>
-	<move level="24">Fury Attack</move>
 	<move level="30">Drill Peck</move>
 	<move level="39">Rage</move>
 	<move level="45">Tri Attack</move>
@@ -1838,8 +1785,6 @@
 	<move level="1">Headbutt</move>
 	<move level="1">Growl</move>
 	<move level="1">Aurora Beam</move>
-	<move level="30">Growl</move>
-	<move level="35">Aurora Beam</move>
 	<move level="44">Rest</move>
 	<move level="50">Take Down</move>
 	<move level="56">Ice Beam</move>
@@ -1881,7 +1826,6 @@
 	<move level="1">Pound</move>
 	<move level="1">Disable</move>
 	<move level="1">Poison Gas</move>
-	<move level="30">Poison Gas</move>
 	<move level="33">Minimize</move>
 	<move level="37">Sludge</move>
 	<move level="45">Harden</move>
@@ -2044,8 +1988,6 @@
 	<move level="1">Hypnosis</move>
 	<move level="1">Disable</move>
 	<move level="1">Confusion</move>
-	<move level="12">Disable</move>
-	<move level="17">Confusion</move>
 	<move level="24">Headbutt</move>
 	<move level="33">Poison Gas</move>
 	<move level="37">Psychic</move>
@@ -2087,7 +2029,6 @@
 	<move level="1">Bubble</move>
 	<move level="1">Leer</move>
 	<move level="1">Vise Grip</move>
-	<move level="20">Vise Grip</move>
 	<move level="25">Guillotine</move>
 	<move level="34">Stomp</move>
 	<move level="42">Crabhammer</move>
@@ -2129,7 +2070,6 @@
 	<move level="1">Tackle</move>
 	<move level="1">Screech</move>
 	<move level="1">Sonic Boom</move>
-	<move level="17">Sonic Boom</move>
 	<move level="22">Self-Destruct</move>
 	<move level="29">Light Screen</move>
 	<move level="40">Swift</move>
@@ -2211,8 +2151,6 @@
 	<move level="1">Growl</move>
 	<move level="1">Leer</move>
 	<move level="1">Focus Energy</move>
-	<move level="25">Leer</move>
-	<move level="33">Focus Energy</move>
 	<move level="41">Thrash</move>
 	<move level="48">Bonemerang</move>
 	<move level="55">Rage</move>
@@ -2313,7 +2251,6 @@
 	<move level="1">Tackle</move>
 	<move level="1">Smog</move>
 	<move level="1">Sludge</move>
-	<move level="32">Sludge</move>
 	<move level="39">Smokescreen</move>
 	<move level="43">Self-Destruct</move>
 	<move level="49">Haze</move>
@@ -2358,9 +2295,6 @@
 	<move level="1">Stomp</move>
 	<move level="1">Tail Whip</move>
 	<move level="1">Fury Attack</move>
-	<move level="30">Stomp</move>
-	<move level="35">Tail Whip</move>
-	<move level="40">Fury Attack</move>
 	<move level="48">Horn Drill</move>
 	<move level="55">Leer</move>
 	<move level="64">Take Down</move>
@@ -2461,7 +2395,6 @@
 	<type1>Water</type1>
 	<move level="1">Bubble</move>
 	<move level="1">Smokescreen</move>
-	<move level="19">Smokescreen</move>
 	<move level="24">Leer</move>
 	<move level="30">Water Gun</move>
 	<move level="41">Agility</move>
@@ -2504,7 +2437,6 @@
 	<move level="1">Peck</move>
 	<move level="1">Tail Whip</move>
 	<move level="1">Supersonic</move>
-	<move level="19">Supersonic</move>
 	<move level="24">Horn Attack</move>
 	<move level="30">Fury Attack</move>
 	<move level="39">Waterfall</move>
@@ -2802,8 +2734,6 @@
 	<move level="1">Sand Attack</move>
 	<move level="1">Quick Attack</move>
 	<move level="1">Water Gun</move>
-	<move level="27">Quick Attack</move>
-	<move level="31">Water Gun</move>
 	<move level="37">Tail Whip</move>
 	<move level="40">Bite</move>
 	<move level="42">Acid Armor</move>
@@ -2827,8 +2757,6 @@
 	<move level="1">Sand Attack</move>
 	<move level="1">Quick Attack</move>
 	<move level="1">Thunder Shock</move>
-	<move level="27">Quick Attack</move>
-	<move level="31">Thunder Shock</move>
 	<move level="37">Tail Whip</move>
 	<move level="40">Thunder Wave</move>
 	<move level="42">Double Kick</move>
@@ -2852,8 +2780,6 @@
 	<move level="1">Sand Attack</move>
 	<move level="1">Quick Attack</move>
 	<move level="1">Ember</move>
-	<move level="27">Quick Attack</move>
-	<move level="31">Ember</move>
 	<move level="37">Tail Whip</move>
 	<move level="40">Bite</move>
 	<move level="42">Leer</move>
@@ -2918,7 +2844,6 @@
 	<move level="1">Water Gun</move>
 	<move level="1">Withdraw</move>
 	<move level="1">Horn Attack</move>
-	<move level="34">Horn Attack</move>
 	<move level="39">Leer</move>
 	<move level="44">Spike Cannon</move>
 	<move level="49">Hydro Pump</move>
@@ -2960,7 +2885,6 @@
 	<move level="1">Scratch</move>
 	<move level="1">Harden</move>
 	<move level="1">Absorb</move>
-	<move level="34">Absorb</move>
 	<move level="39">Slash</move>
 	<move level="46">Leer</move>
 	<move level="53">Hydro Pump</move>
@@ -3099,7 +3023,6 @@
 	<move level="1">Wrap</move>
 	<move level="1">Leer</move>
 	<move level="1">Thunder Wave</move>
-	<move level="10">Thunder Wave</move>
 	<move level="20">Agility</move>
 	<move level="35">Slam</move>
 	<move level="45">Dragon Rage</move>
@@ -3122,8 +3045,6 @@
 	<move level="1">Leer</move>
 	<move level="1">Thunder Wave</move>
 	<move level="1">Agility</move>
-	<move level="10">Thunder Wave</move>
-	<move level="20">Agility</move>
 	<move level="35">Slam</move>
 	<move level="45">Dragon Rage</move>
 	<move level="60">Hyper Beam</move>

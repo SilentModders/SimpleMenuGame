@@ -23,6 +23,7 @@ OAK has a lab here. You can rest at HOME.</description>
 		<option room="OAKbattle" prohibit="BeatRival01">Back</option>
 		<option room="Main" require="BeatRival01">Back</option>
 	</options>
+	<heal />
 </location>
 <location name="OAKbattle">
 	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our Pokémon!"</description>

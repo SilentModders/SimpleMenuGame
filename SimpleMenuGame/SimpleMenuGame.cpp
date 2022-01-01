@@ -7,10 +7,8 @@
 
 #if defined _WIN32
     #include <Windows.h>
-    #define sleep(x) Sleep(1000 * (x))
     #define PAUSECMD "echo Press any key to quit. && pause > nul"
 #else
-    #include <unistd.h>
     #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
@@ -69,7 +67,7 @@ int main()
     if (theGame->Setup())
     {
         while (GameLoop(theGame))
-            sleep(0);
+            GameSleep(0);
         return Quit(EXIT_SUCCESS);
     }
     std::cout << "A file load error occured." << std::endl;

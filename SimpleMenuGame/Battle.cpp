@@ -255,8 +255,10 @@ bool CombatSys::BattleTurn()
 					return false;
 				}
 				std::cout << "You threw a pokeball." << std::endl;
+				std::cout << "..." << std::endl;
+				theGame->Pause();
 				std::cout << "You caught " << opponent->GetName() << "!" << std::endl;
-				theGame->AddPartyMember(eIndex, eLevel, eHp);
+				theGame->AddPartyMember(eIndex, eLevel, eHp); // BUGBUG: This will re-roll the IVs.
 				EndBattle();
 				return true;
 			}

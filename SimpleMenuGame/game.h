@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <map>
 #include "text.h"
+#include "support.h"
 #include "party.h"
 
 constexpr auto PARTYSIZE = 6;
@@ -48,6 +49,8 @@ public:
 
 	/* Set the player's location and clear old data. */
 	void SetRoom(std::string room);
+
+	void Pause(int time = 1);
 
 	/* Get Party Members. Empty slots are nullptr. */
 	PartyMember* GetPartyMember(int index = 0);

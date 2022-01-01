@@ -129,6 +129,11 @@ bool Game::Setup()
     return readFile;
 }
 
+void Game::Pause(int time)
+{
+    GameSleep(time);
+}
+
 /* Setup the intial player state. */
 void Game::InitPlayer()
 {

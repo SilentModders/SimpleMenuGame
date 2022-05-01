@@ -113,7 +113,7 @@ bool Game::ReadFile(bool firstBoot)
                     {
                         std::string s_var = word.substr(1, word.length() - 2);
                         if (FindGameVar(s_var))
-                            desc = ReplaceSubstring(desc, word, LoadGameVar(s_var, true));
+                            desc = ReplaceSubstring(desc, word, ColoredString(LoadGameVar(s_var, true), Color::COLOR_WHITE));
                     }
                     position = desc.find("$");
                 }
@@ -208,6 +208,8 @@ bool CombatSys::ReadFile(std::string file)
                     atoi(enemy.child_value("xpcurve")),
                     atoi(enemy.child_value("yieldxp")),
                     atoi(enemy.child_value("catchrate")),
+                    (int)TypeFromName(enemy.child_value("type1")),
+                    (int)TypeFromName(enemy.child_value("type2")),
                     atoi(enemy.child("evolve").attribute("level").value())
                 );
                 /* Load the leanset. */
@@ -250,7 +252,8 @@ bool CombatSys::ReadMoveFile(std::string file)
                     move.child_value("type"),
                     atoi(move.child_value("pp")),
                     atoi(move.child_value("power")),
-                    atoi(move.child_value("accuracy"))
+                    atoi(move.child_value("accuracy")),
+                    move.child_value("effect")
                 );
                 mCount++;
             }

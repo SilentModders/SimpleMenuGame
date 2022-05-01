@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include "moves.h"
+#include "types.h"
 
 constexpr auto MAX_ENEMIES = 1000;
 constexpr auto MAX_LEVEL = 100;
@@ -25,6 +26,7 @@ public:
 	int GetXpYield();
 	int GetCatchRate();
 	int GetEvoLevel();
+	int GetType(bool type1 = true);
 
 	// Load all base stats
 	void Setup(std::string name,
@@ -36,6 +38,8 @@ public:
 		int xpc = 0,
 		int xpy = 5,
 		int crt = 255,
+		int type1 = (int)Types::NORMAL,
+		int type2 = (int)Types::NORMAL,
 		int evl = 255);
 
 	// Add a move the this monster's total list.
@@ -67,12 +71,13 @@ private:
 	int bXpYield; // XP Yield when beaten
 	int catchRate; // Catch Rate
 	int evolve; // Level to evolve
+	int type[2]; // Monster Types
 
 	// All moves
 	std::map<std::string, int> moveMap;
 
 	// Known Moves, Not always loaded
-	std::string myMoves[4];
+	std::string myMoves[MOVE_MEM];
 };
 
 const enum Stats
@@ -85,3 +90,4 @@ const enum Stats
 	SPEED,
 	NUM_STATS
 };
+std::string StatName(int st);

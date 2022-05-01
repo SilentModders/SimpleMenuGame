@@ -12,7 +12,7 @@
     #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
-constexpr auto BANNER = "Simple Menu Game, Version 0.4";
+constexpr auto BANNER = "Simple Menu Game, Version 0.5";
 
 int Quit(int code = EXIT_FAILURE)
 {

@@ -101,7 +101,7 @@ bool Game::Setup()
 {
     bool readFile = false;
 
-    srand(time(NULL)); // Seed the RNG
+    srand(unsigned(time(NULL))); // Seed the RNG
 
     /* Create the list of available rooms. */
 

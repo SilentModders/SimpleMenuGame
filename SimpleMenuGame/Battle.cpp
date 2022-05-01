@@ -8,6 +8,8 @@
 /* The player heals at the end of each battle? */
 constexpr bool AUTOHEAL = false;
 
+constexpr auto BSTAT = 0;
+
 std::string ColoredHp(int cur, int max)
 {
 	Color color = Color::COLOR_RED;
@@ -28,8 +30,10 @@ CombatSys::CombatSys(Game* gameObj)
 	totalEhp = totalPhp =
 		eHp = pHp = 10;
 	eIndex = 19; // Rattata - They are everywhere
-	bStarted = trainerBattle = false;
+	bStarted = trainerBattle = enemyTurn = false;
 	opponent = partyMember = nullptr;
+	eAcc = eEvas = pAcc = pEvas = BSTAT;
+
 	/* Fill the arrays with safe data. */
 	for (auto h = 0; h < PARTYSIZE; h++)
 		participated[h] = false;
@@ -81,18 +85,69 @@ void CombatSys::CalcStats(int index, int level)
 	totalEhp = ((2 * base[HEALTH] + eIv[HEALTH] + EV / 4 + 100) * level) / 100 + 10;
 }
 
-int CombatSys::CalcDamage(int level, int power, int attackStat, int defenseStat)
+int CombatSys::CalcDamage(Move* mov)
 {
-	float E = 1; // Targets, .75 when move effects multiple targets
-	float W = 1; // Weather
-	float C = 1; // Crit, 2 for a crit
+	int power = mov->GetPower();
+
+	int level = partyMember->GetLevel();
+	int attackStat = pStat[ATTACK];
+	int defenseStat = eStat[DEFENSE];
+	int t1 = partyMember->GetType();
+	int t2 = partyMember->GetType(false);
+	if (enemyTurn)
+	{
+		level = eLevel;
+		attackStat = eStat[ATTACK];
+		defenseStat = pStat[DEFENSE];
+		t1 = opponent->GetType();
+		t2 = opponent->GetType(false);
+	}
+	
 	float R = 0.85f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (1 - 0.85f))); // Random
+	
 	float S = 1; // Same-Type Attack Bonus, 1.5 when the move is same type as one of the user's types.
-	float T = 1; // Type: 0, (.25 or .5), 1, (2 or 4), depending on both the move's and target's types.
-	float U = 1; // Burn, .5 when burned user is hit with physical move.
-	float O = 1; // Other, for special cases
-	return (((2 * level / 5 + 2) * power * attackStat / defenseStat) / 50 + 2)
-		* E * W * C * R * S * T * U * O;
+	int mType = mov->GetType();
+	if (mType == t1)
+		S += 0.5f;
+	else
+		if (mType == t2)
+			if (t2 != (int)Types::NORMAL) // T2 = Normal when there's no second type.
+				S += 0.5f;
+
+	const float T = 1; // Type: 0, (.25 or .5), 1, (2 or 4), depending on both the move's and target's types.
+	const float C = 1; // Crit, 2 for a crit
+	const float U = 1; // Burn, .5 if burned attacker using physical move
+	const float E = 1; // Targets, .75 when move effects multiple targets
+	const float W = 1; // Weather
+	const float O = 1; // Other, for special cases
+	return int((((2 * level / 5 + 2) * power * attackStat / defenseStat) / 50 + 2)
+		* R * S * T * C * U * E * W * O);
+}
+
+bool CombatSys::HitChance(int mAcc)
+{
+	int acc = mAcc; // Move Accuracy
+	int ot = 1; // Other effects, serially applied.
+
+	/*
+		StageMultiplier is the accuracy stage multiplier
+		after the evasion stage is subtracted from the 
+		accuracy stage, both possibly modified by
+		Ability or move effects (to > -6 and < 6)
+	// */
+	int aas = pAcc; // Attacker's Accuracy Stage
+	int des = eEvas; // Defender's Evasion Stage
+	if (enemyTurn)
+	{
+		aas = eAcc;
+		des = pEvas;
+	}
+	int cs = std::clamp(aas - des, -6, 6); // Combined Stage
+	float sv[13] = { 33, 36, 43, 50, 60, 75, 100, 133, 166, 200, 250, 266, 300 };
+	float sm = sv[cs + 6] / 100;
+
+	float ch = acc * sm * ot; // Calculation to test against RNG
+	return (rand() % 100) <= ch;
 }
 
 int CombatSys::CalcExp()
@@ -114,7 +169,7 @@ int CombatSys::CalcExp()
 
 	int bXp = opponent->GetXpYield();
 
-	return (trainType * tradeExp * bXp * eLevel) / 7 * share;
+	return int((trainType * tradeExp * bXp * eLevel) / 7 * share);
 }
 
 bool CombatSys::FindPartyMember()
@@ -130,6 +185,7 @@ bool CombatSys::FindPartyMember()
 				partyMember = theGame->GetPartyMember(i);
 				pHp = partyMember->GetHP();
 				totalPhp = partyMember->GetTotalHP();
+				pAcc = pEvas = BSTAT;
 				for (auto i = 0; i < NUM_STATS; i++)
 					pStat[i] = partyMember->GetStat(i);
 				std::cout << "You sent out " << partyMember->GetNickname() << "." << std::endl;
@@ -257,6 +313,11 @@ bool CombatSys::BattleTurn()
 				std::cout << "You threw a pokeball." << std::endl;
 				std::cout << "..." << std::endl;
 				theGame->Pause();
+				if (rand() % 100 > 95) // TODO: Catch Rate?
+				{
+					std::cout << "It broke free!" << std::endl;
+					return false;
+				}
 				std::cout << "You caught " << opponent->GetName() << "!" << std::endl;
 				theGame->AddPartyMember(eIndex, eLevel, eHp); // BUGBUG: This will re-roll the IVs.
 				EndBattle();
@@ -291,12 +352,14 @@ bool CombatSys::BattleTurn()
 				if (pMove == choice)
 				{
 					chosen = true;
-					MoveAction(partyMember->MoveName(i), true);
+					MoveAction(partyMember->MoveName(i));
 				}
 			}
 			if (!chosen)
 				return false;
 		}
+
+		enemyTurn = true;
 		/* Pick a random enemy move. */
 		// TODO: Favor attacking moves?
 		std::string eMoves[MOVE_MEM] = { "" };
@@ -305,6 +368,7 @@ bool CombatSys::BattleTurn()
 			if (opponent->MoveName(i) != "")
 				eMoves[i] = opponent->MoveName(i);
 		MoveAction(eMoves[rand() % i]);
+		enemyTurn = false;
 	}
 	if ((theGame->GetChoice() == "RUN") || (theGame->GetChoice() == "QUIT"))
 	{
@@ -360,9 +424,9 @@ bool CombatSys::BattleTurn()
 
 		if (trainerBattle)
 		{
-			int mReward = eLevel * 10;
-			theGame->AddMoney(mReward);
-			std::cout << "You got " << Money(mReward) << " for winning." << std::endl;
+			int reward = eLevel * 10;
+			theGame->AddMoney(reward);
+			std::cout << "You got " << Money(reward) << " for winning." << std::endl;
 		}
 		EndBattle();
 		return true;
@@ -378,49 +442,78 @@ Move* CombatSys::MovesByName(std::string mv)
 	return moveList[33];
 }
 
-void CombatSys::MoveAction(std::string mov, bool plr)
+void CombatSys::MoveAction(std::string mov)
 {
 	Move* move = MovesByName(mov);
 	std::string summ = "";
 	std::string pnam = opponent->GetName();
 	std::string oppo = partyMember->GetNickname();
 
-	if (plr)
+	if (enemyTurn)
+		summ += "Enemy";
+	else
 	{
 		oppo = opponent->GetName();
 		pnam = partyMember->GetNickname();
 		summ += "Your";
 	}
-	else
-		summ += "Enemy";
-	summ += " " + pnam + " used " + move->GetName();
-	if (move->GetPower())
+	summ += " " + pnam + " used " + move->GetName() + ", ";
+
+	if (move->GetEffect() == NO_EFFECT)
+		summ += "and nothing happened";
+
+	if (move->GetEffect() == DEV_EFFECT)
 	{
-		int level = eLevel;
-		int attack = eStat[ATTACK];
-		int def = pStat[DEFENSE];
-		if (plr)
+		for (auto i = 0; i < 34; i++)
+			summ += "developers, ";
+		summ += "developers";
+	}
+
+	if (move->GetEffect() == ATTACK_EFFECT)
+	{
+		if (HitChance(move->GetAccuracy()))
 		{
-			level = partyMember->GetLevel();
-			attack = pStat[ATTACK];
-			def = eStat[DEFENSE];
+			int dmg = CalcDamage(move);
+			if (enemyTurn)
+				pHp -= dmg;
+			else
+				eHp -= dmg;
+			summ += "dealing " + std::to_string(dmg) + " points of damage";
 		}
-		int dmg = CalcDamage(level, move->GetPower(), attack, def);
-		if (plr)
-			eHp -= dmg;
 		else
-			pHp -= dmg;
-		summ += ", dealing " + std::to_string(dmg) + " points of damage.";
+			summ += "but it missed";
 	}
 	else
 	{
-		if (plr)
-			eStat[DEFENSE]--;
+		std::string sstat = "Stats";
+
+		if (move->GetEffect() == BLIND)
+		{
+			sstat = "Accuracy";
+			if (enemyTurn)
+				pAcc = std::clamp(pAcc-1, -6, 6);
+			else
+				eAcc = std::clamp(eAcc-1, -6, 6);
+		}
 		else
-			pStat[DEFENSE]--;
-		summ += ", lowering " + oppo + "'s defense.";
+		{
+			// LESS_DEFENSE
+			int aStat = DEFENSE;
+			if (move->GetEffect() == LESS_ATTACK)
+				aStat = ATTACK;
+			if (move->GetEffect() == SLOW)
+				aStat = SPEED;
+
+			if (enemyTurn)
+				pStat[aStat]--;
+			else
+				eStat[aStat]--;
+			sstat = StatName(aStat);
+		}
+		tolower(sstat);
+		summ += "lowering " + oppo + "'s " + sstat;
 	}
-	std::cout << summ << std::endl;
+	std::cout << summ << "." << std::endl;
 }
 
 std::string GetTypeName(Types typ)
@@ -545,9 +638,11 @@ Types TypeFromNum(int num)
 
 Types TypeFromName(std::string nme)
 {
+	const unsigned long long NUM_T = unsigned long long(Types::NUM_TYPES);
+
 	nme = LoadString(nme, "invalid");
 	
-	std::string tNames[18] =
+	std::string tNames[NUM_T] =
 	{
 		"Bug",
 		"Dark",
@@ -572,7 +667,7 @@ Types TypeFromName(std::string nme)
 	/* Convert test to title case. */
 	transform(nme.begin(), nme.begin() + 1, nme.begin(), std::toupper);
 
-	for (auto i = 0; i < 18; i++)
+	for (auto i = 0; i < NUM_T; i++)
 		if (nme == tNames[i])
 			return TypeFromNum(i);
 	return Types::NORMAL;

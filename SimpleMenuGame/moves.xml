@@ -194,6 +194,7 @@
 	<type>Ground</type>
 	<pp>15</pp>
 	<accuracy>100</accuracy>
+	<effect>Blind</effect>
 </move>
 <move>
 	<name>Headbutt</name>
@@ -269,6 +270,7 @@
 	<type>Normal</type>
 	<pp>30</pp>
 	<accuracy>100</accuracy>
+	<effect>LessDefense</effect>
 </move>
 <move>
 	<name>Poison Sting</name>
@@ -309,6 +311,7 @@
 	<type>Normal</type>
 	<pp>40</pp>
 	<accuracy>100</accuracy>
+	<effect>LessAttack</effect>
 </move>
 <move>
 	<name>Roar</name>

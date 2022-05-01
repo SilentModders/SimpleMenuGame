@@ -4,6 +4,8 @@
 #include "game.h"
 #include "battle.h"
 
+int ipow(int a, int b) { return int(pow(a, b)); }
+
 constexpr int MAX_EV = 65535;
 
 const enum XP_CURVES
@@ -105,14 +107,14 @@ int PartyMember::XpForLevel(int level, int curve)
 	switch (curve)
 	{
 	case XP_FAST:
-		return 4 * pow(level, 3) / 5;
+		return 4 * ipow(level, 3) / 5;
 	case XP_MED_FAST:
-		return pow(level, 3);
+		return ipow(level, 3);
 	default:
 	case XP_MED_SLOW:
-		return 6.0f / 5 * pow(level, 3) - 15 * pow(level, 2) + 100 * level - 140;
+		return int(6.0f / 5 * ipow(level, 3) - 15 * ipow(level, 2) + 100 * level - 140);
 	case XP_SLOW:
-		return 5 * pow(level, 3) / 4;
+		return 5 * ipow(level, 3) / 4;
 	}
 }
 
@@ -166,9 +168,9 @@ bool PartyMember::AwardXP(int xp)
 	/* HP is calculated each time
 	 * because EVs can raise the HP.
 	//*/
-	float hpFrac = hitP / totalHP;
+	float hpFrac = float(hitP / totalHP);
 	CalcStats();
-	SetHP(hpFrac * totalHP);
+	SetHP(int(hpFrac * totalHP));
 
 	return true;
 }

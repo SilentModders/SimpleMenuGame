@@ -23,6 +23,7 @@ const enum class Color
 };
 
 bool toupper(std::string& input);
+bool tolower(std::string& input);
 
 /* Returns the string value if it is not empty, otherwise returns a default value. */
 std::string LoadString(std::string input, std::string def);

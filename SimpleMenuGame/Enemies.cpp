@@ -20,6 +20,14 @@ Enemy::Enemy()
 	xpCurve = 0;
 	catchRate =
 	evolve = 255;
+	/* Default type is Normal.
+	 * Type 2 can never be nomral,
+	 * so use Normal to indicate
+	 * no second type.
+	//*/
+	type[0] =
+	type[1] = (int)Types::NORMAL;
+
 	for (auto i = 0; i < MOVE_MEM; i++)
 		myMoves[i] = "";
 }
@@ -73,12 +81,20 @@ int Enemy::GetEvoLevel()
 {
 	return evolve;
 }
+int Enemy::GetType(bool type1)
+{
+	if (type1)
+		return type[0];
+	return type[1];
+}
 
 void Enemy::Setup(std::string nme, int idx, int hlh,
 	int atk, int def,
 	int sat, int sdf,
-	int spd, int xpc, int xpy,
-	int crt, int evl)
+	int spd, int xpc,
+	int xpy, int crt,
+	int type1, int type2,
+	int evl)
 {
 	name = nme;
 	bIndex = idx;
@@ -91,6 +107,8 @@ void Enemy::Setup(std::string nme, int idx, int hlh,
 	xpCurve = xpc;
 	bXpYield = xpy;
 	catchRate = crt;
+	type[0] = type1;
+	type[1] = type2;
 	evolve = evl;
 }
 
@@ -140,4 +158,21 @@ std::string Enemy::MoveName(int idx)
 int Enemy::SetIdNum(int id)
 {
 	return bIndex = std::clamp(id, 0, MAX_ENEMIES);
+}
+
+std::string StatName(int st)
+{
+	std::string names[NUM_STATS] =
+	{
+		"Health", // Still not HP
+		"Attack",
+		"Defense",
+		"Special Attack",
+		"Special Defense",
+		"Speed"
+	};
+
+	if ((st < 0) || (st >= NUM_STATS))
+		return names[2];
+	return names[st];
 }

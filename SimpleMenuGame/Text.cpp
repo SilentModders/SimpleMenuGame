@@ -8,6 +8,14 @@ bool toupper(std::string& input)
             ret = EXIT_FAILURE;
     return ret;
 }
+bool tolower(std::string& input)
+{
+    int ret = EXIT_SUCCESS;
+    for (auto& c : input)
+        if (!(c = tolower(c)))
+            ret = EXIT_FAILURE;
+    return ret;
+}
 
 /* Returns the string value if it is not empty, otherwise returns a default value. */
 std::string LoadString(std::string input, std::string def)

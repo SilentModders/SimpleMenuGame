@@ -3,7 +3,7 @@
 #include "battle.h"
 
 /*
-    TODO: Seperate the engine from the UI for easier adaptation
+    TODO: Separate the engine from the UI for easier adaptation
         to any future UI.
 //*/
 
@@ -122,7 +122,7 @@ bool Game::Setup()
     AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
     /* Rooms below here will not be read. */
 
-    /* Setup the intial player state. */
+    /* Setup the initial player state. */
     if (readFile && firstBoot)
         InitPlayer();
 
@@ -134,7 +134,7 @@ void Game::Pause(int time)
     GameSleep(time);
 }
 
-/* Setup the intial player state. */
+/* Setup the initial player state. */
 void Game::InitPlayer()
 {
     /* Default Party for testing */
@@ -205,7 +205,7 @@ void Game::ChooseRoom(std::string key)
                 SetRoom("invalid");
 }
 
-/* Check the existance of a game var. */
+/* Check the existence of a game var. */
 bool Game::FindGameVar(std::string key)
 {
     return Vars.find(key) != Vars.end();

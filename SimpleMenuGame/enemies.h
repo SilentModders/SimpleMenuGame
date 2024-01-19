@@ -10,6 +10,17 @@ constexpr auto MAX_LEVEL = 100;
 // A monster can only know this many moves.
 constexpr auto MOVE_MEM = 4;
 
+const enum DEBUFFS
+{
+	BURN,
+	FREEZE,
+	PARALYZE,
+	POISON,
+	SEED,
+	SLEEP,
+	NUM_DEBUFFS
+};
+
 class Enemy
 {
 public:
@@ -26,7 +37,26 @@ public:
 	int GetXpYield();
 	int GetCatchRate();
 	int GetEvoLevel();
-	int GetType(bool type1 = true);
+	Types GetType(bool type1 = true);
+
+	// Always sets the type, but returns false if they were already the same. //
+	bool SetType(Types typ = Types::NORMAL, bool type1 = true);
+
+	bool Asleep();
+	bool Burned();
+	bool Frozen();
+	bool Paralyzed();
+	bool Poisoned();
+	bool Seeded();
+
+	void ClearDebuffs();
+
+	void Burn(bool state = true);
+	void Freeze(bool state = true);
+	void Paralyze(bool state = true);
+	void Poison(bool state = true);
+	void Seed(bool state = true);
+	void Sleep(bool state = true);
 
 	// Load all base stats
 	void Setup(std::string name,
@@ -38,9 +68,9 @@ public:
 		int xpc = 0,
 		int xpy = 5,
 		int crt = 255,
-		int type1 = (int)Types::NORMAL,
-		int type2 = (int)Types::NORMAL,
-		int evl = 255);
+		int evl = 255,
+		Types type1 = Types::NORMAL,
+		Types type2 = Types::NORMAL);
 
 	// Add a move the this monster's total list.
 	bool AddMove(std::string nme, int lv = 1);
@@ -58,6 +88,9 @@ protected:
 	int SetIdNum(int id);
 
 private:
+	bool GetDebuff(int buff = SLEEP);
+	bool SetDebuff(int buff = SLEEP, bool state = true);
+
 	std::string name;
 	int bIndex; // Index Number
 	// Base Stats
@@ -71,7 +104,8 @@ private:
 	int bXpYield; // XP Yield when beaten
 	int catchRate; // Catch Rate
 	int evolve; // Level to evolve
-	int type[2]; // Monster Types
+	Types type[2]; // Monster Types
+	bool debuffs[NUM_DEBUFFS]; // Status Ailments
 
 	// All moves
 	std::map<std::string, int> moveMap;
@@ -80,13 +114,13 @@ private:
 	std::string myMoves[MOVE_MEM];
 };
 
-const enum Stats
+const enum STATS
 {
-	HEALTH,
-	ATTACK,
+	HEALTH, // Not HP
+	ATTACK_STAT,
 	DEFENSE,
-	SATTACK,
-	SDEFENSE,
+	SATTACK, // Special Attack
+	SDEFENSE, // Special Defense
 	SPEED,
 	NUM_STATS
 };

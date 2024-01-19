@@ -179,9 +179,9 @@ bool PartyMember::Create(int basetype, int level)
 {
 	for (auto i = 0; i < NUM_STATS; i++)
 	{
-		iv[i] = rand() % MAX_IV;
+		iv[i] = random_int(1, MAX_IV);
 	}
-	Create(basetype, level, iv[HEALTH], iv[ATTACK], iv[DEFENSE], iv[SATTACK], iv[SDEFENSE], iv[SPEED]);
+	Create(basetype, level, iv[HEALTH], iv[ATTACK_STAT], iv[DEFENSE], iv[SATTACK], iv[SDEFENSE], iv[SPEED]);
 	return true;
 }
 bool PartyMember::Create(int basetype, int level, int healthIV, int attackIV, int defenseIV, int spAttackIV, int spDefenseIV, int speedIV)
@@ -247,7 +247,7 @@ void PartyMember::CalcStats()
 	// Base Stats
 	int base[NUM_STATS] = { 0 };
 	base[HEALTH]  = GetBaseHealth();
-	base[ATTACK]  = GetBaseAttack();
+	base[ATTACK_STAT]  = GetBaseAttack();
 	base[DEFENSE] = GetBaseDefense();
 	base[SATTACK] = GetBaseSpAtk();
 	base[SDEFENSE]= GetBaseSpDef();
@@ -260,7 +260,7 @@ void PartyMember::CalcStats()
 		stat[i] = ((2 * base[i] + iv[i] + ev[i] / 4) * myLevel) / 100 + 5;
 
 	health = stat[HEALTH];
-	attack = stat[ATTACK];
+	attack = stat[ATTACK_STAT];
 	defense= stat[DEFENSE];
 	spAtk  = stat[SATTACK];
 	spDef  = stat[SDEFENSE];
@@ -273,4 +273,10 @@ void PartyMember::CalcStats()
 void PartyMember::SetHP(int hp)
 {
 	hitP = std::clamp(hp, 0, totalHP);
+}
+
+void PartyMember::Heal()
+{
+	hitP = totalHP;
+	ClearDebuffs();
 }

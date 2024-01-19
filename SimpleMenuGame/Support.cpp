@@ -11,3 +11,8 @@ void GameSleep(int sec)
 {
 	sleep(sec);
 }
+
+int random_int(int min, int max)
+{
+	return min + rand() % (max + 1 - min);
+}

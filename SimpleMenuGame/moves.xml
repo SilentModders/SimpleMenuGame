@@ -2,8 +2,9 @@
 <banner>Pokey Moves, v1.000</banner>
 <!-- This file describes the "Gen 1" Pokémon moves. (Nintendo owns Pokémon.) -->
 <move>
-	<name>Missing Move</name>
 	<!-- #0  -->
+	<name>Missing Move</name>
+	<effect>Dev</effect>
 </move>
 <move>
 	<name>Pound</name>
@@ -18,6 +19,7 @@
 	<pp>25</pp>
 	<power>50</power>
 	<accuracy>100</accuracy>
+	<effect>HiCrit</effect>
 </move>
 <move>
 	<name>Double Slap</name>
@@ -25,6 +27,7 @@
 	<pp>10</pp>
 	<power>15</power>
 	<accuracy>85</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Comet Punch</name>
@@ -32,6 +35,7 @@
 	<pp>15</pp>
 	<power>18</power>
 	<accuracy>85</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Mega Punch</name>
@@ -46,6 +50,7 @@
 	<pp>20</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Money</effect>
 </move>
 <move>
 	<name>Fire Punch</name>
@@ -53,6 +58,7 @@
 	<pp>15</pp>
 	<power>75</power>
 	<accuracy>100</accuracy>
+	<effect>Burn</effect>
 </move>
 <move>
 	<name>Ice Punch</name>
@@ -60,6 +66,7 @@
 	<pp>15</pp>
 	<power>75</power>
 	<accuracy>100</accuracy>
+	<effect>Freeze</effect>
 </move>
 <move>
 	<name>Thunder Punch</name>
@@ -67,6 +74,7 @@
 	<pp>15</pp>
 	<power>75</power>
 	<accuracy>100</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Scratch</name>
@@ -87,6 +95,7 @@
 	<type>Normal</type>
 	<pp>5</pp>
 	<accuracy>30</accuracy>
+	<effect>Kill</effect>
 </move>
 <move>
 	<name>Razor Wind</name>
@@ -94,11 +103,13 @@
 	<pp>10</pp>
 	<power>80</power>
 	<accuracy>100</accuracy>
+	<effect>RazorWind</effect>
 </move>
 <move>
 	<name>Swords Dance</name>
 	<type>Normal</type>
 	<pp>20</pp>
+	<effect>RaiseAttack2</effect>
 </move>
 <move>
 	<name>Cut</name>
@@ -125,6 +136,7 @@
 	<name>Whirlwind</name>
 	<type>Normal</type>
 	<pp>20</pp>
+	<effect>Whirlwind</effect>
 </move>
 <move>
 	<name>Fly</name>
@@ -132,6 +144,7 @@
 	<pp>15</pp>
 	<power>90</power>
 	<accuracy>95</accuracy>
+	<effect>Fly</effect>
 </move>
 <move>
 	<name>Bind</name>
@@ -139,6 +152,7 @@
 	<pp>20</pp>
 	<power>15</power>
 	<accuracy>85</accuracy>
+	<effect>Bind</effect>
 </move>
 <move>
 	<name>Slam</name>
@@ -160,6 +174,7 @@
 	<pp>20</pp>
 	<power>65</power>
 	<accuracy>100</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Double Kick</name>
@@ -167,6 +182,7 @@
 	<pp>30</pp>
 	<power>30</power>
 	<accuracy>100</accuracy>
+	<effect>Double</effect>
 </move>
 <move>
 	<name>Mega Kick</name>
@@ -181,6 +197,7 @@
 	<pp>10</pp>
 	<power>100</power>
 	<accuracy>95</accuracy>
+	<effect>Crash</effect>
 </move>
 <move>
 	<name>Rolling Kick</name>
@@ -188,6 +205,7 @@
 	<pp>15</pp>
 	<power>60</power>
 	<accuracy>85</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Sand Attack</name>
@@ -202,6 +220,7 @@
 	<pp>15</pp>
 	<power>70</power>
 	<accuracy>100</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Horn Attack</name>
@@ -216,12 +235,14 @@
 	<pp>20</pp>
 	<power>15</power>
 	<accuracy>85</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Horn Drill</name>
 	<type>Normal</type>
 	<pp>5</pp>
 	<accuracy>30</accuracy>
+	<effect>Kill</effect>
 </move>
 <move>
 	<name>Tackle</name>
@@ -236,6 +257,7 @@
 	<pp>15</pp>
 	<power>85</power>
 	<accuracy>100</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Wrap</name>
@@ -243,6 +265,7 @@
 	<pp>20</pp>
 	<power>15</power>
 	<accuracy>90</accuracy>
+	<effect>Bind</effect>
 </move>
 <move>
 	<name>Take Down</name>
@@ -250,6 +273,7 @@
 	<pp>20</pp>
 	<power>90</power>
 	<accuracy>85</accuracy>
+	<effect>Recoil</effect>
 </move>
 <move>
 	<name>Thrash</name>
@@ -257,6 +281,7 @@
 	<pp>10</pp>
 	<power>120</power>
 	<accuracy>100</accuracy>
+	<effect>Thrash</effect>
 </move>
 <move>
 	<name>Double-Edge</name>
@@ -264,13 +289,14 @@
 	<pp>15</pp>
 	<power>120</power>
 	<accuracy>100</accuracy>
+	<effect>Recoil</effect>
 </move>
 <move>
 	<name>Tail Whip</name>
 	<type>Normal</type>
 	<pp>30</pp>
 	<accuracy>100</accuracy>
-	<effect>LessDefense</effect>
+	<effect>LowerDefense</effect>
 </move>
 <move>
 	<name>Poison Sting</name>
@@ -278,6 +304,7 @@
 	<pp>35</pp>
 	<power>15</power>
 	<accuracy>100</accuracy>
+	<effect>Poison</effect>
 </move>
 <move>
 	<name>Twineedle</name>
@@ -285,6 +312,7 @@
 	<pp>20</pp>
 	<power>25</power>
 	<accuracy>100</accuracy>
+	<effect>DoublePoison</effect>
 </move>
 <move>
 	<name>Pin Missile</name>
@@ -292,12 +320,14 @@
 	<pp>20</pp>
 	<power>25</power>
 	<accuracy>95</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Leer</name>
 	<type>Normal</type>
 	<pp>30</pp>
 	<accuracy>100</accuracy>
+	<effect>LowerDefense</effect>
 </move>
 <move>
 	<name>Bite</name>
@@ -305,42 +335,48 @@
 	<pp>25</pp>
 	<power>60</power>
 	<accuracy>100</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Growl</name>
 	<type>Normal</type>
 	<pp>40</pp>
 	<accuracy>100</accuracy>
-	<effect>LessAttack</effect>
+	<effect>LowerAttack</effect>
 </move>
 <move>
 	<name>Roar</name>
 	<type>Normal</type>
 	<pp>20</pp>
+	<effect>Whirlwind</effect>
 </move>
 <move>
 	<name>Sing</name>
 	<type>Normal</type>
 	<pp>15</pp>
 	<accuracy>55</accuracy>
+	<effect>Sleep</effect>
 </move>
 <move>
 	<name>Supersonic</name>
 	<type>Normal</type>
 	<pp>20</pp>
 	<accuracy>55</accuracy>
+	<effect>Confuse</effect>
 </move>
 <move>
 	<name>Sonic Boom</name>
 	<type>Normal</type>
 	<pp>20</pp>
 	<accuracy>90</accuracy>
+	<effect>SonicBoom</effect>
 </move>
 <move>
 	<name>Disable</name>
 	<type>Normal</type>
 	<pp>20</pp>
 	<accuracy>100</accuracy>
+	<effect>Disable</effect>
 </move>
 <move>
 	<name>Acid</name>
@@ -348,6 +384,7 @@
 	<pp>30</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>LowerDefense</effect>
 </move>
 <move>
 	<name>Ember</name>
@@ -355,6 +392,7 @@
 	<pp>25</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Burn</effect>
 </move>
 <move>
 	<name>Flamethrower</name>
@@ -362,11 +400,13 @@
 	<pp>15</pp>
 	<power>90</power>
 	<accuracy>100</accuracy>
+	<effect>Burn</effect>
 </move>
 <move>
 	<name>Mist</name>
 	<type>Ice</type>
 	<pp>30</pp>
+	<effect>Guard</effect>
 </move>
 <move>
 	<name>Water Gun</name>
@@ -395,6 +435,7 @@
 	<pp>10</pp>
 	<power>90</power>
 	<accuracy>100</accuracy>
+	<effect>Freeze</effect>
 </move>
 <move>
 	<name>Blizzard</name>
@@ -402,6 +443,7 @@
 	<pp>5</pp>
 	<power>110</power>
 	<accuracy>70</accuracy>
+	<effect>Freeze</effect>
 </move>
 <move>
 	<name>Psybeam</name>
@@ -409,6 +451,7 @@
 	<pp>20</pp>
 	<power>65</power>
 	<accuracy>100</accuracy>
+	<effect>Confuse</effect>
 </move>
 <move>
 	<name>Bubble Beam</name>
@@ -416,6 +459,7 @@
 	<pp>20</pp>
 	<power>65</power>
 	<accuracy>100</accuracy>
+	<effect>Slow</effect>
 </move>
 <move>
 	<name>Aurora Beam</name>
@@ -423,6 +467,7 @@
 	<pp>20</pp>
 	<power>65</power>
 	<accuracy>100</accuracy>
+	<effect>LowerAttack</effect>
 </move>
 <move>
 	<name>Hyper Beam</name>
@@ -430,6 +475,7 @@
 	<pp>5</pp>
 	<power>150</power>
 	<accuracy>90</accuracy>
+	<effect>Recharge</effect>
 </move>
 <move>
 	<name>Peck</name>
@@ -451,24 +497,29 @@
 	<pp>20</pp>
 	<power>80</power>
 	<accuracy>80</accuracy>
+	<effect>Recoil</effect>
 </move>
 <move>
 	<name>Low Kick</name>
 	<type>Fighting</type>
 	<pp>20</pp>
-	<accuracy>100</accuracy>
+	<power>50</power>
+	<accuracy>90</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Counter</name>
 	<type>Fighting</type>
 	<pp>20</pp>
 	<accuracy>100</accuracy>
+	<effect>Counter</effect>
 </move>
 <move>
 	<name>Seismic Toss</name>
 	<type>Fighting</type>
 	<pp>20</pp>
 	<accuracy>100</accuracy>
+	<effect>Level</effect>
 </move>
 <move>
 	<name>Strength</name>
@@ -483,6 +534,7 @@
 	<pp>25</pp>
 	<power>20</power>
 	<accuracy>100</accuracy>
+	<effect>Absorb</effect>
 </move>
 <move>
 	<name>Mega Drain</name>
@@ -490,17 +542,20 @@
 	<pp>15</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Absorb</effect>
 </move>
 <move>
 	<name>Leech Seed</name>
 	<type>Grass</type>
 	<pp>10</pp>
 	<accuracy>90</accuracy>
+	<effect>Seed</effect>
 </move>
 <move>
 	<name>Growth</name>
 	<type>Normal</type>
 	<pp>20</pp>
+	<effect>RaiseSpAttack</effect>
 </move>
 <move>
 	<name>Razor Leaf</name>
@@ -508,6 +563,7 @@
 	<pp>25</pp>
 	<power>55</power>
 	<accuracy>95</accuracy>
+	<effect>HiCrit</effect>
 </move>
 <move>
 	<name>Solar Beam</name>
@@ -515,24 +571,28 @@
 	<pp>10</pp>
 	<power>120</power>
 	<accuracy>100</accuracy>
+	<effect>ChargeUp</effect>
 </move>
 <move>
 	<name>Poison Powder</name>
 	<type>Poison</type>
 	<pp>35</pp>
 	<accuracy>75</accuracy>
+	<effect>Poison100</effect>
 </move>
 <move>
 	<name>Stun Spore</name>
 	<type>Grass</type>
 	<pp>30</pp>
 	<accuracy>75</accuracy>
+	<effect>Paralyze100</effect>
 </move>
 <move>
 	<name>Sleep Powder</name>
 	<type>Grass</type>
 	<pp>15</pp>
 	<accuracy>75</accuracy>
+	<effect>Sleep100</effect>
 </move>
 <move>
 	<name>Petal Dance</name>
@@ -540,18 +600,21 @@
 	<pp>10</pp>
 	<power>120</power>
 	<accuracy>100</accuracy>
+	<effect>Thrash</effect>
 </move>
 <move>
 	<name>String Shot</name>
 	<type>Bug</type>
 	<pp>40</pp>
 	<accuracy>95</accuracy>
+	<effect>Slow</effect>
 </move>
 <move>
 	<name>Dragon Rage</name>
 	<type>Dragon</type>
 	<pp>10</pp>
 	<accuracy>100</accuracy>
+	<effect>DragonRage</effect>
 </move>
 <move>
 	<name>Fire Spin</name>
@@ -559,6 +622,7 @@
 	<pp>15</pp>
 	<power>35</power>
 	<accuracy>85</accuracy>
+	<effect>Bind</effect>
 </move>
 <move>
 	<name>Thunder Shock</name>
@@ -566,6 +630,7 @@
 	<pp>30</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Thunderbolt</name>
@@ -573,12 +638,14 @@
 	<pp>15</pp>
 	<power>90</power>
 	<accuracy>100</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Thunder Wave</name>
 	<type>Electric</type>
 	<pp>20</pp>
 	<accuracy>90</accuracy>
+	<effect>Paralyze100</effect>
 </move>
 <move>
 	<name>Thunder</name>
@@ -586,6 +653,7 @@
 	<pp>10</pp>
 	<power>110</power>
 	<accuracy>70</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Rock Throw</name>
@@ -606,6 +674,7 @@
 	<type>Ground</type>
 	<pp>5</pp>
 	<accuracy>30</accuracy>
+	<effect>Kill</effect>
 </move>
 <move>
 	<name>Dig</name>
@@ -613,12 +682,14 @@
 	<pp>10</pp>
 	<power>80</power>
 	<accuracy>100</accuracy>
+	<effect>Dig</effect>
 </move>
 <move>
 	<name>Toxic</name>
 	<type>Poison</type>
 	<pp>10</pp>
 	<accuracy>90</accuracy>
+	<effect>BadPoison</effect>
 </move>
 <move>
 	<name>Confusion</name>
@@ -626,6 +697,7 @@
 	<pp>25</pp>
 	<power>50</power>
 	<accuracy>100</accuracy>
+	<effect>Confuse</effect>
 </move>
 <move>
 	<name>Psychic</name>
@@ -633,22 +705,26 @@
 	<pp>10</pp>
 	<power>90</power>
 	<accuracy>100</accuracy>
+	<effect>LowerSpDefense</effect>
 </move>
 <move>
 	<name>Hypnosis</name>
 	<type>Psychic</type>
 	<pp>20</pp>
 	<accuracy>60</accuracy>
+	<effect>Sleep</effect>
 </move>
 <move>
 	<name>Meditate</name>
 	<type>Psychic</type>
 	<pp>40</pp>
+	<effect>RaiseAttack</effect>
 </move>
 <move>
 	<name>Agility</name>
 	<type>Psychic</type>
 	<pp>30</pp>
+	<effect>RaiseSpeed2</effect>
 </move>
 <move>
 	<name>Quick Attack</name>
@@ -656,6 +732,7 @@
 	<pp>30</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Quick</effect>
 </move>
 <move>
 	<name>Rage</name>
@@ -663,110 +740,131 @@
 	<pp>20</pp>
 	<power>20</power>
 	<accuracy>100</accuracy>
+	<effect>Rage</effect>
 </move>
 <move>
 	<name>Teleport</name>
 	<type>Psychic</type>
 	<pp>20</pp>
+	<effect>Teleport</effect>
 </move>
 <move>
 	<name>Night Shade</name>
 	<type>Ghost</type>
 	<pp>15</pp>
 	<accuracy>100</accuracy>
+	<effect>Level</effect>
 </move>
 <move>
 	<name>Mimic</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Mimic</effect>
 </move>
 <move>
 	<name>Screech</name>
 	<type>Normal</type>
 	<pp>40</pp>
 	<accuracy>85</accuracy>
+	<effect>LowerDefense2</effect>
 </move>
 <move>
 	<name>Double Team</name>
 	<type>Normal</type>
 	<pp>15</pp>
+	<effect>RaiseEvasion</effect>
 </move>
 <move>
 	<name>Recover</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Recover</effect>
 </move>
 <move>
 	<name>Harden</name>
 	<type>Normal</type>
 	<pp>30</pp>
+	<effect>RaiseDefense</effect>
 </move>
 <move>
 	<name>Minimize</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>RaiseEvasion</effect>
 </move>
 <move>
 	<name>Smokescreen</name>
 	<type>Normal</type>
 	<pp>20</pp>
 	<accuracy>100</accuracy>
+	<effect>Blind</effect>
 </move>
 <move>
 	<name>Confuse Ray</name>
 	<type>Ghost</type>
 	<pp>10</pp>
 	<accuracy>100</accuracy>
+	<effect>Confuse</effect>
 </move>
 <move>
 	<name>Withdraw</name>
 	<type>Water</type>
 	<pp>40</pp>
+	<effect>RaiseDefense</effect>
 </move>
 <move>
 	<name>Defense Curl</name>
 	<type>Normal</type>
 	<pp>40</pp>
+	<effect>RaiseDefense</effect>
 </move>
 <move>
 	<name>Barrier</name>
 	<type>Psychic</type>
 	<pp>20</pp>
+	<effect>RaiseDefense2</effect>
 </move>
 <move>
 	<name>Light Screen</name>
 	<type>Psychic</type>
 	<pp>30</pp>
+	<effect>Screen</effect>
 </move>
 <move>
 	<name>Haze</name>
 	<type>Ice</type>
 	<pp>30</pp>
+	<effect>Reset</effect>
 </move>
 <move>
 	<name>Reflect</name>
 	<type>Psychic</type>
 	<pp>20</pp>
+	<effect>Reflect</effect>
 </move>
 <move>
 	<name>Focus Energy</name>
 	<type>Normal</type>
 	<pp>30</pp>
+	<effect>RaiseCrits</effect>
 </move>
 <move>
 	<name>Bide</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Bide</effect>
 </move>
 <move>
 	<name>Metronome</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Metronome</effect>
 </move>
 <move>
 	<name>Mirror Move</name>
 	<type>Flying</type>
 	<pp>20</pp>
+	<effect>Mirror</effect>
 </move>
 <move>
 	<name>Self-Destruct</name>
@@ -774,6 +872,7 @@
 	<pp>5</pp>
 	<power>200</power>
 	<accuracy>100</accuracy>
+	<effect>Faint</effect>
 </move>
 <move>
 	<name>Egg Bomb</name>
@@ -788,6 +887,7 @@
 	<pp>30</pp>
 	<power>30</power>
 	<accuracy>100</accuracy>
+	<effect>Paralyze</effect>
 </move>
 <move>
 	<name>Smog</name>
@@ -795,6 +895,7 @@
 	<pp>20</pp>
 	<power>30</power>
 	<accuracy>70</accuracy>
+	<effect>Poison</effect>
 </move>
 <move>
 	<name>Sludge</name>
@@ -803,12 +904,14 @@
 	<power>65</power>
 	<accuracy>100</accuracy>
 </move>
+	<effect>Poison</effect>
 <move>
 	<name>Bone Club</name>
 	<type>Ground</type>
 	<pp>20</pp>
 	<power>65</power>
 	<accuracy>85</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Fire Blast</name>
@@ -816,6 +919,7 @@
 	<pp>5</pp>
 	<power>110</power>
 	<accuracy>85</accuracy>
+	<effect>Burn</effect>
 </move>
 <move>
 	<name>Waterfall</name>
@@ -830,6 +934,7 @@
 	<pp>15</pp>
 	<power>35</power>
 	<accuracy>85</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Swift</name>
@@ -843,6 +948,7 @@
 	<pp>10</pp>
 	<power>130</power>
 	<accuracy>100</accuracy>
+	<effect>SkullBash</effect>
 </move>
 <move>
 	<name>Spike Cannon</name>
@@ -850,6 +956,7 @@
 	<pp>15</pp>
 	<power>20</power>
 	<accuracy>100</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Constrict</name>
@@ -857,22 +964,26 @@
 	<pp>35</pp>
 	<power>10</power>
 	<accuracy>100</accuracy>
+	<effect>Slow</effect>
 </move>
 <move>
 	<name>Amnesia</name>
 	<type>Psychic</type>
 	<pp>20</pp>
+	<effect>LowerSpDefense2</effect>
 </move>
 <move>
 	<name>Kinesis</name>
 	<type>Psychic</type>
 	<pp>15</pp>
 	<accuracy>80</accuracy>
+	<effect>Blind</effect>
 </move>
 <move>
 	<name>Soft-Boiled</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Recover</effect>
 </move>
 <move>
 	<name>High Jump Kick</name>
@@ -880,12 +991,14 @@
 	<pp>10</pp>
 	<power>130</power>
 	<accuracy>90</accuracy>
+	<effect>Crash</effect>
 </move>
 <move>
 	<name>Glare</name>
 	<type>Normal</type>
 	<pp>30</pp>
 	<accuracy>100</accuracy>
+	<effect>Paralyze100</effect>
 </move>
 <move>
 	<name>Dream Eater</name>
@@ -893,12 +1006,14 @@
 	<pp>15</pp>
 	<power>100</power>
 	<accuracy>100</accuracy>
+	<effect>DreamEater</effect>
 </move>
 <move>
 	<name>Poison Gas</name>
 	<type>Poison</type>
 	<pp>40</pp>
 	<accuracy>90</accuracy>
+	<effect>Poison100</effect>
 </move>
 <move>
 	<name>Barrage</name>
@@ -906,6 +1021,7 @@
 	<pp>20</pp>
 	<power>15</power>
 	<accuracy>85</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Leech Life</name>
@@ -913,12 +1029,14 @@
 	<pp>10</pp>
 	<power>80</power>
 	<accuracy>100</accuracy>
+	<effect>Absorb</effect>
 </move>
 <move>
 	<name>Lovely Kiss</name>
 	<type>Normal</type>
 	<pp>10</pp>
 	<accuracy>75</accuracy>
+	<effect>Sleep</effect>
 </move>
 <move>
 	<name>Sky Attack</name>
@@ -926,11 +1044,13 @@
 	<pp>5</pp>
 	<power>140</power>
 	<accuracy>90</accuracy>
+	<effect>SkyAttack</effect>
 </move>
 <move>
 	<name>Transform</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Transform</effect>
 </move>
 <move>
 	<name>Bubble</name>
@@ -938,6 +1058,7 @@
 	<pp>30</pp>
 	<power>40</power>
 	<accuracy>100</accuracy>
+	<effect>Slow</effect>
 </move>
 <move>
 	<name>Dizzy Punch</name>
@@ -945,34 +1066,40 @@
 	<pp>10</pp>
 	<power>70</power>
 	<accuracy>100</accuracy>
+	<effect>Confuse</effect>
 </move>
 <move>
 	<name>Spore</name>
 	<type>Grass</type>
 	<pp>15</pp>
 	<accuracy>100</accuracy>
+	<effect>Sleep</effect>
 </move>
 <move>
 	<name>Flash</name>
 	<type>Normal</type>
 	<pp>20</pp>
 	<accuracy>100</accuracy>
+	<effect>Blind</effect>
 </move>
 <move>
 	<name>Psywave</name>
 	<type>Psychic</type>
 	<pp>15</pp>
 	<accuracy>100</accuracy>
+	<effect>RandDmg</effect>
 </move>
 <move>
 	<name>Splash</name>
 	<type>Normal</type>
 	<pp>40</pp>
+	<effect>Splash</effect>
 </move>
 <move>
 	<name>Acid Armor</name>
 	<type>Poison</type>
 	<pp>20</pp>
+	<effect>RaiseDefense2</effect>
 </move>
 <move>
 	<name>Crabhammer</name>
@@ -980,6 +1107,7 @@
 	<pp>10</pp>
 	<power>100</power>
 	<accuracy>90</accuracy>
+	<effect>HiCrit</effect>
 </move>
 <move>
 	<name>Explosion</name>
@@ -987,6 +1115,7 @@
 	<pp>5</pp>
 	<power>250</power>
 	<accuracy>100</accuracy>
+	<effect>Faint</effect>
 </move>
 <move>
 	<name>Fury Swipes</name>
@@ -994,6 +1123,7 @@
 	<pp>15</pp>
 	<power>18</power>
 	<accuracy>80</accuracy>
+	<effect>Multiple</effect>
 </move>
 <move>
 	<name>Bonemerang</name>
@@ -1001,11 +1131,13 @@
 	<pp>10</pp>
 	<power>50</power>
 	<accuracy>90</accuracy>
+	<effect>Double</effect>
 </move>
 <move>
 	<name>Rest</name>
 	<type>Psychic</type>
 	<pp>10</pp>
+	<effect>Rest</effect>
 </move>
 <move>
 	<name>Rock Slide</name>
@@ -1020,16 +1152,19 @@
 	<pp>15</pp>
 	<power>80</power>
 	<accuracy>90</accuracy>
+	<effect>Flinch</effect>
 </move>
 <move>
 	<name>Sharpen</name>
 	<type>Normal</type>
 	<pp>30</pp>
+	<effect>RaiseAttack</effect>
 </move>
 <move>
 	<name>Conversion</name>
 	<type>Normal</type>
 	<pp>30</pp>
+	<effect>Conversion</effect>
 </move>
 <move>
 	<name>Tri Attack</name>
@@ -1037,12 +1172,14 @@
 	<pp>10</pp>
 	<power>80</power>
 	<accuracy>100</accuracy>
+	<effect>TriAttack</effect>
 </move>
 <move>
 	<name>Super Fang</name>
 	<type>Normal</type>
 	<pp>10</pp>
 	<accuracy>90</accuracy>
+	<effect>HalfHP</effect>
 </move>
 <move>
 	<name>Slash</name>
@@ -1050,14 +1187,17 @@
 	<pp>20</pp>
 	<power>70</power>
 	<accuracy>100</accuracy>
+	<effect>HiCrit</effect>
 </move>
 <move>
 	<name>Substitute</name>
 	<type>Normal</type>
 	<pp>10</pp>
+	<effect>Substitute</effect>
 </move>
 <move>
 	<name>Struggle</name>
 	<type>Normal</type>
 	<power>50</power>
+	<effect>Recoil</effect>
 </move>

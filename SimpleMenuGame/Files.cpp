@@ -12,9 +12,9 @@ constexpr bool XTRA_BANNERS = false;
 
 bool Game::ReadFile(bool firstBoot)
 {
-    const pugi::char_t* source = GAME_XML;
+    const pugi::char_t* SOURCE = GAME_XML;
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(source);
+    pugi::xml_parse_result result = doc.load_file(SOURCE);
 
     if (result)
     {
@@ -137,9 +137,15 @@ bool Game::ReadFile(bool firstBoot)
 
                 /* This room heals. */
                 if (room.child("heal"))
+                {
                     for (auto i = 0; i < PARTYSIZE; i++)
+                    {
                         if (party[i])
-                            party[i]->SetHP(party[i]->GetTotalHP());
+                        {
+                            party[i]->Heal();
+                        }
+                    }
+                }
 
                 if (room.child("options"))
                     /* Read all of its options. */
@@ -172,9 +178,9 @@ bool Game::ReadFile(bool firstBoot)
     /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << source << "] parsed with errors.\n";
+        std::cout << "XML [" << SOURCE << "] parsed with errors.\n";
         std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (SOURCE + result.offset) << "]\n\n";
     }
     return result;
 }
@@ -208,9 +214,9 @@ bool CombatSys::ReadFile(std::string file)
                     atoi(enemy.child_value("xpcurve")),
                     atoi(enemy.child_value("yieldxp")),
                     atoi(enemy.child_value("catchrate")),
-                    (int)TypeFromName(enemy.child_value("type1")),
-                    (int)TypeFromName(enemy.child_value("type2")),
-                    atoi(enemy.child("evolve").attribute("level").value())
+                    atoi(enemy.child("evolve").attribute("level").value()),
+                    TypeFromName(enemy.child_value("type1")),
+                    TypeFromName(enemy.child_value("type2"))
                 );
                 /* Load the leanset. */
                 for (pugi::xml_node move = enemy.child("move"); move; move = move.next_sibling("move"))

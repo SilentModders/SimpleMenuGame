@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banner>Poké Game, v0.1</banner>
 <!-- This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
+<!-- Use a line like this one to change the names
+	of the other XML files for the game. -->
 <file data="enemies">enemies.xml</file>
+<!-- This is the starting room. -->
 <location name="Main">
 	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH.
 OAK has a lab here. You can rest at HOME.</description>
@@ -14,12 +17,15 @@ OAK has a lab here. You can rest at HOME.</description>
 </location>
 <location name="Sea">
 	<description>You can't swim in the ocean. You're 10 years old!</description>
+	<!-- The return tag makes a room auto-exit. -->
 	<return />
 </location>
 <location name="OAK">
 	<description>$RIVAL$: "OAK isn't here right now, $PLAYER$."</description>
 	<return />
 	<options>
+		<!-- Overriding the game's "back" option while also
+			using a variable makes a branchig scene. -->
 		<option room="OAKbattle" prohibit="BeatRival01">Back</option>
 		<option room="Main" require="BeatRival01">Back</option>
 	</options>
@@ -31,6 +37,8 @@ OAK has a lab here. You can rest at HOME.</description>
 	<variable name="BeatRival01">1</variable>
 	<return />
 	<options>
+		<!-- The room "Battle" doesn't exist. This option intiates combat instead.
+			The encounter file determines your opponent based on your location. -->
 		<option room="Battle" prohibit="BeatRival01">Back</option>
 		<option room="Main" require="BeatRival01">Back</option>
 	</options>

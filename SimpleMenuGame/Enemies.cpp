@@ -26,7 +26,12 @@ Enemy::Enemy()
 	 * no second type.
 	//*/
 	type[0] =
-	type[1] = (int)Types::NORMAL;
+	type[1] = Types::NORMAL;
+
+	for (auto h = 0; h < NUM_DEBUFFS; h++)
+	{
+		debuffs[h] = false;
+	}
 
 	for (auto i = 0; i < MOVE_MEM; i++)
 		myMoves[i] = "";
@@ -81,11 +86,106 @@ int Enemy::GetEvoLevel()
 {
 	return evolve;
 }
-int Enemy::GetType(bool type1)
+Types Enemy::GetType(bool type1)
 {
-	if (type1)
-		return type[0];
-	return type[1];
+	return type[!type1];
+}
+
+bool Enemy::SetType(Types typ, bool type1)
+{
+	const Types oldT = type[!type1];
+	type[!type1] = typ;
+	return oldT != type[!type1];
+}
+
+bool Enemy::GetDebuff(int buff)
+{
+	if (buff > 0 && buff <= NUM_DEBUFFS)
+	{
+		return debuffs[buff];
+	}
+	return false;
+}
+bool Enemy::Asleep()
+{
+	return GetDebuff(SLEEP);
+}
+bool Enemy::Burned()
+{
+	return GetDebuff(BURN);
+}
+bool Enemy::Frozen()
+{
+	return GetDebuff(FREEZE);
+}
+bool Enemy::Paralyzed()
+{
+	return GetDebuff(PARALYZE);
+}
+bool Enemy::Poisoned()
+{
+	return GetDebuff(POISON);
+}
+bool Enemy::Seeded()
+{
+	return GetDebuff(SEED);
+}
+
+bool Enemy::SetDebuff(int buff, bool state)
+{
+	if (buff > 0 && buff <= NUM_DEBUFFS)
+	{
+		debuffs[buff] = state;
+		return true;
+	}
+	return false;
+}
+void Enemy::ClearDebuffs()
+{
+	for (int i = 0; i < NUM_DEBUFFS; i++)
+	{
+		debuffs[i] = false;
+	}
+}
+
+void Enemy::Burn(bool state)
+{
+	SetDebuff(BURN, state);
+}
+void Enemy::Freeze(bool state)
+{
+	SetDebuff(FREEZE, state);
+	if (!state)
+	{
+		SetDebuff(SLEEP, false);
+		SetDebuff(PARALYZE, false);
+	}
+}
+void Enemy::Paralyze(bool state)
+{
+	SetDebuff(PARALYZE, state);
+	if (!state)
+	{
+		SetDebuff(FREEZE, false);
+		SetDebuff(SLEEP, false);
+	}
+}
+void Enemy::Poison(bool state)
+{
+	SetDebuff(POISON, state);
+}
+void Enemy::Seed(bool state)
+{
+	SetDebuff(SEED, state);
+}
+void Enemy::Sleep(bool state)
+{
+	SetDebuff(SLEEP, state);
+	if (!state)
+	{
+		SetDebuff(FREEZE, false);
+		SetDebuff(PARALYZE, false);
+	}
 }
 
 void Enemy::Setup(std::string nme, int idx, int hlh,
@@ -93,8 +193,8 @@ void Enemy::Setup(std::string nme, int idx, int hlh,
 	int sat, int sdf,
 	int spd, int xpc,
 	int xpy, int crt,
-	int type1, int type2,
-	int evl)
+	int evl,
+	Types type1, Types type2)
 {
 	name = nme;
 	bIndex = idx;
@@ -134,10 +234,18 @@ void Enemy::BuildMoveList(int lv)
 	 * and overwrites the oldest.
 	//*/
 	int i = 0;
+	int m = 0;
 	for (auto&& item : moveMap)
 	{
 		if (item.second <= lv)
-			myMoves[i % 4] = item.first;
+		{
+			myMoves[m] = item.first;
+			m++;
+			if (m >= MOVE_MEM)
+			{
+				m = 0;
+			}
+		}
 		i++;
 	}
 }

@@ -4,6 +4,7 @@
 	#include <Windows.h>
 	#define sleep(x) Sleep(1000 * (x))
 #else
+	#include <stdlib.h>
 	#include <unistd.h>
 #endif
 

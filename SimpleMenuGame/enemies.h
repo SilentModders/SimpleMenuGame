@@ -10,7 +10,7 @@ constexpr auto MAX_LEVEL = 100;
 // A monster can only know this many moves.
 constexpr auto MOVE_MEM = 4;
 
-const enum DEBUFFS
+enum DEBUFFS
 {
 	BURN,
 	FREEZE,
@@ -114,7 +114,7 @@ private:
 	std::string myMoves[MOVE_MEM];
 };
 
-const enum STATS
+enum STATS
 {
 	HEALTH, // Not HP
 	ATTACK_STAT,

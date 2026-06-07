@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-const enum class Types
+enum class Types
 {
 	BUG,
 	DARK,

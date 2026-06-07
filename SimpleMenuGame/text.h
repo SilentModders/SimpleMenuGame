@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-const enum class Color
+enum class Color
 {
 	COLOR_BLACK = 30,
 	COLOR_DARK_RED,

@@ -1,5 +1,5 @@
 #include "text.h"
-#include <algorithm>
+#include <math.h>
 #include "party.h"
 #include "game.h"
 #include "battle.h"
@@ -8,7 +8,7 @@ int ipow(int a, int b) { return int(pow(a, b)); }
 
 constexpr int MAX_EV = 65535;
 
-const enum XP_CURVES
+enum XP_CURVES
 {
 	XP_SLOW,
 	XP_MED_SLOW,

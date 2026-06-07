@@ -26,7 +26,7 @@ private:
 
 int LookupEffect(std::string eff);
 
-const enum EFFECTS
+enum EFFECTS
 {
 	NO_EFFECT,
 	DEV_EFFECT,
@@ -179,7 +179,7 @@ const std::string EFFECT_NAMES[NUM_EFFECTS] =
 	"REST",
 	"SCREEN",
 	"SEED",
-	"SELF_DMG"
+	"SELF_DMG",
 	"SKULLBASH",
 	"SKYATTACK",
 	"SPLASH",

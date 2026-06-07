@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Poké Game, v0.1</banner>
-<!-- This file reimagines "Pokémon" (Gen 1) by Nintendo. -->
+<banner>Poké Game, v0.3</banner> <!-- Banners are optional. -->
+<!-- This file reimagines "Pokémon" (Gen 1-ish) by Nintendo. -->
 <!-- Use a line like this one to change the names
-	of the other XML files for the game. -->
+	of the other XML files for the game.
 <file data="enemies">enemies.xml</file>
+	The commandline can be used to change
+	the name of the main file.
+ -->
+
+<!-- Changes made to the XML are always live, but the RESTART command can be used to reboot the game as well. -->
+
 <!-- This is the starting room. -->
 <location name="Main">
 	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH.
@@ -25,23 +31,23 @@ OAK has a lab here. You can rest at HOME.</description>
 	<return />
 	<options>
 		<!-- Overriding the game's "back" option while also
-			using a variable makes a branchig scene. -->
+			using return and a variable makes a branchig scene. -->
 		<option room="OAKbattle" prohibit="BeatRival01">Back</option>
 		<option room="Main" require="BeatRival01">Back</option>
 	</options>
-	<heal />
 </location>
 <location name="OAKbattle">
-	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our Pokémon!"</description>
-	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong Pokémon!"</description>
+	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our pokémon!"</description>
+	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong pokémon!"</description>
 	<variable name="BeatRival01">1</variable>
 	<return />
 	<options>
-		<!-- The room "Battle" doesn't exist. This option intiates combat instead.
+		<!-- The room "Battle" actually intiates combat.
 			The encounter file determines your opponent based on your location. -->
 		<option room="Battle" prohibit="BeatRival01">Back</option>
 		<option room="Main" require="BeatRival01">Back</option>
 	</options>
+	<!-- <heal /> Would heal you after the fight (and every other time you come here) -->
 </location>
 <location name="Home">
 	<description>You have rested and are now ready to continue.</description>
@@ -66,23 +72,36 @@ travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 </location>
 <location name="Rt1Man">
 	<description>There is a promoter here for the Poké Mart in Veridian City, north of here. They gave you a free potion!</description>
-	<variable name="ShopMan1met">1</variable>
-	<Inventory name="POTION" />
+	<!-- VARIABLES MUST BE REGISTERED! -->
+	<variable name="ShopMan1met" /> <!-- Self-closing implies >1</variable> -->
+	<inventory name="POTION" /> <!-- Self-closing implies >1</inventory> -->
 	<return />
 </location>
 <location name="Rt1No1">
-	<description>The Poké Mart promoter reminded you to visit the store in Veridian City.</description>
+	<description>The Poké Mart promoter reminded you to visit the Poké Mart in Veridian City.</description>
 	<return />
 </location>
 <location name="Veri City">
-	<description>Veridian City is a small city that is enveloped in green year-round. Route 1 is the SOUTH, Route 2 is to the NORTH,
-and Route 22 is to the WEST. You can heal your party at the Pokémon CENTER.</description>
+	<description>Veridian City is a small city that is enveloped in green year-round. Route 1 is to the SOUTH, Route 2 is to the NORTH,
+and Route 22 is to the WEST. You can heal your party at the Pokémon CENTER or visit the Poké Mart SHOP.</description>
 	<options>
 		<option room="Route 2">NORTH</option>
 		<option room="Route 22">WEST</option>
 		<option room="Route 1">SOUTH</option>
 		<option room="pCenter">CENTER</option>
+		<option room="MartV1" prohibit="Parcel">SHOP</option>
+		<option room="MartV2" require="Parcel">SHOP</option>
 	</options>
+</location>
+<location name="MartV1">
+	<description>The clerk at the Poké Mart knows you are from Pallet Town and gave an important parcel. You need to deliver it to Professor Oak.</description>
+	<variable name="Parcel" />
+	<inventory name="PARCEL" />
+	<return />
+</location>
+<location name="MartV2">
+	<description>The clerk at the Poké Mart reminded you to deliver that important parcel to Professor Oak.</description>
+	<return />
 </location>
 <location name="Route 2">
 	<description>Your path is blocked by an old man complaining about coffee or something.</description>
@@ -99,5 +118,15 @@ You can SEARCH for pokémon, travel EAST to Veridian City, or travel WEST to vis
 </location>
 <location name="League">
 	<description>The League guard cannot let you in until you have a badge from each town's pokémon gym.</description>
+	<return />
+</location>
+
+<!--
+	A built-in room can be overridden when the name and case match in this file.
+	The engine expects rooms that automatically exit (or not) to remain that way.
+-->
+<location name="Help">
+	<description>The choices that you may make on each screen will be presented in capital letters.
+You can also type RESTART to start over and QUIT to end the game.</description>
 	<return />
 </location>

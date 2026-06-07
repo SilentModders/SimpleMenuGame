@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the main file displays its banner. -->
+<!-- It is still a good place for a version number. -->
 <banner>Poké Where, v0.1</banner>
-<!-- This file distributes Pokémon. Nintendo own Pokémon.. -->
+<!-- This file distributes Pokémon. Nintendo own Pokémon. -->
 <area name="OAKbattle">
 	<enemy level="5">1</enemy>
 	<trainer />
@@ -12,7 +14,7 @@
 <area name="Route 22">
 	<!-- Currently, all chances are rolled seperately, and if all rolls fail then one willl be chosen at random. -->
 	<enemy level="2-4" chance="45">19</enemy>
-	<enemy level="3,5"  chance="10">21</enemy>
+	<enemy level="3,5" chance="10">21</enemy>
 	<enemy level="2-4" chance="45">29</enemy>
 	<enemy level="2-4" chance="45">32</enemy>
 </area>

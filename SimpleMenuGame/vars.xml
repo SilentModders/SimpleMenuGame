@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Poké Vars, v0.1</banner>
+<!-- Only the main file displays its banner. -->
+<!-- It is still a good place for a version number. -->
+<banner>Poké Vars, v0.1a</banner>
 <!-- This file Tracks "Pokémon" (Gen 1) by Nintendo. -->
 <variables>
 	<variable name="PLAYER">Blue</variable>
 	<variable name="RIVAL">Red</variable>
 	<variable name="BeatRival01" />
 	<variable name="ShopMan1met" />
+	<variable name="Parcel" />
 </variables>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the main file displays its banner. -->
+<!-- It is still a good place for a version number. -->
 <banner>Pokey Mans, v1.000</banner>
-<!-- This file describes the "Gen 1" Pokémon. (Nintendo owns Pokémon.) -->
+<!-- This file describes "Gen 1-ish" Pokémon. (Nintendo owns Pokémon.) -->
 <enemy>
 	<name>MissingNo</name>
 	<!-- Pokédex #0 -->

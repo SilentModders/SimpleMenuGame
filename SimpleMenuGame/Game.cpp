@@ -119,7 +119,7 @@ bool Game::Setup()
         AddRoom(Room, "You in a void. No file was loaded. Please QUIT.", true);
 
     /* Rooms below here can be overridden. */
-    AddRoom("YE FLASK", "You can't get YE FLASK!");
+    AddRoom("YE FLASK", "You can't get ye FLASK!");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
     AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);

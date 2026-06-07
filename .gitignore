@@ -45,3 +45,6 @@ SimpleMenuGame/x64/
 *.filters
 
 *.user
+SimpleMenuGame/.vscode/
+
+*.code-workspace

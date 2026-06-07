@@ -101,6 +101,9 @@ private:
 	/* Player's Money. */
 	int pMoney;
 
+	/* How many pokemon are with the player? */
+	int pPartySize;
+
 	CombatSys* combatSys;
 
 	/* Player's Party */

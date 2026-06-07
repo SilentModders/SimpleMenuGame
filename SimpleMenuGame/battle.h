@@ -6,7 +6,7 @@
 constexpr auto MAX_MOVES = 1000;
 constexpr auto MAX_COMBATANTS = 2; // May become 4.
 
-const enum TURNS
+enum TURNS
 {
 	ASLEEP,
 	LONG_MOVE,
@@ -33,9 +33,12 @@ private:
 	int pHp; // Player HP
 	int totalEhp, totalPhp;
 	int eIndex; // Enemy Index
+	int eMember; // Which enemy slot is active?
+	int eParty; // Enemy party size
 	Enemy* opponent; // The Battle combatant
 	PartyMember* partyMember; // The Player's guy
 	Game* theGame;
+	encounterData* encZone;
 
 	bool reportCrit; // Kept for the summary print
 	bool enemyTurn; // Whose stats are read.
@@ -89,10 +92,16 @@ private:
 	int pSubstituteHP[MAX_COMBATANTS];
 	bool substituted[MAX_COMBATANTS];
 
+	/* Need to remind player what level the opponent is. */
+	bool recentReset;
+
 	/* What moves were used last turn? */
 	std::string lastAttack[MAX_COMBATANTS];
 	/* How much damage was taken? */
 	int lastDamage[MAX_COMBATANTS];
+
+	/* Saved Enemy HP (for switching) */
+	int savedHP[PARTYSIZE];
 
 	int sCoins; // Scattered coins
 
@@ -101,6 +110,8 @@ private:
 		Returns false if there is none.
 	*/
 	bool FindPartyMember();
+	bool SwitchPartyMember(int mem = 0, bool stdMsg = true);
+	bool EnemySwitch(int mem = 0);
 
 	// Should the move hit?
 	bool HitChance(int mAcc = 95);
@@ -110,11 +121,16 @@ private:
 
 	int CalcExp();
 
+	int GetLevel(int eChoice);
+
+	int SearchEnemies();
+
 	void CalcStats(int index, int level);
 	void PrintHealth();
-	void StartBattle();
+	void StartBattle(bool sameEnc = false); // The flag is for trainer battles with more monsters.
 	void EndBattle();
 	void MoveAction(std::string mov);
+	void ResetEnemy();
 
 	Move* MovesByName(std::string mv);
 };

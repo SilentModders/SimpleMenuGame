@@ -190,7 +190,7 @@ bool Game::ReadFile(bool firstBoot)
                     }
             }
         /* These options are always available. */
-        AddChoice("Back", GetLastRoom());
+        AddChoice("BACK", GetLastRoom());
         AddChoice("HELP", "Help");
         AddChoice("RESTART", "RESTART");
         AddChoice("FLASK", "YE FLASK");

@@ -10,9 +10,11 @@
 
 <!-- Changes made to the XML are always live, but the RESTART command can be used to reboot the game as well. -->
 
+<!-- The player's input is not case-sensitive, but everything in the XML is. -->
+
 <!-- This is the starting room. -->
 <location name="Main">
-	<description>You are standing in Pallet Town. Route 1 is to the NORTH and the ocean is to the SOUTH.
+	<description>You are standing in a small country town. This Pallet Town, where you live. Route 1 is to the NORTH and the ocean is to the SOUTH.
 OAK has a lab here. You can rest at HOME.</description>
 	<options>
 		<option room="Route 1">NORTH</option>
@@ -27,25 +29,30 @@ OAK has a lab here. You can rest at HOME.</description>
 	<return />
 </location>
 <location name="OAK">
+	<!-- Words wrapped in $ symbols will be replaced with a matching value from the Variables XML. -->
 	<description>$RIVAL$: "OAK isn't here right now, $PLAYER$."</description>
 	<return />
 	<options>
 		<!-- Overriding the game's "back" option while also
-			using return and a variable makes a branchig scene. -->
-		<option room="OAKbattle" prohibit="BeatRival01">Back</option>
-		<option room="Main" require="BeatRival01">Back</option>
+			using return and a variable makes a branching scene. -->
+		<option room="OAKbattle" prohibit="BeatRival01">BACK</option>
+		<option room="Main" require="BeatRival01">BACK</option>
 	</options>
 </location>
 <location name="OAKbattle">
+	<!--
+		Notice that both descriptions and options can be toggled by
+		using a varible as a prerequisite or prohibitor.
+	-->
 	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our pokémon!"</description>
 	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong pokémon!"</description>
-	<variable name="BeatRival01">1</variable>
+	<variable name="BeatRival01" />
 	<return />
 	<options>
 		<!-- The room "Battle" actually intiates combat.
 			The encounter file determines your opponent based on your location. -->
-		<option room="Battle" prohibit="BeatRival01">Back</option>
-		<option room="Main" require="BeatRival01">Back</option>
+		<option room="Battle" prohibit="BeatRival01">BACK</option>
+		<option room="Main" require="BeatRival01">BACK</option>
 	</options>
 	<!-- <heal /> Would heal you after the fight (and every other time you come here) -->
 </location>
@@ -60,7 +67,7 @@ OAK has a lab here. You can rest at HOME.</description>
 	<return />
 </location>
 <location name="Route 1">
-	<description>You are on a grassy road; this is Route 1. You can SEARCH for pokémon, TALK to others on this route,
+	<description>Route 1 is a calm country road full of greenery. You can SEARCH for pokémon, TALK to others on this route,
 travel SOUTH to Pallet Town, or travel NORTH to Veridian City.</description>
 	<options>
 		<option room="Main">SOUTH</option>
@@ -108,7 +115,7 @@ and Route 22 is to the WEST. You can heal your party at the Pokémon CENTER or v
 	<return />
 </location>
 <location name="Route 22">
-	<description>You are on a stone road with some grass; this is Route 22.
+	<description>Route 22 is a paved road that leads straight to the Pokémon League.
 You can SEARCH for pokémon, travel EAST to Veridian City, or travel WEST to visit the Pokémon League.</description>
 	<options>
 		<option room="Battle">SEARCH</option>
@@ -127,6 +134,7 @@ You can SEARCH for pokémon, travel EAST to Veridian City, or travel WEST to vis
 -->
 <location name="Help">
 	<description>The choices that you may make on each screen will be presented in capital letters.
-You can also type RESTART to start over and QUIT to end the game.</description>
+In most cases, you may type BACK to return the previous location.
+You may also type RESTART to start over and QUIT to end the game.</description>
 	<return />
 </location>

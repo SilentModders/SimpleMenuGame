@@ -7,6 +7,9 @@
         to any future UI.
 //*/
 
+constexpr auto START_ROOM = "Main";
+constexpr auto ERROR_ROOM = "INVALID";
+
 constexpr auto CURRENCY_PFIX = "$";
 constexpr auto CURRENCY_SFIX = "";
 std::string Money(int money)
@@ -17,7 +20,7 @@ std::string Money(int money)
 Game::Game()
 {
     firstBoot = true;
-    Room = "Main";
+    Room = START_ROOM;
     OldRoom = Room;
     altXML = "";
     Choice = "";
@@ -65,7 +68,7 @@ void Game::SetRoom(std::string room)
         Inventory.clear();
         pMoney = 0;
         firstBoot = true;
-        room = "Main";
+        room = START_ROOM;
         Choice = "";
     }
 
@@ -90,7 +93,7 @@ void Game::AddRoom(std::string key, std::string text, bool move)
 void Game::AddChoice(std::string option, std::string room)
 {
     if (option != "")
-        choiceMap.insert(std::pair<std::string, std::string>(option, LoadString(room, "invalid")));
+        choiceMap.insert(std::pair<std::string, std::string>(option, LoadString(room, ERROR_ROOM)));
 }
 
 /* Add a variable from the game's script. */
@@ -110,7 +113,7 @@ bool Game::Setup()
     /* Create the list of available rooms. */
 
     /* Rooms in this list cannot be overridden. */
-    AddRoom("invalid", "Invalid command; try again.");
+    AddRoom(ERROR_ROOM, "That command was not valid. Try again.");
     AddRoom("RESTART", "The game restarts instead of showing this.");
 
     /* Read the file to find the room. */
@@ -206,11 +209,19 @@ void Game::AddRoomVar(std::string room, std::string var, std::string val)
 void Game::ChooseRoom(std::string key)
 {
     if (key != "")
+    {
         if (choiceMap.find(key) != choiceMap.end())
+        {
             SetRoom(choiceMap.find(key)->second);
+        }
         else
+        {
             if (!combatSys->InBattle())
-                SetRoom("invalid");
+            {
+                SetRoom(ERROR_ROOM);
+            }
+        }
+    }
 }
 
 /* Check the existence of a game var. */
@@ -283,7 +294,7 @@ std::string Game::RoomText(std::string key)
         RoomFunc(key);
         return roomMap.find(GetRoom())->second.first;
     }
-    return roomMap.find("invalid")->second.first;
+    return roomMap.find(ERROR_ROOM)->second.first;
 }
 
 /* Is this an auto-exit room? */
@@ -291,7 +302,7 @@ bool Game::AutoRoom(std::string key)
 {
     if (!roomMap.find(key)->second.second)
     {
-        Choice = "Back";
+        Choice = "BACK";
         return true;
     }
     return false;

@@ -143,7 +143,7 @@ std::string GetTypeName(Types typ)
 
 Types TypeFromName(std::string nme)
 {
-	const unsigned long long NUM_T = unsigned long long(Types::NUM_TYPES);
+	const int NUM_T = static_cast<int>(Types::NUM_TYPES);
 
 	nme = LoadString(nme, "invalid");
 
@@ -170,10 +170,10 @@ Types TypeFromName(std::string nme)
 	};
 
 	/* Convert text to title case. */
-	std::transform(nme.begin(), nme.begin() + 1, nme.begin(), std::toupper);
+	std::transform(nme.begin(), nme.begin() + 1, nme.begin(), (int(*)(int))std::toupper);
 
-	for (auto i = 0; i < NUM_T; i++)
-		if (nme == tNames[i])
-			return Types(i);
+	for (auto t = 0; t < NUM_T; t++)
+		if (nme == tNames[t])
+			return Types(t);
 	return Types::NORMAL;
 }

@@ -30,8 +30,8 @@ PartyMember::PartyMember(Game* mygame)
 	speed = 10;
 	curXp = 0;
 	myLevel = hitP = totalHP = 1;
-	for (auto i = 0; i < NUM_STATS; i++)
-		iv[i] = ev[i] = 0;
+	for (auto s = 0; s < NUM_STATS; s++)
+		iv[s] = ev[s] = 0;
 }
 std::string PartyMember::GetNickname()
 {
@@ -177,9 +177,9 @@ bool PartyMember::AwardXP(int xp)
 
 bool PartyMember::Create(int basetype, int level)
 {
-	for (auto i = 0; i < NUM_STATS; i++)
+	for (auto s = 0; s < NUM_STATS; s++)
 	{
-		iv[i] = random_int(1, MAX_IV);
+		iv[s] = random_int(1, MAX_IV);
 	}
 	Create(basetype, level, iv[HEALTH], iv[ATTACK_STAT], iv[DEFENSE], iv[SATTACK], iv[SDEFENSE], iv[SPEED]);
 	return true;
@@ -256,8 +256,10 @@ void PartyMember::CalcStats()
 	int stat[NUM_STATS] = { 0 };
 
 	// Calc Stats
-	for (auto i = 0; i < NUM_STATS; i++)
-		stat[i] = ((2 * base[i] + iv[i] + ev[i] / 4) * myLevel) / 100 + 5;
+	for (auto s = 0; s < NUM_STATS; s++)
+	{
+		stat[s] = ((2 * base[s] + iv[s] + ev[s] / 4) * myLevel) / 100 + 5;
+	}
 
 	health = stat[HEALTH];
 	attack = stat[ATTACK_STAT];

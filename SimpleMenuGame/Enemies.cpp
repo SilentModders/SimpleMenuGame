@@ -28,13 +28,13 @@ Enemy::Enemy()
 	type[0] =
 	type[1] = Types::NORMAL;
 
-	for (auto h = 0; h < NUM_DEBUFFS; h++)
+	for (auto d = 0; d < NUM_DEBUFFS; d++)
 	{
-		debuffs[h] = false;
+		debuffs[d] = false;
 	}
 
-	for (auto i = 0; i < MOVE_MEM; i++)
-		myMoves[i] = "";
+	for (auto m = 0; m < MOVE_MEM; m++)
+		myMoves[m] = "";
 }
 std::string Enemy::GetName()
 {
@@ -142,9 +142,9 @@ bool Enemy::SetDebuff(int buff, bool state)
 }
 void Enemy::ClearDebuffs()
 {
-	for (int i = 0; i < NUM_DEBUFFS; i++)
+	for (int d = 0; d < NUM_DEBUFFS; d++)
 	{
-		debuffs[i] = false;
+		debuffs[d] = false;
 	}
 }
 
@@ -233,7 +233,6 @@ void Enemy::BuildMoveList(int lv)
 	 * this creature can learn
 	 * and overwrites the oldest.
 	//*/
-	int i = 0;
 	int m = 0;
 	for (auto&& item : moveMap)
 	{
@@ -246,7 +245,6 @@ void Enemy::BuildMoveList(int lv)
 				m = 0;
 			}
 		}
-		i++;
 	}
 }
 

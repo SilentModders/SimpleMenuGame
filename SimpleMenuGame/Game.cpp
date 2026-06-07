@@ -21,9 +21,12 @@ Game::Game()
     OldRoom = Room;
     Choice = "";
     pMoney = 0;
+    pPartySize = 0;
     combatSys = new CombatSys(this);
-    for (auto i = 0; i < PARTYSIZE; i++)
-        party[i] = nullptr;
+    for (auto m = 0; m < PARTYSIZE; m++)
+    {
+        party[m] = nullptr;
+    }
 }
 
 /* The Current Choice */
@@ -107,7 +110,7 @@ bool Game::Setup()
 
     /* Rooms in this list cannot be overridden. */
     AddRoom("invalid", "Invalid command; try again.");
-    AddRoom("RESTART", "");
+    AddRoom("RESTART", "The game restarts instead of showing this.");
 
     /* Read the file to find the room. */
     readFile = ReadFile(firstBoot);
@@ -116,7 +119,6 @@ bool Game::Setup()
 
     /* Rooms below here can be overridden. */
     AddRoom("YE FLASK", "You can't get YE FLASK!");
-    AddRoom("FLASK", "Ye cannot get the FLASK.");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
     AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
@@ -140,21 +142,26 @@ void Game::InitPlayer()
     /* Default Party for testing */
     party[0] = new PartyMember(this);
     party[0]->Create(7, 5);
+    party[1] = new PartyMember(this);
+    party[1]->Create(19, 4);
+    pPartySize = 2;
 }
+
 PartyMember* Game::GetPartyMember(int index)
 {
     return party[std::clamp(index, 0, PARTYSIZE - 1)];
 }
 int Game::AddPartyMember(int basetype, int level, int Hp)
 {
-    for (auto i = 0; i < PARTYSIZE; i++)
+    for (auto m = 0; m < PARTYSIZE; m++)
     {
-        if (!party[i])
+        if (!party[m])
         {
-            party[1] = new PartyMember(this);
-            party[1]->Create(basetype, level);
-            party[i]->SetHP(Hp);
-            return i;
+            party[m] = new PartyMember(this);
+            party[m]->Create(basetype, level);
+            party[m]->SetHP(Hp);
+            pPartySize = m + 1;
+            return m;
         }
         // TODO: Pokemon Boxes
     }

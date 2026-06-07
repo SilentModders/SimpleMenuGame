@@ -62,11 +62,11 @@ int LookupEffect(std::string eff)
 	eff = LoadString(eff, "unknown");
 	toupper(eff);
 
-	for (auto i = 0; i < NUM_EFFECTS; i++)
+	for (auto n = 0; n < NUM_EFFECTS; n++)
 	{
-		if (eff == EFFECT_NAMES[i])
+		if (eff == EFFECT_NAMES[n])
 		{
-			return i;
+			return n;
 		}
 	}
 	return NO_EFFECT; // Return the Nothing effect when no match is found.

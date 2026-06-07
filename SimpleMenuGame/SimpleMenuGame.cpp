@@ -12,7 +12,7 @@
     #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
-constexpr auto BANNER = "Simple Menu Game, Version 0.5";
+constexpr auto BANNER = "Simple Menu Game, Version 0.6";
 
 int Quit(int code = EXIT_FAILURE)
 {
@@ -41,14 +41,14 @@ bool GameLoop(Game* gameObj)
     without the opportunity for input. */
     if (gameObj->AutoRoom(gameObj->GetRoom()))
         return true;
-    
+
     std::getline(std::cin, choice);
     toupper(choice);
     gameObj->SetChoice(choice);
     return (choice != "QUIT");
 }
 
-int main()
+int main(int argc, char** argv)
 {
     /* Allow unicode chars. */
     std::locale::global(std::locale("en_US.utf8"));
@@ -61,6 +61,12 @@ int main()
     {
         std::cout << "The game could not be started." << std::endl;
         return Quit();
+    }
+
+    /* Arg 1 can be a different XML file. */
+    if (argc > 1)
+    {
+        theGame->InterpretArg(argv[1]);
     }
 
     std::cout << BANNER << std::endl;

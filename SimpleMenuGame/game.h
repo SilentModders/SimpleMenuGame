@@ -7,7 +7,12 @@
 
 constexpr auto PARTYSIZE = 6;
 
+/*
+	The maxium number of entries
+	for a wile encounter area
+// */
 constexpr auto MAX_WILD = 16;
+
 struct encounterData
 {
 	bool trainer = false;
@@ -50,11 +55,15 @@ public:
 	/* Set the player's location and clear old data. */
 	void SetRoom(std::string room);
 
+	/* Attempt to load a different file. */
+	void InterpretArg(std::string arg);
+
 	void Pause(int time = 1);
 
 	/* Get Party Members. Empty slots are nullptr. */
 	PartyMember* GetPartyMember(int index = 0);
 	int AddPartyMember(int basetype, int level, int Hp);
+	int GetPartySize() { return pPartySize; }
 
 	int AddMoney(int money);
 
@@ -67,6 +76,9 @@ public:
 	bool RemoveInventoryItem(std::string item, int count = 1);
 
 private:
+	/* Alternate Main File */
+	std::string altXML;
+
 	/* The Current Room */
 	std::string Room;
 	/* The initial vaule determines the entry point for the script. */

@@ -2,19 +2,39 @@
 #include "game.h"
 #include "battle.h"
 
+/* Default File Names */
 constexpr auto GAME_XML = "game.xml";
 constexpr auto VARS_XML = "vars.xml";
 constexpr auto MONSTERS = "enemies.xml";
 constexpr auto ENCO_XML = "encounters.xml";
 constexpr auto MOVE_XML = "moves.xml";
 
+/*
+    Enabling this will display the <banner>
+    tags in all XML files, not just game.xml.
+*/
 constexpr bool XTRA_BANNERS = false;
+
+/* Print XML Errors to the screen. */
+void XML_Error(const pugi::char_t* source, pugi::xml_parse_result result);
+
+/* Attempt to load a different file. */
+void Game::InterpretArg(std::string arg)
+{
+    altXML = arg;
+}
 
 bool Game::ReadFile(bool firstBoot)
 {
-    const pugi::char_t* SOURCE = GAME_XML;
+    std::string mFile = GAME_XML;
+    if (altXML != "")
+    {
+        mFile = altXML;
+    }
+
+    const pugi::char_t* main_source = mFile.c_str();;
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(SOURCE);
+    pugi::xml_parse_result result = doc.load_file(main_source);
 
     if (result)
     {
@@ -131,6 +151,7 @@ bool Game::ReadFile(bool firstBoot)
                 }
 
                 /* Find out if this room gives items. */
+                // TODO: Item removal
                 if (room.child("inventory"))
                     AddInventoryItem(room.child("inventory").attribute("name").value(),
                         atoi(LoadString(room.child_value("inventory"), "1").c_str()));
@@ -138,11 +159,11 @@ bool Game::ReadFile(bool firstBoot)
                 /* This room heals. */
                 if (room.child("heal"))
                 {
-                    for (auto i = 0; i < PARTYSIZE; i++)
+                    for (auto m = 0; m < PARTYSIZE; m++)
                     {
-                        if (party[i])
+                        if (party[m])
                         {
-                            party[i]->Heal();
+                            party[m]->Heal();
                         }
                     }
                 }
@@ -172,15 +193,12 @@ bool Game::ReadFile(bool firstBoot)
         AddChoice("Back", GetLastRoom());
         AddChoice("HELP", "Help");
         AddChoice("RESTART", "RESTART");
-        AddChoice("GET YE FLASK", "YE FLASK");
-        AddChoice("GET FLASK", "FLASK");
+        AddChoice("FLASK", "YE FLASK");
+        /* These default rooms can be found in Game::Setup() from Game.cpp */
     }
-    /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << SOURCE << "] parsed with errors.\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (SOURCE + result.offset) << "]\n\n";
+        XML_Error(main_source, result);
     }
     return result;
 }
@@ -225,12 +243,9 @@ bool CombatSys::ReadFile(std::string file)
             }
         }
     }
-    /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << source << "] parsed with errors.\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+        XML_Error(source, result);
     }
     return result;
 }
@@ -266,12 +281,9 @@ bool CombatSys::ReadMoveFile(std::string file)
         }
         std::cout << std::endl;
     }
-    /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << source << "] parsed with errors.\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+        XML_Error(source, result);
     }
     return result;
 }
@@ -295,12 +307,9 @@ bool Game::ReadVarFile(std::string file)
                 if (gamevar.attribute("name").value())
                     AddGameVar(gamevar.attribute("name").value(), LoadString(gamevar.child_value(), "0"));
     }
-    /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << source << "] parsed with errors.\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+        XML_Error(source, result);
     }
     return result;
 }
@@ -328,15 +337,15 @@ bool Game::ReadEncounterFile(std::string file)
             curArea.trainer = area.child("trainer");
 
             /* Read all the "enemy" tags in the area. */
-            auto i = 0;
+            auto e = 0;
             for (pugi::xml_node enemy = area.child("enemy"); enemy; enemy = enemy.next_sibling("enemy"))
             {
                 /* Read each enemy. */
-                curArea.enemies[i] = atoi(enemy.child_value());
+                curArea.enemies[e] = atoi(enemy.child_value());
 
                 /* Read the chance, if present. */
                 if (enemy.attribute("chance"))
-                    curArea.chance[i] = atoi(enemy.attribute("chance").value());
+                    curArea.chance[e] = atoi(enemy.attribute("chance").value());
 
                 /* Read the level(s). */
                 if (enemy.attribute("level"))
@@ -346,31 +355,36 @@ bool Game::ReadEncounterFile(std::string file)
                     {
                         if (levels.find('-') < levels.length())
                         {
-                            curArea.minLv[i] = atoi(levels.substr(0, levels.find('-')).c_str());
-                            curArea.maxLv[i] = atoi(levels.substr(levels.find('-') + 1).c_str());
-                            curArea.randType[i] = 1;
+                            curArea.minLv[e] = atoi(levels.substr(0, levels.find('-')).c_str());
+                            curArea.maxLv[e] = atoi(levels.substr(levels.find('-') + 1).c_str());
+                            curArea.randType[e] = 1;
                         }
                         if (levels.find(',') < levels.length())
                         {
-                            curArea.minLv[i] = atoi(levels.substr(0, levels.find(',')).c_str());
-                            curArea.maxLv[i] = atoi(levels.substr(levels.find(',') + 1).c_str());
-                            curArea.randType[i] = 2;
+                            curArea.minLv[e] = atoi(levels.substr(0, levels.find(',')).c_str());
+                            curArea.maxLv[e] = atoi(levels.substr(levels.find(',') + 1).c_str());
+                            curArea.randType[e] = 2;
                         }
                     }
                     else
-                        curArea.minLv[i] = curArea.maxLv[i] = atoi(levels.c_str());
+                        curArea.minLv[e] = curArea.maxLv[e] = atoi(levels.c_str());
                 }
-                i++;
+                e++;
             }
             encounterMap.insert(std::pair<std::string, encounterData>(area.attribute("name").value(), curArea));
         }
     }
-    /* Print XML Errors to the screen. */
     else
     {
-        std::cout << "XML [" << source << "] parsed with errors.\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
+        XML_Error(source, result);
     }
     return result;
+}
+
+/* Print XML Errors to the screen. */
+void XML_Error(const pugi::char_t* source, pugi::xml_parse_result result)
+{
+    std::cout << "XML [" << source << "] parsed with errors.\n";
+    std::cout << "Error description: " << result.description() << "\n";
+    std::cout << "Error offset: " << result.offset << " (error at [..." << (source + result.offset) << "]\n\n";
 }

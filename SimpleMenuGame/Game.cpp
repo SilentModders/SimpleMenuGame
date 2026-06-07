@@ -19,6 +19,7 @@ Game::Game()
     firstBoot = true;
     Room = "Main";
     OldRoom = Room;
+    altXML = "";
     Choice = "";
     pMoney = 0;
     pPartySize = 0;

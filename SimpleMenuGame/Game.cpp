@@ -155,14 +155,28 @@ PartyMember* Game::GetPartyMember(int index)
 {
     return party[std::clamp(index, 0, PARTYSIZE - 1)];
 }
+
+/* Create party member with new stats */
 int Game::AddPartyMember(int basetype, int level, int Hp)
 {
+    PartyMember* member = new PartyMember(this);
+    member->Create(basetype, level);
+    return(AddPartyMemberFull(member, Hp));
+}
+
+/* Add party member with existing stats */
+int Game::AddPartyMemberFull(PartyMember* member, int Hp)
+{
+    if (!member)
+    {
+        return 0;
+    }
+
     for (auto m = 0; m < PARTYSIZE; m++)
     {
         if (!party[m])
         {
-            party[m] = new PartyMember(this);
-            party[m]->Create(basetype, level);
+            party[m] = member;
             party[m]->SetHP(Hp);
             pPartySize = m + 1;
             return m;
@@ -170,9 +184,10 @@ int Game::AddPartyMember(int basetype, int level, int Hp)
         // TODO: Pokemon Boxes
     }
     return 0;
-    /* This is okay, because you can
-     * (almost) never have an empty party.
-    //*/
+    /*
+        Reusing 0 for errors is okay, because you
+        can (almost) never have an empty party.
+    // */
 }
 
 int Game::AddMoney(int money)

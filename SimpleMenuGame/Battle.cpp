@@ -57,7 +57,7 @@ CombatSys::CombatSys(Game* gameObj)
 		eMvCount =
 		pMvCount =
 		eLevel =
-		eParty = 0;
+		ePartySz = 0;
 	totalEhp = totalPhp =
 		eHp = pHp = 10;
 	eIndex = 19; // Rattata - They are everywhere
@@ -66,7 +66,7 @@ CombatSys::CombatSys(Game* gameObj)
 		reportCrit =
 		enemyTurn =
 		recentReset = false;
-	opponent = partyMember = nullptr;
+	partyMember = nullptr;
 	encZone = nullptr;
 	eAcc = eEvas = eCritC =
 		pAcc = pEvas = pCritC = BSTAT;
@@ -76,6 +76,7 @@ CombatSys::CombatSys(Game* gameObj)
 	{
 		participated[r] = false;
 		savedHP[r] = 0;
+		eParty[r] = nullptr;
 	}
 	for (auto n = 0; n < MAX_ENEMIES; n++)
 	{
@@ -83,7 +84,7 @@ CombatSys::CombatSys(Game* gameObj)
 	}
 	for (auto s = 0; s < NUM_STATS; s++)
 	{
-		eIv[s] = eStat[s] = pStat[s] = 0;
+		eStat[s] = pStat[s] = 0;
 	}
 	for (auto v = 0; v < MAX_MOVES; v++)
 	{
@@ -124,38 +125,21 @@ void CombatSys::PrintHealth()
 {
 	if(recentReset)
 	{
-		std::cout << opponent->GetName() << " is level " << eLevel << "." << std::endl;
+		std::cout << eParty[eMember]->GetName() << " is level " << eLevel << "." << std::endl;
 		recentReset = false;
 	}
 	std::cout << "Your " << partyMember->GetNickname() << " has " << ColoredHp(pHp, totalPhp) << " hit points." << std::endl;
-	std::cout << "Enemy " << opponent->GetName() << " has " << ColoredHp(eHp, totalEhp) << " hit points." << std::endl;
+	std::cout << "Enemy " << eParty[eMember]->GetName() << " has " << ColoredHp(eHp, totalEhp) << " hit points." << std::endl;
 }
 
 void CombatSys::CalcStats(int index, int level)
 {
-	// Base Stats
-	int base[NUM_STATS] = { 0 };
-	base[HEALTH]  = enemies[index]->GetBaseHealth();
-	base[ATTACK_STAT] = enemies[index]->GetBaseAttack();
-	base[DEFENSE] = enemies[index]->GetBaseDefense();
-	base[SATTACK] = enemies[index]->GetBaseSpAtk();
-	base[SDEFENSE]= enemies[index]->GetBaseSpDef();
-	base[SPEED]   = enemies[index]->GetBaseSpeed();
-
-	const int EV = 0; // Always 0 for wild
-
-	// Calc Stats
+	// Store Stats
 	for (auto s = 0; s < NUM_STATS; s++)
 	{
-		// BUGBUG: Use of random likely to cause issues
-		// between pre-battle stat calculation (for enemy trainers)
-		// And actual calculation when that monster fights. FIXME
-		eIv[s] = random_int(1, MAX_IV);
-		eStat[s] = ((2 * base[s] + eIv[s] + EV / 4) * level) / 100 + 5;
+		eStat[s] = eParty[eMember]->GetStat(s);
 	}
-
-	// HP is a stat with a different formula.
-	totalEhp = ((2 * base[HEALTH] + eIv[HEALTH] + EV / 4 + 100) * level) / 100 + 10;
+	totalEhp = eParty[eMember]->GetTotalHP();
 }
 
 int CombatSys::CalcDamage(Move* mov, bool noCrits)
@@ -189,8 +173,8 @@ int CombatSys::CalcDamage(Move* mov, bool noCrits)
 			defenseStat = pStat[SDEFENSE];
 		}
 		critSt = eCritC;
-		t1 = opponent->GetType();
-		t2 = opponent->GetType(false);
+		t1 = eParty[eMember]->GetType();
+		t2 = eParty[eMember]->GetType(false);
 	}
 
 	/* Rage makes you stronger as you get hit. */
@@ -257,7 +241,7 @@ int CombatSys::CalcDamage(Move* mov, bool noCrits)
 	}
 
 	float burned = 1; // Burn, .5 if burned attacker using physical move
-	if ((enemyTurn && opponent->Burned()) || (!enemyTurn && partyMember->Burned()))
+	if ((enemyTurn && eParty[eMember]->Burned()) || (!enemyTurn && partyMember->Burned()))
 	{
 		if (!SpecialType(mType))
 		{
@@ -334,7 +318,7 @@ int CombatSys::CalcExp()
 		}
 	}
 
-	int bXp = opponent->GetXpYield();
+	int bXp = eParty[eMember]->GetXpYield();
 
 	return int((trainType * tradeExp * bXp * eLevel) / 7 * share);
 }
@@ -411,7 +395,7 @@ bool CombatSys::SwitchPartyMember(int mem, bool stdMsg)
 bool CombatSys::Transform()
 {
 	Enemy* user = partyMember;
-	Enemy* target = opponent;
+	Enemy* target = eParty[eMember];
 	std::string* theirM = eMoves;
 	std::string* myM = pMoves;
 	int atk = eStat[ATTACK_STAT];
@@ -426,7 +410,7 @@ bool CombatSys::Transform()
 		sat = pStat[SATTACK];
 		sdf = pStat[SDEFENSE];
 		spd = pStat[SPEED];
-		user = opponent;
+		user = eParty[eMember];
 		target = partyMember;
 		theirM = pMoves;
 		myM = eMoves;
@@ -503,7 +487,7 @@ bool CombatSys::EnemySwitch(int mem)
 	{
 		return false;
 	}
-	if (mem >= eParty)
+	if (mem >= ePartySz)
 	{
 		return false;
 	}
@@ -524,7 +508,7 @@ int CombatSys::SearchEnemies()
 {
 	int newnum = -1;
 
-	if (eParty > 1)
+	if (ePartySz > 1)
 	{
 		// Try backwards, if we're not the first one.
 		if (eMember > 0)
@@ -538,9 +522,9 @@ int CombatSys::SearchEnemies()
 			}
 		}
 		// First scan forward, if we're not already last.
-		if (eMember < eParty - 1)
+		if (eMember < ePartySz - 1)
 		{
-			for (auto n = eMember + 1; n < eParty; n++)
+			for (auto n = eMember + 1; n < ePartySz; n++)
 			{
 				if (EnemySwitch(n))
 				{
@@ -556,14 +540,14 @@ int CombatSys::SearchEnemies()
 void CombatSys::ResetEnemy()
 {
 	eIndex = encZone->enemies[eMember];
-	opponent = enemies[eIndex];
-	GetLevel(eMember);
-	opponent->BuildMoveList(eLevel);
 	for (eMvCount = 0; eMvCount < MOVE_MEM; eMvCount++)
 	{
-		if (opponent->MoveName(eMvCount) != "")
+		/* Clear old moves */
+		eMoves[eMvCount] = "";
+
+		if (eParty[eMember]->MoveName(eMvCount) != "")
 		{
-			eMoves[eMvCount] = opponent->MoveName(eMvCount);
+			eMoves[eMvCount] = eParty[eMember]->MoveName(eMvCount);
 		}
 		else
 		{
@@ -628,19 +612,18 @@ void CombatSys::StartBattle(bool sameEnc)
 
 	if (trainerBattle && !sameEnc)
 	{
-		/* The other trainer's party size. */
+		/* The other trainer's party */
 
-		// Precompute stats to get HP
+		// Store all members' HP
 		for (auto p = 0; p < PARTYSIZE; p++)
 		{
 			if (encZone->enemies[p])
 			{
-				// This will fill the battle system's
-				// stats, but they'll be overwritten later.
 				GetLevel(p);
-				CalcStats(encZone->enemies[p], eLevel);
-				savedHP[p] = totalEhp;
-				eParty++;
+				eParty[p] = new PartyMember(theGame);
+				eParty[p]->Create(encZone->enemies[p], eLevel);
+				savedHP[p] = eParty[p]->GetTotalHP();
+				ePartySz++;
 			}
 		}
 	}
@@ -679,16 +662,22 @@ void CombatSys::StartBattle(bool sameEnc)
 		eChoice = random_int(0, slots);
 		eIndex = encZone->enemies[eChoice];
 	}
-	opponent = enemies[eIndex];
+	// Sets eLevel internally
 	GetLevel(eChoice);
 
+	if (!trainerBattle)
+	{
+		eParty[0] = new PartyMember(theGame);
+		eParty[0]->Create(eIndex, eLevel);
+	}
+	CalcStats(eIndex, eLevel);
+
 	/* Save up to 4 enemy moves. */
-	opponent->BuildMoveList(eLevel);
 	for (eMvCount = 0; eMvCount < MOVE_MEM; eMvCount++)
 	{
-		if (opponent->MoveName(eMvCount) != "")
+		if (eParty[eMember]->MoveName(eMvCount) != "")
 		{
-			eMoves[eMvCount] = opponent->MoveName(eMvCount);
+			eMoves[eMvCount] = eParty[eMember]->MoveName(eMvCount);
 		}
 		else
 		{
@@ -715,18 +704,16 @@ void CombatSys::StartBattle(bool sameEnc)
 		}
 	}
 
-	CalcStats(eIndex, eLevel);
-	
 	if (trainerBattle)
 	{
-		std::cout << "Your challenger sent out " << opponent->GetName();
+		std::cout << "Your challenger sent out " << eParty[eMember]->GetName();
 	}
 	else
 	{
-		std::cout << "A wild " << opponent->GetName() << " appeared";
+		std::cout << "A wild " << eParty[eMember]->GetName() << " appeared";
 	}
 	std::cout << "!" << std::endl;
-	std::cout << opponent->GetName() << " is level " << eLevel << "." << std::endl;
+	std::cout << eParty[eMember]->GetName() << " is level " << eLevel << "." << std::endl;
 
 	// Check for saved eHP
 	if (savedHP[eMember] > 0)
@@ -812,7 +799,7 @@ bool CombatSys::BattleTurn()
 						ColoredHp(theGame->GetPartyMember(p)->GetHP(), theGame->GetPartyMember(p)->GetTotalHP()) << " HP" << std::endl;
 				}
 			}
-			std::wcout << "Select a new pokémon by number." << std::endl;
+			std::cout << "Select a new pokémon by number." << std::endl;
 			std::getline(std::cin, choice);
 			std::cout << std::endl;
 
@@ -842,8 +829,10 @@ bool CombatSys::BattleTurn()
 		{
 			std::string choice = "";
 			std::cout << "Use Which item?" << std::endl;
+			// TODO: LIST
 			std::getline(std::cin, choice);
 			toupper(choice);
+			// TODO: POTION
 			if (choice != "POKEBALL")
 			{
 				return false;
@@ -855,20 +844,20 @@ bool CombatSys::BattleTurn()
 					std::cout << "You can't use that right now!" << std::endl;
 					return false;
 				}
-				std::wcout << "You threw a pokéball." << std::endl;
+				std::cout << "You threw a pokéball." << std::endl;
 				std::cout << "..." << std::endl;
 				theGame->Pause();
-				if (random_int(1, 100) < opponent->GetCatchRate())
+				if (random_int(1, 100) < eParty[0]->GetCatchRate())
 				{
 					std::cout << "It broke free!" << std::endl;
 					return false;
 				}
-				std::cout << "You caught " << opponent->GetName() << "!" << std::endl;
+				std::cout << "You caught " << eParty[0]->GetName() << "!" << std::endl;
 				if (AUTOHEAL)
 				{
 					eHp = totalEhp;
 				}
-				theGame->AddPartyMember(eIndex, eLevel, eHp); // BUGBUG: This will re-roll the IVs.
+				theGame->AddPartyMemberFull(eParty[0], eHp);
 				EndBattle();
 				return true;
 			}
@@ -933,7 +922,7 @@ bool CombatSys::BattleTurn()
 		{
 			pSpeed /= 2;
 		}
-		if (opponent->Paralyzed())
+		if (eParty[eMember]->Paralyzed())
 		{
 			eSpeed /= 2;
 		}
@@ -1026,17 +1015,17 @@ bool CombatSys::BattleTurn()
 	/* Post-Turn Effects */
 	if (combatTurn)
 	{
-		if (opponent->Burned())
+		if (eParty[eMember]->Burned())
 		{
 			eHp -= poisonDamage(totalEhp);
-			std::cout << "Enemy " << opponent->GetName() << " was hurt by their burn!" << std::endl;
+			std::cout << "Enemy " << eParty[eMember]->GetName() << " was hurt by their burn!" << std::endl;
 		}
 		if (partyMember->Burned())
 		{
 			pHp -= poisonDamage(totalPhp);
 			std::cout << "Your " << partyMember->GetNickname() << " was hurt by their burn!" << std::endl;
 		}
-		if (opponent->Poisoned())
+		if (eParty[eMember]->Poisoned())
 		{
 			int e_dm = poisonDamage(totalEhp);
 			if (bPoisonNum[1])
@@ -1045,7 +1034,7 @@ bool CombatSys::BattleTurn()
 				bPoisonNum[1]++;
 			}
 			eHp -= e_dm;
-			std::cout << "Enemy " << opponent->GetName() << " was hurt by poison!" << std::endl;
+			std::cout << "Enemy " << eParty[eMember]->GetName() << " was hurt by poison!" << std::endl;
 		}
 		if (partyMember->Poisoned())
 		{
@@ -1058,7 +1047,7 @@ bool CombatSys::BattleTurn()
 			pHp -= p_dm;
 			std::cout << "Your " << partyMember->GetNickname() << " was hurt by poison!" << std::endl;
 		}
-		if (opponent->Seeded())
+		if (eParty[eMember]->Seeded())
 		{
 			int e_dm = poisonDamage(totalEhp);
 			if (e_dm >= eHp)
@@ -1073,7 +1062,7 @@ bool CombatSys::BattleTurn()
 				{
 					pHp = totalPhp;
 				}
-				std::cout << "Seed on enemy " << opponent->GetName() <<
+				std::cout << "Seed on enemy " << eParty[eMember]->GetName() <<
 					" transferred " << std::to_string(e_dm) << " hit points!" << std::endl;
 			}
 		}
@@ -1141,15 +1130,15 @@ bool CombatSys::BattleTurn()
 			return false;
 		}
 
-		std::cout << "Enemy " << opponent->GetName() << " fainted!" << std::endl;
+		std::cout << "Enemy " << eParty[eMember]->GetName() << " fainted!" << std::endl;
 		savedHP[eMember] = 0; // In case switching set this earlier.
 
-		partyMember->AwardEV(opponent->GetBaseHealth(), HEALTH);
-		partyMember->AwardEV(opponent->GetBaseAttack(), ATTACK_STAT);
-		partyMember->AwardEV(opponent->GetBaseDefense(),DEFENSE);
-		partyMember->AwardEV(opponent->GetBaseSpAtk(),  SATTACK);
-		partyMember->AwardEV(opponent->GetBaseSpDef(),  SDEFENSE);
-		partyMember->AwardEV(opponent->GetBaseSpeed(),  SPEED);
+		partyMember->AwardEV(eParty[eMember]->GetBaseHealth(), HEALTH);
+		partyMember->AwardEV(eParty[eMember]->GetBaseAttack(), ATTACK_STAT);
+		partyMember->AwardEV(eParty[eMember]->GetBaseDefense(),DEFENSE);
+		partyMember->AwardEV(eParty[eMember]->GetBaseSpAtk(),  SATTACK);
+		partyMember->AwardEV(eParty[eMember]->GetBaseSpDef(),  SDEFENSE);
+		partyMember->AwardEV(eParty[eMember]->GetBaseSpeed(),  SPEED);
 
 		std::cout << "You won!" << std::endl;
 		int xp = CalcExp();
@@ -1170,7 +1159,7 @@ bool CombatSys::BattleTurn()
 
 		if (trainerBattle)
 		{
-			if (eParty > 1)
+			if (ePartySz > 1)
 			{
 				int nextE = SearchEnemies();
 				if (nextE >= 0)
@@ -1220,11 +1209,11 @@ void CombatSys::MoveAction(std::string mov)
 	Move* move = MovesByName(mov);
 	int mv_eff = move->GetEffect();
 	std::string summ = "";
-	std::string sUser = opponent->GetName();
+	std::string sUser = eParty[eMember]->GetName();
 	std::string sTarg = partyMember->GetNickname();
 	int level = partyMember->GetLevel();
-	Types t1 = opponent->GetType();
-	Types t2 = opponent->GetType(false);
+	Types t1 = eParty[eMember]->GetType();
+	Types t2 = eParty[eMember]->GetType(false);
 	bool missed = false;
 	lastAttack[enemyTurn] = "";
 	/*
@@ -1236,7 +1225,7 @@ void CombatSys::MoveAction(std::string mov)
 		summ += "Enemy";
 	else
 	{
-		sTarg = opponent->GetName();
+		sTarg = eParty[eMember]->GetName();
 		sUser = partyMember->GetNickname();
 		level = eLevel;
 		Types t1 = partyMember->GetType();
@@ -1249,7 +1238,7 @@ void CombatSys::MoveAction(std::string mov)
 	Enemy* checkMon = partyMember;
 	if (enemyTurn)
 	{
-		checkMon = opponent;
+		checkMon = eParty[eMember];
 	}
 	if (debuffTurns[enemyTurn][FLINCHING] || checkMon->Asleep() || checkMon->Frozen() || checkMon->Paralyzed())
 	{
@@ -1609,8 +1598,8 @@ void CombatSys::MoveAction(std::string mov)
 		summ += "and is now ";
 		if (enemyTurn)
 		{
-			opponent->SetType(MovesByName(eMoves[0])->GetType());
-			summ += GetTypeName(opponent->GetType());
+			eParty[eMember]->SetType(MovesByName(eMoves[0])->GetType());
+			summ += GetTypeName(eParty[eMember]->GetType());
 		}
 		else
 		{
@@ -1632,7 +1621,7 @@ void CombatSys::MoveAction(std::string mov)
 			else
 			{
 				/* Species name, not nickname */
-				summ += opponent->GetName();
+				summ += eParty[eMember]->GetName();
 			}
 		}
 		else
@@ -1944,11 +1933,11 @@ void CombatSys::MoveAction(std::string mov)
 					for (auto i = 0; i < MOVE_MEM;)
 					{
 						eMvCount = 0;
-						if (opponent->MoveName(i) != "")
+						if (eParty[eMember]->MoveName(i) != "")
 						{
-							if (opponent->MoveName(i) != lastAttack[!enemyTurn])
+							if (eParty[eMember]->MoveName(i) != lastAttack[!enemyTurn])
 							{
-								eMoves[eMvCount] = opponent->MoveName(i);
+								eMoves[eMvCount] = eParty[eMember]->MoveName(i);
 								eMvCount++;
 							}
 							else // This would mean the move was found.
@@ -2018,25 +2007,18 @@ void CombatSys::MoveAction(std::string mov)
 	if (mv_eff == RESET)
 	{
 		// Recalc Party Member Stats
-		for (auto es = 0; es < NUM_STATS; es++)
-		{
-			pStat[es] = partyMember->GetStat(es);
-		}
-		// Recalc Enemy Stats
-		int base[NUM_STATS] = { 0 };
-		base[HEALTH]  = enemies[eIndex]->GetBaseHealth();
-		base[ATTACK_STAT] = enemies[eIndex]->GetBaseAttack();
-		base[DEFENSE] = enemies[eIndex]->GetBaseDefense();
-		base[SATTACK] = enemies[eIndex]->GetBaseSpAtk();
-		base[SDEFENSE]= enemies[eIndex]->GetBaseSpDef();
-		base[SPEED] = enemies[eIndex]->GetBaseSpeed();
-		const int EV = 0; // Always 0 for wild
-		// Calc Stats
 		for (auto ps = 0; ps < NUM_STATS; ps++)
 		{
-			eStat[ps] = ((2 * base[ps] + eIv[ps] + EV / 4) * level) / 100 + 5;
+			pStat[ps] = partyMember->GetStat(ps);
 		}
-		// Accuracy stages and the like start at 0.
+
+		// Recalc Enemy Stats
+		for (auto es = 0; es < NUM_STATS; es++)
+		{
+			eStat[es] = eParty[eMember]->GetStat(es);
+		}
+
+		/* Accuracy stages and the like start at 0. */
 		eAcc = eEvas = eCritC =
 			pAcc = pEvas = pCritC = BSTAT;
 	}
@@ -2133,7 +2115,7 @@ void CombatSys::MoveAction(std::string mov)
 				}
 				if (mv_eff == DREAMEATER)
 				{
-					if ((enemyTurn && !partyMember->Asleep()) || (!enemyTurn && !opponent->Asleep()))
+					if ((enemyTurn && !partyMember->Asleep()) || (!enemyTurn && !eParty[eMember]->Asleep()))
 					{
 						/* No effect unless the target is asleep. */
 						dmg = 0;
@@ -2437,8 +2419,8 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			debuff_fail =
-				(opponent->GetType() == Types::FIRE) ||
-				(opponent->GetType(false) == Types::FIRE);
+				(eParty[eMember]->GetType() == Types::FIRE) ||
+				(eParty[eMember]->GetType(false) == Types::FIRE);
 		}
 		summ += " and ";
 		if (enemyTurn)
@@ -2449,7 +2431,7 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			summ += "Enemy";
-			opponent->Burn(!debuff_fail);
+			eParty[eMember]->Burn(!debuff_fail);
 		}
 		summ += " " + sTarg + " ";
 		if (!debuff_fail)
@@ -2472,8 +2454,8 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			debuff_fail =
-				(opponent->GetType() == Types::ICE) ||
-				(opponent->GetType(false) == Types::ICE);
+				(eParty[eMember]->GetType() == Types::ICE) ||
+				(eParty[eMember]->GetType(false) == Types::ICE);
 		}
 		summ += " and ";
 		if (enemyTurn)
@@ -2484,7 +2466,7 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			summ += "Enemy";
-			opponent->Freeze(!debuff_fail);
+			eParty[eMember]->Freeze(!debuff_fail);
 		}
 		summ += " " + sTarg + " ";
 		if (!debuff_fail)
@@ -2507,8 +2489,8 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			debuff_fail =
-				(opponent->GetType() == Types::ELECTRIC) ||
-				(opponent->GetType(false) == Types::ELECTRIC);
+				(eParty[eMember]->GetType() == Types::ELECTRIC) ||
+				(eParty[eMember]->GetType(false) == Types::ELECTRIC);
 		}
 		summ += " and ";
 		if (enemyTurn)
@@ -2519,7 +2501,7 @@ void CombatSys::MoveAction(std::string mov)
 		else
 		{
 			summ += "Enemy";
-			opponent->Paralyze(!debuff_fail);
+			eParty[eMember]->Paralyze(!debuff_fail);
 		}
 		summ += " " + sTarg + " ";
 		if (!debuff_fail)
@@ -2541,7 +2523,7 @@ void CombatSys::MoveAction(std::string mov)
 			}
 			else
 			{
-				debuff_fail = opponent->Poisoned();
+				debuff_fail = eParty[eMember]->Poisoned();
 			}
 		}
 		if (mv_eff == BADPOISON)
@@ -2559,7 +2541,7 @@ void CombatSys::MoveAction(std::string mov)
 			else
 			{
 				summ += "Enemy";
-				opponent->Poison();
+				eParty[eMember]->Poison();
 			}
 			summ += " " + sTarg + " was ";
 			if (mv_eff == BADPOISON)
@@ -2591,7 +2573,7 @@ void CombatSys::MoveAction(std::string mov)
 		}
 		else
 		{
-			debuff_fail = opponent->Seeded();
+			debuff_fail = eParty[eMember]->Seeded();
 		}
 
 		if (!debuff_fail)
@@ -2605,7 +2587,7 @@ void CombatSys::MoveAction(std::string mov)
 			else
 			{
 				summ += "Enemy";
-				opponent->Seed();
+				eParty[eMember]->Seed();
 			}
 			summ += " " + sTarg + " was seeded";
 		}
@@ -2633,8 +2615,8 @@ void CombatSys::MoveAction(std::string mov)
 			else
 			{
 				sameT =
-					(opponent->GetType() == Types::GRASS) ||
-					(opponent->GetType(false) == Types::GRASS);
+					(eParty[eMember]->GetType() == Types::GRASS) ||
+					(eParty[eMember]->GetType(false) == Types::GRASS);
 			}
 			if (sameT)
 			{
@@ -2654,7 +2636,7 @@ void CombatSys::MoveAction(std::string mov)
 		}
 		else
 		{
-			debuff_fail = opponent->Asleep();
+			debuff_fail = eParty[eMember]->Asleep();
 		}
 		if (!debuff_fail)
 		{
@@ -2667,7 +2649,7 @@ void CombatSys::MoveAction(std::string mov)
 			else
 			{
 				summ += "Enemy";
-				opponent->Sleep();
+				eParty[eMember]->Sleep();
 			}
 			debuffTurns[!enemyTurn][ASLEEP] = random_int(1, DB_TURNS);
 			summ += " " + sTarg + " fell asleep";
@@ -2698,8 +2680,8 @@ void CombatSys::MoveAction(std::string mov)
 		{
 			if (enemyTurn)
 			{
-				opponent->ClearDebuffs();
-				opponent->Sleep();
+				eParty[eMember]->ClearDebuffs();
+				eParty[eMember]->Sleep();
 				eHp = totalEhp;
 			}
 			else

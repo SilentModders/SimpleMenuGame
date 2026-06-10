@@ -34,8 +34,8 @@ private:
 	int totalEhp, totalPhp;
 	int eIndex; // Enemy Index
 	int eMember; // Which enemy slot is active?
-	int eParty; // Enemy party size
-	Enemy* opponent; // The Battle combatant
+	int ePartySz; // Enemy party size
+	PartyMember* eParty[PARTYSIZE]; // All combatants
 	PartyMember* partyMember; // The Player's guy
 	Game* theGame;
 	encounterData* encZone;
@@ -57,13 +57,10 @@ private:
 	std::string eMoves[MOVE_MEM], pMoves[MOVE_MEM];
 	int eMvCount, pMvCount;
 
-	// Enemy Individual Values
-	int eIv[NUM_STATS];
-
 	// Enemy Stat Values
 	int eStat[NUM_STATS];
 
-	// Player Stat Values, with any temporary changes/
+	// Player Stat Values
 	int pStat[NUM_STATS];
 
 	// Battle Stats: Accuracy, Evasiveness, Crit Chance

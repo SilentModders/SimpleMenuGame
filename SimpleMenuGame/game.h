@@ -63,6 +63,7 @@ public:
 	/* Get Party Members. Empty slots are nullptr. */
 	PartyMember* GetPartyMember(int index = 0);
 	int AddPartyMember(int basetype, int level, int Hp);
+	int AddPartyMemberFull(PartyMember* member, int Hp);
 	int GetPartySize() { return pPartySize; }
 
 	int AddMoney(int money);

@@ -147,7 +147,8 @@ bool Game::ReadFile(bool firstBoot)
                     if (room.child("variable").attribute("name").value())
                         AddRoomVar(room.attribute("name").value(),
                             room.child("variable").attribute("name").value(),
-                            LoadString(room.child_value("variable"), "1"));
+                            LoadString(room.child_value("variable"), "1"),
+                            LoadString(room.child("variable").attribute("op").value(), "SET"));
                 }
 
                 /* Find out if this room gives items. */

@@ -104,6 +104,8 @@ private:
 
 	/* Rooms which change variables */
 	std::map<std::string, std::pair<std::string, std::string>> roomVars;
+	/* How rooms change variables */
+	std::map<std::string, std::pair<std::string, std::string>> roomOps;
 
 	/* Encounter Data */
 	std::map<std::string, encounterData> encounterMap;
@@ -135,7 +137,7 @@ private:
 	void AddGameVar(std::string var, std::string val);
 
 	/* Set a room to set a variable. */
-	void AddRoomVar(std::string room, std::string var, std::string val);
+	void AddRoomVar(std::string room, std::string var, std::string val, std::string op);
 
 	/* Check the existance of a game var. */
 	bool FindGameVar(std::string key);

@@ -209,15 +209,22 @@ encounterData* Game::ReadEncounterZone(std::string key)
 }
 
 /* Set a room to set a variable. */
-void Game::AddRoomVar(std::string room, std::string var, std::string val)
+void Game::AddRoomVar(std::string room, std::string var, std::string val, std::string op)
 {
     if (room != "")
         if (var != "")
+        {
             roomVars.insert(std::pair<
                 std::string, std::pair<
                 std::string, std::string>>(room,
                     std::make_pair(var,
                         LoadString(val, "0"))));
+            roomOps.insert(std::pair<
+                std::string, std::pair<
+                std::string, std::string>>(room,
+                    std::make_pair(var,
+                        LoadString(op, "SET"))));
+        }
 }
 
 /* Find the room that matches what was chosen. */
@@ -296,8 +303,24 @@ bool Game::RoomFunc(std::string key)
 
     if (roomVars.find(key) != roomVars.end())
         if (Vars.find(roomVars.find(key)->second.first) != Vars.end())
+        {
+            if (roomOps.find(key) != roomVars.end())
+            {
+                std::string op = roomOps.find(key)->second.second;
+                /* ADD */
+                if ((op == "+") || (op == "ADD"))
+                {
+                    Vars.find(roomVars.find(key)->second.first)->second =
+                        std::to_string(
+                            atoi(Vars.find(roomVars.find(key)->second.first)->second.c_str()) +
+                            atoi(roomVars.find(key)->second.second.c_str()));
+                    return true;
+                }
+            }
+            /* SET */
             Vars.find(roomVars.find(key)->second.first)->second =
             roomVars.find(key)->second.second;
+        }
     return true;
 }
 

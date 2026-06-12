@@ -12,7 +12,8 @@
     #define PAUSECMD "bash -c \"read -n1 -s -p 'Press any key to quit.'\""
 #endif
 
-constexpr auto BANNER = "Simple Menu Game, Version 0.6";
+/* Startup Banner. The version will appended. */
+constexpr auto BANNER = "Simple Menu Game, Version ";
 
 int Quit(int code = EXIT_FAILURE)
 {
@@ -69,7 +70,7 @@ int main(int argc, char** argv)
         theGame->InterpretArg(argv[1]);
     }
 
-    std::cout << BANNER << std::endl;
+    std::cout << BANNER << GAME_VER << std::endl;
     if (theGame->Setup())
     {
         while (GameLoop(theGame))

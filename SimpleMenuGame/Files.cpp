@@ -135,7 +135,7 @@ bool Game::ReadFile(bool firstBoot)
                         if (FindGameVar(s_var))
                             desc = ReplaceSubstring(desc, word, ColoredString(LoadGameVar(s_var, true), Color::COLOR_WHITE));
                     }
-                    position = desc.find("$");
+                    position = desc.find("$", position + 1);
                 }
 
                 /* Add the rooms name and description to room list. */
@@ -193,6 +193,7 @@ bool Game::ReadFile(bool firstBoot)
         /* These options are always available. */
         AddChoice("BACK", GetLastRoom());
         AddChoice("HELP", "Help");
+        AddChoice("SUMMARY", "Summary");
         AddChoice("RESTART", "RESTART");
         AddChoice("FLASK", "YE FLASK");
         /* These default rooms can be found in Game::Setup() from Game.cpp */

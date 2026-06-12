@@ -10,6 +10,9 @@
 constexpr auto START_ROOM = "Main";
 constexpr auto ERROR_ROOM = "INVALID";
 
+/* Does the summary screen auto-exit? */
+constexpr bool SUMMARY_EXIT = true;
+
 constexpr auto CURRENCY_PFIX = "$";
 constexpr auto CURRENCY_SFIX = "";
 std::string Money(int money)
@@ -126,7 +129,9 @@ bool Game::Setup()
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
     AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
-    /* Rooms below here will not be read. */
+    /* This room is meant to be customized. */
+    AddRoom("Summary", "This game is running under the Simple Menu Game engine.", SUMMARY_EXIT);
+    /* These default choices can be found in Game::ReadFile() from Files.cpp */
 
     /* Setup the initial player state. */
     if (readFile && firstBoot)
@@ -249,12 +254,25 @@ void Game::ChooseRoom(std::string key)
 /* Check the existence of a game var. */
 bool Game::FindGameVar(std::string key)
 {
+    if((key == "MONEY") || (key == "PARTYSIZE"))
+    {
+        return true;
+    }
     return Vars.find(key) != Vars.end();
 }
 
 /* Read a game var. */
 std::string Game::LoadGameVar(std::string key, bool second)
 {
+    if(key == "MONEY")
+    {
+        return Money(pMoney);
+    }
+    if(key == "PARTYSIZE")
+    {
+        return std::to_string(pPartySize);
+    }
+
     if (Vars.find(key) != Vars.end())
         if (second)
             return Vars.find(key)->second;

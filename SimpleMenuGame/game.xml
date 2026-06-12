@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banner>Poké Game, v0.3</banner> <!-- Banners are optional. -->
+<banner>Poké Game, v0.4</banner> <!-- Banners are optional. -->
 <!-- This file reimagines "Pokémon" (Gen 1-ish) by Nintendo. -->
 <!-- Use a line like this one to change the names
 	of the other XML files for the game.
@@ -21,6 +21,7 @@ OAK has a lab here. You can rest at HOME.</description>
 		<option room="Sea">SOUTH</option>
 		<option room="OAK">OAK</option>
 		<option room="Home">HOME</option>
+		<option room="Daisy" prohibit="Daisy">DAISY</option>
 	</options>
 </location>
 <location name="Sea">
@@ -45,6 +46,7 @@ OAK has a lab here. You can rest at HOME.</description>
 		using a varible as a prerequisite or prohibitor.
 	-->
 	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our pokémon!"</description>
+	<!-- TODO: The player can lose this battle and keep playing. -->
 	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong pokémon!"</description>
 	<variable name="BeatRival01" />
 	<return />
@@ -55,6 +57,40 @@ OAK has a lab here. You can rest at HOME.</description>
 		<option room="Main" require="BeatRival01">BACK</option>
 	</options>
 	<!-- <heal /> Would heal you after the fight (and every other time you come here) -->
+</location>
+<location name="Daisy"> <!-- Easter Egg -->
+	<description>Daisy: Silly $PLAYER$! How could you use a map in a text-based game?</description>
+	<variable name="Daisy" />
+	<return />
+	<options>
+		<option room="DAISY2" prohibit="Daisy">BACK</option>
+		<option room="Main" require="Daisy">BACK</option>
+	</options>
+</location>
+<location name="DAISY2">
+	<description>No point in asking her again.</description>
+	<variable name="Easter" op="+">1</variable>
+	<return />
+	<options>
+		<option room="Main">BACK</option>
+	</options>
+</location>
+<location name="YE FLASK"> <!-- Easter Egg -->
+	<description>You can't get ye FLASK!</description>
+	<variable name="Flask" />
+	<return />
+	<options>
+		<option room="YE FLASK2" prohibit="Flask">BACK</option>
+		<option room="Main" require="Flask">BACK</option>
+	</options>
+</location>
+<location name="YE FLASK2">
+	<description>This game will never explain it.</description>
+	<variable name="Easter" op="+">1</variable>
+	<return />
+	<options>
+		<option room="Main">BACK</option>
+	</options>
 </location>
 <location name="Home">
 	<description>You have rested and are now ready to continue.</description>
@@ -134,7 +170,18 @@ You can SEARCH for pokémon, travel EAST to Veridian City, or travel WEST to vis
 -->
 <location name="Help">
 	<description>The choices that you may make on each screen will be presented in capital letters.
-In most cases, you may type BACK to return the previous location.
-You may also type RESTART to start over and QUIT to end the game.</description>
+In most cases, you may type the following:
+BACK to return the previous location
+SUMMARY to see your game progress and status
+RESTART to start over
+QUIT to end the game</description>
+	<return />
+</location>
+<location name="Summary">
+	<description>Name: $PLAYER$
+Pokémon: $PARTYSIZE$
+Money: $MONEY$
+Parcel: $Parcel$
+Easter Eggs: $Easter$</description>
 	<return />
 </location>

@@ -4,8 +4,10 @@
 <banner>Poké Vars, v0.1b</banner>
 <!-- This file Tracks "Pokémon" (Gen 1) by Nintendo. -->
 <variables>
-	<variable name="PLAYER">Blue</variable>
-	<variable name="RIVAL">Red</variable>
+<!-- The engine adds PARTYSIZE and MONEY to this list. -->
+	<variable name="Player">Blue</variable>
+	<variable name="Rival">Red</variable>
+	<variable name="RivalOffset" />
 	<variable name="Easter" />
 	<variable name="Flask" />
 	<variable name="Daisy" />

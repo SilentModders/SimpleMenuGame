@@ -345,6 +345,12 @@ bool Game::ReadEncounterFile(std::string file)
                 /* Read each enemy. */
                 curArea.enemies[e] = atoi(enemy.child_value());
 
+                /* Allow an enemy index offset for a dynamic monster type. */
+                if (enemy.attribute("offset"))
+                {
+                    curArea.offset[e] = enemy.attribute("offset").value();
+                }
+
                 /* Read the chance, if present. */
                 if (enemy.attribute("chance"))
                     curArea.chance[e] = atoi(enemy.attribute("chance").value());

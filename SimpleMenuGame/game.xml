@@ -31,7 +31,7 @@ OAK has a lab here. You can rest at HOME.</description>
 </location>
 <location name="OAK">
 	<!-- Words wrapped in $ symbols will be replaced with a matching value from the Variables XML. -->
-	<description>$RIVAL$: "OAK isn't here right now, $PLAYER$."</description>
+	<description>$Rival$: "OAK isn't here right now, $Player$."</description>
 	<return />
 	<options>
 		<!-- Overriding the game's "back" option while also
@@ -45,9 +45,9 @@ OAK has a lab here. You can rest at HOME.</description>
 		Notice that both descriptions and options can be toggled by
 		using a varible as a prerequisite or prohibitor.
 	-->
-	<description prohibit="BeatRival01">$RIVAL$: "Let's check out our pokémon!"</description>
+	<description prohibit="BeatRival01">$Rival$: "Let's check out our pokémon!"</description>
 	<!-- TODO: The player can lose this battle and keep playing. -->
-	<description require="BeatRival01">$RIVAL$: "What? I picked the wrong pokémon!"</description>
+	<description require="BeatRival01">$Rival$: "What? I picked the wrong pokémon!"</description>
 	<variable name="BeatRival01" />
 	<return />
 	<options>
@@ -59,7 +59,7 @@ OAK has a lab here. You can rest at HOME.</description>
 	<!-- <heal /> Would heal you after the fight (and every other time you come here) -->
 </location>
 <location name="Daisy"> <!-- Easter Egg -->
-	<description>Daisy: Silly $PLAYER$! How could you use a map in a text-based game?</description>
+	<description>Daisy: Silly $Player$! How could you use a map in a text-based game?</description>
 	<variable name="Daisy" />
 	<return />
 	<options>
@@ -178,6 +178,7 @@ QUIT to end the game</description>
 	<return />
 </location>
 <location name="Summary">
+<!-- The engine populates PARTYSIZE and MONEY for us. -->
 	<description>Name: $PLAYER$
 Pokémon: $PARTYSIZE$
 Money: $MONEY$

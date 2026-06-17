@@ -47,6 +47,10 @@ std::string ColoredHp(int cur, int max)
 	return ColoredString(std::to_string(cur) + "/" + std::to_string(max), color);
 }
 
+/*
+	FIXME: Still need to store a persisten rival party so their IVs never change.
+// */
+
 CombatSys::CombatSys(Game* gameObj)
 {
 	theGame = gameObj;
@@ -621,7 +625,12 @@ void CombatSys::StartBattle(bool sameEnc)
 			{
 				GetLevel(p);
 				eParty[p] = new PartyMember(theGame);
-				eParty[p]->Create(encZone->enemies[p], eLevel);
+
+				int eid = encZone->enemies[p];
+				/* Allow a variable offset to change the encountered monster. */
+				eid += atoi(LoadString(theGame->LoadGameVar(encZone->offset[p], true), "0").c_str());
+
+				eParty[p]->Create(eid, eLevel);
 				savedHP[p] = eParty[p]->GetTotalHP();
 				ePartySz++;
 			}
@@ -636,6 +645,7 @@ void CombatSys::StartBattle(bool sameEnc)
 		{
 			eIndex = 0;
 			int chnce = *encZone->chance;
+			// BUGBUG: Rolling each wild change one-by-one makes each one less likely.
 			if (chnce)
 			{
 				if (random_int(1, 100) <= chnce)

@@ -4,7 +4,8 @@
 <banner>Poké Where, v0.1</banner>
 <!-- This file distributes Pokémon. Nintendo own Pokémon. -->
 <area name="OAKbattle">
-	<enemy level="5">1</enemy>
+	<!-- Variable offset so the encounter can change based on your starter  -->
+	<enemy level="5" offset="RivalOffset">1</enemy>
 	<trainer />
 </area>
 <area name="Route 1">

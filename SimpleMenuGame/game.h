@@ -9,7 +9,7 @@ constexpr auto PARTYSIZE = 6;
 
 /*
 	The maxium number of entries
-	for a wile encounter area
+	for a wild encounter area
 // */
 constexpr auto MAX_WILD = 16;
 
@@ -21,6 +21,7 @@ struct encounterData
 	int minLv[MAX_WILD]  = { 5 };
 	int maxLv[MAX_WILD]  = { 5 };
 	int randType[MAX_WILD]={ 0 };
+	std::string offset[MAX_WILD] = { "" };
 };
 
 std::string Money(int money);
@@ -51,6 +52,9 @@ public:
 
 	/* Previous Location */
 	std::string GetLastRoom();
+
+	/* Read a game var. */
+	std::string LoadGameVar(std::string key, bool second = false);
 
 	/* Set the player's location and clear old data. */
 	void SetRoom(std::string room);
@@ -141,9 +145,6 @@ private:
 
 	/* Check the existance of a game var. */
 	bool FindGameVar(std::string key);
-
-	/* Read a game var. */
-	std::string LoadGameVar(std::string key, bool second = false);
 
 	/* Check the Inventory. */
 	bool FindInventoryItem(std::string key);

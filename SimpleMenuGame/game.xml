@@ -56,7 +56,7 @@ OAK has a lab here. You can rest at HOME.</description>
 		<option room="Battle" prohibit="BeatRival01">BACK</option>
 		<option room="Main" require="BeatRival01">BACK</option>
 	</options>
-	<!-- <heal /> Would heal you after the fight (and every other time you come here) -->
+	<heal />
 </location>
 <location name="Daisy"> <!-- Easter Egg -->
 	<description>Daisy: Silly $Player$! How could you use a map in a text-based game?</description>
@@ -179,7 +179,7 @@ QUIT to end the game</description>
 </location>
 <location name="Summary">
 <!-- The engine populates PARTYSIZE and MONEY for us. -->
-	<description>Name: $PLAYER$
+	<description>Name: $Player$
 Pokémon: $PARTYSIZE$
 Money: $MONEY$
 Parcel: $Parcel$

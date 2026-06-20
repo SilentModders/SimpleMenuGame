@@ -10,6 +10,8 @@ class PartyMember : public Enemy
 public:
 	PartyMember(Game* mygame);
 	std::string GetNickname();
+	int GetEV(int st = ATTACK_STAT);
+	int GetIV(int st = ATTACK_STAT);
 	int GetStat(int st = ATTACK_STAT);
 	int GetHealth();
 	int GetAttack();
@@ -20,6 +22,7 @@ public:
 	int GetHP();
 	int GetTotalHP();
 	int GetLevel();
+	int GetExperience();
 
 	int XpForLevel(int level, int curve);
 
@@ -30,8 +33,12 @@ public:
 	bool Create(int basetype, int level,
 		int healthIV, int attackIV, int defenseIV, int spAttackIV, int spDefenseIV, int speedIV);
 
+	bool PrintSummary();
+
 	void SetHP(int hp = 0);
 	void Heal();
+
+	void SetNickname(std::string nick);
 
 private:
 	bool created;

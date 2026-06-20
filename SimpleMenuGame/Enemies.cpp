@@ -227,6 +227,12 @@ bool Enemy::AddMove(std::string nme, int lv)
 	return true;
 }
 
+bool Enemy::SetMove(std::string mov, int idx)
+{
+	myMoves[idx] = mov;
+	return true;
+}
+
 void Enemy::BuildMoveList(int lv)
 {
 	/* Reads all moves the that

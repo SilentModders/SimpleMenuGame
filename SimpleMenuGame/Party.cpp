@@ -33,10 +33,60 @@ PartyMember::PartyMember(Game* mygame)
 	for (auto s = 0; s < NUM_STATS; s++)
 		iv[s] = ev[s] = 0;
 }
+
+bool PartyMember::PrintSummary()
+{
+	if (!created)
+	{
+		return false;
+	}
+
+	std::cout << GetNickname();
+	if (nickname != GetName())
+	{
+		std::cout << " (" << GetName() << ")";
+	}
+	std::cout << std::endl;
+
+	std::cout << "Level " << GetLevel() << std::endl;
+	std::cout << "HP: " << hitP << "/" << totalHP << std::endl;
+	std::cout << std::endl;
+	return true;
+}
+
 std::string PartyMember::GetNickname()
 {
 	return ColoredString(nickname, Color::COLOR_WHITE);
 }
+
+void PartyMember::SetNickname(std::string nick)
+{
+	if (nick != "")
+	{
+		nickname = nick;
+	}
+}
+
+int PartyMember::GetEV(int st)
+{
+	int ret = ev[ATTACK_STAT];
+	if ((st >= 0) && (st < NUM_STATS))
+	{
+		ret = ev[st];
+	}
+	return ret;
+}
+
+int PartyMember::GetIV(int st)
+{
+	int ret = iv[ATTACK_STAT];
+	if ((st >= 0) && (st < NUM_STATS))
+	{
+		ret = iv[st];
+	}
+	return ret;
+}
+
 int PartyMember::GetStat(int st)
 {
 	int ret = attack;
@@ -97,6 +147,11 @@ int PartyMember::GetTotalHP()
 int PartyMember::GetLevel()
 {
 	return myLevel;
+}
+
+int PartyMember::GetExperience()
+{
+	return curXp;
 }
 
 int PartyMember::XpForLevel(int level, int curve)
@@ -193,6 +248,13 @@ bool PartyMember::Create(int basetype, int level, int healthIV, int attackIV, in
 
 	myLevel = std::clamp(level, 1, MAX_LEVEL);
 	curXp = XpForLevel(myLevel, GetXpCurve());
+
+	iv[HEALTH] = healthIV;
+	iv[ATTACK_STAT] = attackIV;
+	iv[DEFENSE] = defenseIV;
+	iv[SATTACK] = spAttackIV;
+	iv[SDEFENSE]= spDefenseIV;
+	iv[SPEED] = speedIV;
 
 	CalcStats();
 	hitP = totalHP;

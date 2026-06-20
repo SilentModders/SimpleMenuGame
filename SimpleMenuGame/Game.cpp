@@ -9,9 +9,8 @@
 
 constexpr auto START_ROOM = "Main";
 constexpr auto ERROR_ROOM = "INVALID";
-
-/* Does the summary screen auto-exit? */
-constexpr bool SUMMARY_EXIT = true;
+constexpr auto SAVES_ROOM = "SaveGame";
+constexpr auto LOADG_ROOM = "LoadGame";
 
 constexpr auto CURRENCY_PFIX = "$";
 constexpr auto CURRENCY_SFIX = "";
@@ -25,6 +24,7 @@ Game::Game()
     firstBoot = true;
     Room = START_ROOM;
     OldRoom = Room;
+    saveXML= "";
     altXML = "";
     Choice = "";
     pMoney = 0;
@@ -34,6 +34,35 @@ Game::Game()
     {
         party[m] = nullptr;
     }
+}
+
+/* List contents of a std::map */
+bool ListMapKeys(std::map<std::string, int>* m)
+{
+    bool items = false;
+    for(std::map<std::string, int>::iterator it = m->begin(); it != m->end(); ++it)
+    {
+        std::cout << "Key: " << it->first << std::endl;
+        std::cout << "Value: " << it->second << std::endl;
+        items = true;
+    }
+    return items;
+}
+bool ListMapKeys(std::map<std::string, std::string>* m)
+{
+    const bool LIST_ZEROES = true;
+
+    bool items = false;
+    for(std::map<std::string, std::string>::iterator it = m->begin(); it != m->end(); ++it)
+    {
+        if(it->second != "0" || LIST_ZEROES)
+        {
+            std::cout << "Key: " << it->first << std::endl;
+            std::cout << "Value: " << it->second << std::endl;
+            items = true;
+        }
+    }
+    return items;
 }
 
 /* The Current Choice */
@@ -60,6 +89,21 @@ std::string Game::GetLastRoom()
     return OldRoom;
 }
 
+void Game::ResetGame()
+{
+    for (auto pk = 0; pk < PARTYSIZE; pk++)
+    {
+        party[pk] = nullptr;
+    }
+    pPartySize = 0;
+    Vars.clear();
+    Inventory.clear();
+    pMoney = 0;
+    firstBoot = true;
+    Choice = "";
+    Setup();
+}
+
 /* Set the player's location and clear old data. */
 void Game::SetRoom(std::string room)
 {
@@ -67,12 +111,9 @@ void Game::SetRoom(std::string room)
     if (room == "RESTART")
     {
         std::cout << std::endl << std::endl;
-        Vars.clear();
-        Inventory.clear();
-        pMoney = 0;
-        firstBoot = true;
         room = START_ROOM;
-        Choice = "";
+        ResetGame();
+        return;
     }
 
     if (Room != "Battle")
@@ -130,7 +171,9 @@ bool Game::Setup()
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
     AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
     /* This room is meant to be customized. */
-    AddRoom("Summary", "This game is running under the Simple Menu Game engine.", SUMMARY_EXIT);
+    AddRoom("Summary", "This game is running under the Simple Menu Game engine.", true);
+    AddRoom(SAVES_ROOM, "This game has been saved!");
+    AddRoom(LOADG_ROOM, "Moved to saved room."); // This will not be seen.
     /* These default choices can be found in Game::ReadFile() from Files.cpp */
 
     /* Setup the initial player state. */
@@ -148,12 +191,6 @@ void Game::Pause(int time)
 /* Setup the initial player state. */
 void Game::InitPlayer()
 {
-    /* Default Party for testing */
-    party[0] = new PartyMember(this);
-    party[0]->Create(7, 5);
-    party[1] = new PartyMember(this);
-    party[1]->Create(19, 4);
-    pPartySize = 2;
 }
 
 PartyMember* Game::GetPartyMember(int index)
@@ -254,7 +291,9 @@ void Game::ChooseRoom(std::string key)
 /* Check the existence of a game var. */
 bool Game::FindGameVar(std::string key)
 {
-    if((key == "MONEY") || (key == "PARTYSIZE"))
+    if((key == "MONEY") ||
+        (key == "PARTYSIZE") ||
+        (key == "ENGINE_V"))
     {
         return true;
     }
@@ -272,6 +311,10 @@ std::string Game::LoadGameVar(std::string key, bool second)
     {
         return std::to_string(pPartySize);
     }
+    if(key == "ENGINE_V")
+    {
+        return GAME_VER;
+    }
 
     if (Vars.find(key) != Vars.end())
         if (second)
@@ -285,6 +328,12 @@ std::string Game::LoadGameVar(std::string key, bool second)
 bool Game::FindInventoryItem(std::string key)
 {
     return Inventory.find(key) != Inventory.end();
+}
+
+/* List the Inventory. */
+bool Game::ListInventory()
+{
+    return ListMapKeys(&Inventory);
 }
 
 /* Add an item to the inventory. */
@@ -313,11 +362,36 @@ bool Game::RemoveInventoryItem(std::string item, int count)
     return false;
 }
 
+/* List Game Variables */
+bool Game::ListVariables()
+{
+    return ListMapKeys(&Vars);
+}
+
 /* Sets a game variable when specified by the room. */
 bool Game::RoomFunc(std::string key)
 {
     if (key == "Battle")
         return !combatSys->BattleTurn();
+
+    if (key == SAVES_ROOM)
+    {
+        return SaveGame();
+    }
+
+    if (key == LOADG_ROOM)
+    {
+        if (LoadGame())
+        {
+            std::cout << "Saved game was successfully loaded!" << std::endl << std::endl;
+            /* Display the game's summary after loading. */
+            SetRoom("Summary");
+            return true;
+        }
+        std::cout << "Unable to load game!" << std::endl << std::endl;
+        SetRoom(GetLastRoom());
+        return false;
+    }
 
     if (roomVars.find(key) != roomVars.end())
         if (Vars.find(roomVars.find(key)->second.first) != Vars.end())

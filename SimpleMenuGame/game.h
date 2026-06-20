@@ -84,6 +84,9 @@ private:
 	/* Alternate Main File */
 	std::string altXML;
 
+	/* Alternate Save File */
+	std::string saveXML;
+
 	/* The Current Room */
 	std::string Room;
 	/* The initial vaule determines the entry point for the script. */
@@ -131,6 +134,9 @@ private:
 	/* Setup the intial player state. */
 	void InitPlayer();
 
+	/* Reset Game State */
+	void ResetGame();
+
 	/* Add Option for Player */
 	void AddChoice(std::string option, std::string room);
 
@@ -149,8 +155,20 @@ private:
 	/* Check the Inventory. */
 	bool FindInventoryItem(std::string key);
 
+	/* List the Inventory. */
+	bool ListInventory();
+
+	/* List Game Variables */
+	bool ListVariables();
+
 	/* Perform Room actions. */
 	bool RoomFunc(std::string key);
+
+	/* Record Game State. */
+	bool SaveGame();
+
+	/* Restore Saved Game */
+	bool LoadGame();
 
 	/* The XML file is re-read every time a new command is issued. */
 	bool ReadFile(bool firstBoot = false);

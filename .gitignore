@@ -50,3 +50,5 @@ SimpleMenuGame/.vscode/
 *.code-workspace
 
 SimpleMenuGame/pk
+
+SimpleMenuGame/save.xml

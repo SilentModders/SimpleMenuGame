@@ -75,6 +75,9 @@ public:
 	// Add a move the this monster's total list.
 	bool AddMove(std::string nme, int lv = 1);
 
+	// Forcibly set the move for a given slot
+	bool SetMove(std::string mov, int idx = 0);
+
 	// Gives this enemy the newest moves for that level
 	void BuildMoveList(int lv = 1);
 

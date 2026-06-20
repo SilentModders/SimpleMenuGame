@@ -1,7 +1,7 @@
 #pragma once
 
 /* Game Engine Version */
-constexpr auto GAME_VER = "0.7";
+constexpr auto GAME_VER = "0.8";
 
 /* Sleep for the given amount of realtime seconds. */
 void GameSleep(int sec = 1);

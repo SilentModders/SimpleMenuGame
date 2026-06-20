@@ -49,6 +49,7 @@ std::string ColoredHp(int cur, int max)
 
 /*
 	FIXME: Still need to store a persisten rival party so their IVs never change.
+	Or is is safe for them to vary between encounters?
 // */
 
 CombatSys::CombatSys(Game* gameObj)

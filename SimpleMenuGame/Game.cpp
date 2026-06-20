@@ -169,7 +169,7 @@ bool Game::Setup()
     AddRoom("YE FLASK", "You can't get ye FLASK!");
     AddRoom("Help", "You can type HELP for this message, RESTART to restart, and QUIT to quit.");
     AddRoom("Battle", "You are in a battle. You can ATTACK, use an item from the BAG, or RUN.", true);
-    AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART or QUIT.", true);
+    AddRoom("GameOver", "Sorry, but your adventure has ended. Please RESTART, LOAD, or QUIT.", true);
     /* This room is meant to be customized. */
     AddRoom("Summary", "This game is running under the Simple Menu Game engine.", true);
     AddRoom(SAVES_ROOM, "This game has been saved!");

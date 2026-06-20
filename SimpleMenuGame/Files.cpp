@@ -527,6 +527,12 @@ bool Game::SaveGame()
 
 bool Game::LoadGame()
 {
+    if (!std::filesystem::exists(SAVE_XML))
+    {
+        std::cout << "No save file exists; ";
+        return false;
+    }
+
     const pugi::char_t* source = SAVE_XML;
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(source);
